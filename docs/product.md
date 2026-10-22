@@ -48,7 +48,7 @@ Die Einführung führt in Kapiteln durch Sponsorwahl, Jugendförderung, die erst
 
 Ein nicht modales Begleitfenster hebt das gemeinte Element hervor, führt bei Bedarf dorthin und weicht dem Ziel aus. In modalen Dialogen zieht es in den Dialog. Nichts ist erzwungen: Weiter, Zurück, Kapitel überspringen und Einführung beenden sind immer verfügbar; tatsächlich ausgeführte Aktionen schalten den Schritt selbst weiter. Unter Hilfe & Einstellungen lässt sich die Einführung für die aktuelle Karriere ein- und ausschalten oder neu starten; ein Kurzglossar erklärt Farbstufen, Stamm-/Einsatzposition, Frische, Transfertage, Gehälter sowie Crown und Horizon Cup.
 
-Der Fortschritt liegt ausschließlich im Browserspeicher (`doppel6.tutorial`) und gehört zu der Karriere, für die die Einführung gewählt wurde; Spielstände, Export und Schema bleiben unverändert. Bestehende Karrieren zeigen nichts, solange die Einführung nicht in den Einstellungen gestartet wird. Fähigkeiten nennt die Einführung nur als Farbstufen. [Plan](tutorial-plan.md), [Texte](tutorial-texte.md).
+Der Fortschritt liegt ausschließlich im Browserspeicher (`doppel6.tutorial`) und gehört zu der Karriere, für die die Einführung gewählt wurde; Spielstände, Export und Schema bleiben unverändert. Bestehende Karrieren zeigen nichts, solange die Einführung nicht in den Einstellungen gestartet wird. Fähigkeiten nennt die Einführung nur als Farbstufen. [Plan](tutorial-plan.md), [Texte](tutorial-texte.md). Veröffentlicht mit Release 134 am 22. Oktober 2026.
 
 ## Vereinsbüro und kompakte Begegnungsvorschau
 

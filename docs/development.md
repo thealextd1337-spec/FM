@@ -1,6 +1,6 @@
 # Entwicklung und Veröffentlichung
 
-Aktueller Veröffentlichungsstand vom 18. Oktober 2026: Release 133 in `work/release-r133`, Branch `release/r133`, auf dem vollständig geprüften SI-/Clientstand `086275ef`. Die Veröffentlichung ist vom Nutzer beauftragt und erfolgt über `main` und den Produktionsworkflow. Quelle ist `dist/`; Footer, Build, Runtime-Cache, Unity-Produktmetadaten und Hilfedaten tragen 133. [Releasebericht und Prüfungen](release-133.md). B05 und konkrete Nutzerabnahmen bleiben offen; Bestandsspielstände werden nicht umgerechnet.
+Aktueller Veröffentlichungsstand vom 22. Oktober 2026: Release 134 in `work/tutorial`, Branch `release/r134`, auf Release 133 plus der optionalen Einführung (`feat/tutorial`, `7c8c015d`). Die Veröffentlichung ist vom Nutzer beauftragt und erfolgt über `main` und den Produktionsworkflow. Quelle ist `dist/`; Footer, Build, Runtime-Cache, Unity-Produktmetadaten und Hilfedaten tragen 134. [Releasebericht und Prüfungen](release-134.md). B05 und konkrete Nutzerabnahmen bleiben offen; Bestandsspielstände werden nicht umgerechnet.
 
 ## Aktueller Arbeitsstand und Abschluss
 

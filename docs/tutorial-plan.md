@@ -1,6 +1,6 @@
 # Optionale Einführung und Erklärungen beim Spielstart – Plan
 
-Stand: 22. Oktober 2026. Auf Nutzerauftrag umgesetzt in `dist/world-tutorial-v186.js` und `.css` auf Branch `feat/tutorial` (Worktree `work/tutorial`); Prüfung `work/check-tutorial.cjs`. Noch nicht veröffentlicht. Basis ist Release 133 (`work/release-r133`, Branch `release/r133`). Gilt nur für die Vereinswelt; Sechserliga, 3D-Hilfe und `freekickdemo/` gehören nicht zum Umfang.
+Stand: 22. Oktober 2026. Auf Nutzerauftrag umgesetzt in `dist/world-tutorial-v186.js` und `.css` auf Branch `feat/tutorial` (Worktree `work/tutorial`); Prüfung `work/check-tutorial.cjs`. Mit Release 134 veröffentlicht. Basis ist Release 133 (`work/release-r133`, Branch `release/r133`). Gilt nur für die Vereinswelt; Sechserliga, 3D-Hilfe und `freekickdemo/` gehören nicht zum Umfang.
 
 ## Ziel
 

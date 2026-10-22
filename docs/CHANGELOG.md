@@ -2,7 +2,11 @@
 
 ## Noch nicht veröffentlicht
 
-- Optionale Einführung für neue Vereinswelten (`world-tutorial-v186.js/.css`, Branch `feat/tutorial` auf Release 133): aufklappbare Erklärungen in jedem Startschritt, Opt-in im Prüfen-Schritt und ein nicht modales Begleitfenster, das durch Sponsorwahl, Jugendförderung, erste Transferphase mit Kaufen und Verkaufen, Transferschluss, Aufstellung, erstes Spiel und das Vereinsbüro mit News führt; ein eigenes Kapitel zeigt die erste Vertragsverlängerung. Hilfe & Einstellungen erhalten Schalter, Neustart und Kurzglossar. Fortschritt nur im Browserspeicher, keine Änderung an Spielständen. `work/check-tutorial.cjs --build`: 20 Prüfungen in Quelle und Einzeldatei-Build (Desktop/Deutsch, Handy/Englisch, Persistenz, Abwahl, Einstellungen, Spiel bis Spielbericht); `work/check-career-start-defaults.cjs` weiterhin grün. Noch nicht veröffentlicht; Fußversion unverändert.
+## Release 134 — 22. Oktober 2026
+
+- Release 134 veröffentlicht Release 133 plus die optionale Einführung. Fußversion, Unity-Laufzeitmetadaten, Laufzeitcache und 3D-Hilfedaten tragen 134; Quelle und Einzeldatei-Build sind versionsgleich. Unity-Payload unverändert (`7ce6f77f...`). Bestehende Welten werden nicht umgerechnet. [Veröffentlichungsbericht](release-134.md).
+
+- Optionale Einführung für neue Vereinswelten (`world-tutorial-v186.js/.css`, Branch `feat/tutorial` auf Release 133): aufklappbare Erklärungen in jedem Startschritt, Opt-in im Prüfen-Schritt und ein nicht modales Begleitfenster, das durch Sponsorwahl, Jugendförderung, erste Transferphase mit Kaufen und Verkaufen, Transferschluss, Aufstellung, erstes Spiel und das Vereinsbüro mit News führt; ein eigenes Kapitel zeigt die erste Vertragsverlängerung. Hilfe & Einstellungen erhalten Schalter, Neustart und Kurzglossar. Fortschritt nur im Browserspeicher, keine Änderung an Spielständen. `work/check-tutorial.cjs --build`: 20 Prüfungen in Quelle und Einzeldatei-Build (Desktop/Deutsch, Handy/Englisch, Persistenz, Abwahl, Einstellungen, Spiel bis Spielbericht); `work/check-career-start-defaults.cjs` weiterhin grün.
 
 ## Release 133 — 18. Oktober 2026
 

@@ -1,0 +1,20 @@
+{
+  "release": 134,
+  "base": "5c3ea6b8",
+  "feature": "7c8c015d",
+  "workflowCommands": {
+    "total": 127,
+    "passed": 127
+  },
+  "extra": [
+    "work/test-release-version.cjs",
+    "work/check-tutorial.cjs --build (20)",
+    "work/check-career-start-defaults.cjs",
+    "work/check-release-r132-publication.py --release 134"
+  ],
+  "build": {
+    "index": "a10cd8e768d46678483773d3f90e787c6ac7abee94e42b3b97dd3e30102200f9",
+    "download": "a10cd8e768d46678483773d3f90e787c6ac7abee94e42b3b97dd3e30102200f9",
+    "identical": true
+  }
+}
