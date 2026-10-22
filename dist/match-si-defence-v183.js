@@ -271,7 +271,7 @@ function v183DefTarget(m,p){
  const spot=v183DefCoverSpot(m,p,owner,presser),anchor={x:p.bx,y:p.by},gap=Math.hypot((spot.x-anchor.x)*s.x,(spot.y-anchor.y)*s.y),limit=Math.min(1,v183Param(m,'defence.coverLeash')/Math.max(.001,gap));
  return v183DefAssign(m,p,v159Point({x:anchor.x+(spot.x-anchor.x)*limit,y:anchor.y+(spot.y-anchor.y)*limit},s,.5),'cover');
 }
-// Ball line (B23): a defender who is neither pressing nor chasing a flight never
+// Ball line (B28): a defender who is neither pressing nor chasing a flight never
 // takes a target upfield of the ball. The cover spot leashed to a far anchor and
 // the mark of a receiver behind the ball (football-flow-v159 'receiver') sent him
 // away from an advancing carrier; now such a target stops 1 m goal-side of the ball

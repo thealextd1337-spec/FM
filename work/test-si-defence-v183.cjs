@@ -131,7 +131,7 @@ check('safety defender: the choice is sticky within 1.5 m, a clearly nearer play
   put(d0,3,.2);put(d1,8,-1);put(d2,12,1);out.push(tick());put(d2,7.2,1);out.push(tick());put(d2,5,1);out.push(tick());return out;})()`));
  assert.deepEqual(r,['def1','def1','def2']);
 });
-// ----- ball line (B23): no defensive target upfield of the ball -----
+// ----- ball line (B28): no defensive target upfield of the ball -----
 const lineTargets=cfg=>{scene(cfg);return copy(ev(`(()=>{const m=match,s=v150Scale(m),out={};Native182.advance();
   for(const p of m.people.filter(x=>x.pid.startsWith('def'))){v159DefensiveTarget(m,p);const read=m.attackFlow.defenseReads?.[p.pid];out[p.pid]={purpose:read?.purpose||null,kind:read?.kind||null,goalSideM:+((p.ty-m.ball.y)*s.y).toFixed(2),readGoalSideM:read?+((read.target.y-m.ball.y)*s.y).toFixed(2):null};}
   return out;})()`));};
