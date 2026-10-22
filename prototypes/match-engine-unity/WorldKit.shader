@@ -60,7 +60,7 @@ Shader "Doppel6/World Kit" {
    if(shirt&&b.y>.95){color=lerp(color,_NumberEdge.rgb,mark.y);color=lerp(color,_NumberColor.rgb,mark.x);}
   }else{
    bool skin=color.r>color.g*1.12&&color.g>color.b*1.12&&pigment>.18;
-   bool eye=b.y>1.47&&b.y<1.57&&b.z>.065;
+   bool eye=b.y>1.47&&b.y<1.57&&b.z>.065&&color.g>color.r*.6; // near-neutral eye whites only, not the peach cheeks/nose
    if(skin&&!eye&&b.y>.5)color=_Skin.rgb*lerp(.65+.65*pigment,.93+.3*pigment,lp);
    if((b.y>1.62||(b.y>1.49&&b.z<-.025&&pigment<.24))&&pigment<.35)color=_Hair.rgb*lerp(.7+pigment*2,.85+pigment,lp);
    // Keepers wear gloves over the actual hand geometry (bind pose |x| > 0.62 m).
