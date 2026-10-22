@@ -49,16 +49,17 @@ function v185Decide({minute,score,quality,window:w,fresh,base,active,six}){
  return{target,why:why||'calm',pressure};
 }
 
-// Cumulative counters by world side; territory is clock time with the ball in the opponent's half (team 0 attacks y < .5).
+// Cumulative counters by world side; territory counts the minutes whose first observed state has the ball in the opponent's
+// half (team 0 attacks y < .5), one sample per match minute, so it does not depend on the frame rate.
 function v185Totals(context){
  const ai=context.state.aiCoach,people=[...match.people,...(match.exitedPeople||[])],out={minute:context.state.minute,shots:[0,0],on:[0,0],poss:[0,0],terr:[...ai.territory]};
  for(const t of [0,1]){const side=v65Side(t,context.ownSide);out.shots[side]=match.shots[t];out.poss[side]=match.possession[t];out.on[side]=people.filter(p=>p.t===t).reduce((n,p)=>n+(p.stats.onTarget||0),0);}
  return out;
 }
 function v185Observe(context){
- const state=context.state,ai=state.aiCoach||={samples:[],territory:[0,0],at:match.elapsed,log:[]},dt=match.elapsed-ai.at;ai.at=match.elapsed;
- if(dt>0&&dt<1&&Number.isFinite(match.ball?.y)&&match.ball.y!==.5)ai.territory[v65Side(match.ball.y<.5?0:1,context.ownSide)]+=dt;
+ const state=context.state,ai=state.aiCoach||={samples:[],territory:[0,0],log:[]};
  if(ai.samples.at(-1)?.minute===state.minute)return;
+ if(Number.isFinite(match.ball?.y)&&match.ball.y!==.5)ai.territory[v65Side(match.ball.y<.5?0:1,context.ownSide)]++;
  ai.samples.push(v185Totals(context));if(ai.samples.length>v185Coach.window+5)ai.samples.shift();
 }
 function v185Window(state,side){
@@ -67,10 +68,10 @@ function v185Window(state,side){
  return{minutes:now.minute-from.minute,shotsFor,shotsAgainst,onFor,onAgainst,possession:pf+pa>0?pf/(pf+pa):.5,territory:tf+ta>0?tf/(tf+ta):.5};
 }
 // Substitution: a fitting coach replaces a clearly weak performer (live rating at least one point below the team mean; ratings
-// rarely fall below the baseline 6) from the second half on; otherwise the most tired player
+// rarely fall below the baseline 6) from the half-time check on; otherwise the most tired player
 // from minute 60 (the previous rule). The incoming player takes the role and is the best bench fit for it.
 function v185Substitution(career,fixture,state,side,q){
- if(state.minute<(q>=3?46:60)||state.substitutions.filter(item=>item.side===side).length+state.pending[side].length>=2)return null;
+ if(state.minute<(q>=3?45:60)||state.substitutions.filter(item=>item.side===side).length+state.pending[side].length>=2)return null;
  const active=v64Active(state,side).filter(pid=>state.roles[pid]!=='gk'&&!state.pending[side].some(item=>item.outPid===pid));
  let out=null,why=null;
  if(q>=3&&state.playerPerformance){
@@ -90,16 +91,19 @@ function v185Text(club,entry){
  const parts=Object.entries(entry.changes).map(([key,value])=>key==='formation'?value:v185Words[key][value]);
  return`${club} stellt um: ${parts.join(', ')} (${v185Why[entry.why]}).`;
 }
-// One check of the computer coach (never the user's side; same timing rules as before: at most every ten minutes, earlier after a goal).
+// One check of the computer coach (never the user's side; same timing rules as before: at most every ten minutes, earlier after a goal,
+// also when the same minute was already checked). Second legs count the first leg (aggregate), as the penalty rule does.
 function v185AiCoach(context,side,reason){
  const {career,fixture,state}=context,plan=side===0?fixture.plan.home:fixture.plan.away;
- if(side===context.ownSide||!plan.coachId||state.minute===state.lastAiCheck[side])return null;
+ if(side===context.ownSide||!plan.coachId||reason!=='Tor'&&state.minute===state.lastAiCheck[side])return null;
  state.lastAiCheck[side]=state.minute;
  const coach=career.world.coaches.find(item=>item.id===plan.coachId),q=coach?.judgment?.adaptation??3,ai=state.aiCoach,tactic=state.tactics[side];
  const field=v64Active(state,side).filter(pid=>state.roles[pid]!=='gk'),fresh=field.reduce((sum,pid)=>sum+state.fresh[pid],0)/Math.max(1,field.length);
- const decision=v185Decide({minute:state.minute,score:state.score[side]-state.score[1-side],quality:q,window:v185Window(state,side),fresh,base:plan.tactics,active:ai.active?.[side]??null,six:v160WorldConfig(career).fieldPlayers===6});
+ const first=fixture.leg===2&&typeof v64UiFirstLegScore==='function'?v64UiFirstLegScore(career,fixture,context.ownSide===1):'';
+ const decision=v185Decide({minute:state.minute,score:state.score[side]-state.score[1-side]+(first?first[1]-first[0]:0),quality:q,window:v185Window(state,side),fresh,base:plan.tactics,active:ai.active?.[side]??null,six:v160WorldConfig(career).fieldPlayers===6});
  const out=[];
- if(state.minute-state.lastAiChange[side]>=v185Coach.gap||reason==='Tor'){
+ // No more reverts ("Lage beruhigt") in the last minutes.
+ if((state.minute-state.lastAiChange[side]>=v185Coach.gap||reason==='Tor')&&!(decision.why==='calm'&&state.minute>85)){
   const changes={};for(const key of ['formation','pressing','passing','defense','aggression'])if(decision.target[key]!==tactic[key]&&(key!=='formation'||v160FormationValid(career,decision.target.formation)))changes[key]=decision.target[key];
   if(Object.keys(changes).length){
    v64ChangeTactics(career,fixture,state,side,changes,reason);state.lastAiChange[side]=state.minute;(ai.active||=[null,null])[side]=decision.why;
@@ -117,14 +121,17 @@ function v185CheckEvery(context,side){
 // Called by v65AfterStep for marked states after the minute sync: observe, then check the computer side after goals, at half time and on its cadence.
 function v185AfterStep(context,goal,halftime){
  v185Observe(context);
- const state=context.state,side=1-context.ownSide,club=v65Club(context,1).name;
- if(!(goal||halftime||state.minute>0&&state.minute!==45&&state.minute%v185CheckEvery(context,side)===0))return;
+ const state=context.state,side=1-context.ownSide;
+ if(!goal&&!halftime&&(state.minute===0||state.minute===45||state.minute===state.lastAiCheck[side]||state.minute%(state.aiCoach.every||=v185CheckEvery(context,side))!==0))return;
+ const club=v65Club(context,1).name;
  for(const entry of v185AiCoach(context,side,goal?'Tor':halftime?'Halbzeit':'Reguläre Prüfung')||[])if(entry.kind==='tactics')note(v185Text(club,entry),'major');
 }
 const v185BaseWorldReport=v65WorldReport;
 v65WorldReport=function(context,...rest){
  const report=v185BaseWorldReport.call(this,context,...rest),log=context.state.aiCoach?.log;
- if(log?.length)report.aiCoach=log.map(entry=>({minute:entry.minute,text:v185Text(v65Club(context,entry.side===context.ownSide?0:1).name,entry)}));
+ // Substitutions show the minute they were carried out; one that never came on is left out.
+ const minute=entry=>entry.kind==='sub'?context.state.substitutions.find(item=>item.outPid===entry.outPid&&item.inPid===entry.inPid)?.minute:entry.minute;
+ if(log?.length)report.aiCoach=log.filter(entry=>minute(entry)!==undefined).map(entry=>({minute:minute(entry),text:v185Text(v65Club(context,entry.side===context.ownSide?0:1).name,entry)})).sort((a,b)=>a.minute-b.minute);
  return report;
 };
 const v185BaseReportHTML=v47ReportHTML;
