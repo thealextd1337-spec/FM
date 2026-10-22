@@ -1,0 +1,25 @@
+{
+  "pass": true,
+  "site": "https://fussball.cakamper.at/",
+  "checkedAt": "2026-10-22T16:46:45.752Z",
+  "hashes": [
+    {
+      "remote": "index.html",
+      "sha256": "a10cd8e768d46678483773d3f90e787c6ac7abee94e42b3b97dd3e30102200f9"
+    },
+    {
+      "remote": "unity-match/runtime.html",
+      "sha256": "0a11e8eaba95b19006a1085a3d76124eb28db02d23514a4f2f1d6c8d1565fafa"
+    },
+    {
+      "remote": "unity-match/runtime.js",
+      "sha256": "91f8e6ae6d4103146ebae159ba3074bc194b537f607c630c643f1dcf75c9ba90"
+    },
+    {
+      "remote": "unity/probe-build.json",
+      "sha256": "9631bbd7b0cff3b7d3eef078061464b9d837cc1a783df33d26d9c86c0947c631"
+    }
+  ],
+  "footer": "PROTOTYP 134",
+  "introduction": "Willkommen beim FC Bremen Weser!"
+}

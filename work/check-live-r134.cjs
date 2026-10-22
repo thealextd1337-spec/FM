@@ -16,7 +16,7 @@ const files=[['index.html','outputs/index.html'],['unity-match/runtime.html','di
  const browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true});
  try{
   const page=await (await browser.newContext({viewport:{width:1280,height:900}})).newPage(),errors=[];page.on('pageerror',error=>errors.push(error.message));
-  await page.goto(site+'?live='+Date.now(),{timeout:180000});await page.waitForFunction(()=>window.v61StorageReady&&window.D6Tutorial,null,{timeout:180000});
+  await page.goto(site+'?live='+Date.now(),{timeout:180000});await page.waitForFunction(()=>typeof v61StorageReady!=='undefined'&&v61StorageReady&&!!window.D6Tutorial,null,{timeout:180000});
   assert.match(await page.locator('footer span').first().textContent(),/PROTOTYP 134/);
   assert.equal(await page.evaluate(()=>document.documentElement.dataset.d6Release),'134');
   await page.evaluate(()=>{window.doppel6Language.set('de');v61Begin();});
