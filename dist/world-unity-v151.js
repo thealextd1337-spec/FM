@@ -52,10 +52,12 @@
    const keeperFacts=Object.fromEntries(['saved','parry','goal','smother','held'].filter(k=>typeof a?.[k]==='boolean').map(k=>[k,a[k]]));
    const holdingKnown=p.keeper&&a?.kind==='save'&&['saved','parry','goal'].every(k=>typeof a[k]==='boolean')&&typeof frame.ballInFlight==='boolean';
    const ballHeld=holdingKnown?{ballHeld:a.saved&&!a.parry&&!a.goal&&frame.owner===p.id&&!frame.ballInFlight&&(a.progress??0)>=1}:{};
+   // holding belongs to a throw-in (WorldViewContract.Validate rejects it on any other action, Unity then falls back to
+   // 2D); a keeper's v182 hold on a save or goal kick reaches Unity as ballHeld/held.
    // Preserve an observed native action time and a real duration when present.
    // The legacy duration fallback is not evidence of an action's start time.
    const timing={...(Number.isFinite(a?.at)&&a.at>=0&&a.at<=frame.clock+1e-6?{actionAt:a.at,actionAtKnown:true}:{}),...(Number.isFinite(a?.duration)&&a.duration>0?{durationKnown:true}:{})};
-   return {id:p.id,position:[p.x,0,p.z],facing:direction,moving:!['idle','restart'].includes(p.movement?.mode),action:a?.kind||'idle',actionId:String(a?.id??a?.kind??'idle'),contactPoint:a?.contactWorld?point(a.contactWorld):null,recovery:a?.recovery||0,progress:a?.progress??0,duration:a?.duration||1,number:p.number,...timing,...keeperFacts,...ballHeld,...(a?.kind==='goalKick'&&['waiting','follow'].includes(a.phase)?{phase:a.phase}:{}),...(typeof a?.holding==='boolean'?{holding:a.holding}:{}),...(Number.isFinite(a?.pickup)?{pickup:Math.max(0,Math.min(1,a.pickup))}:{}),...(a?.aerial===true?{aerial:true}:{}),...(Number.isFinite(p.freshness)?{freshness:p.freshness}:{})};
+   return {id:p.id,position:[p.x,0,p.z],facing:direction,moving:!['idle','restart'].includes(p.movement?.mode),action:a?.kind||'idle',actionId:String(a?.id??a?.kind??'idle'),contactPoint:a?.contactWorld?point(a.contactWorld):null,recovery:a?.recovery||0,progress:a?.progress??0,duration:a?.duration||1,number:p.number,...timing,...keeperFacts,...ballHeld,...(a?.kind==='goalKick'&&['waiting','follow'].includes(a.phase)?{phase:a.phase}:{}),...(a?.kind==='throw'&&typeof a.holding==='boolean'?{holding:a.holding}:{}),...(Number.isFinite(a?.pickup)?{pickup:Math.max(0,Math.min(1,a.pickup))}:{}),...(a?.aerial===true?{aerial:true}:{}),...(Number.isFinite(p.freshness)?{freshness:p.freshness}:{})};
   }),netActive:Boolean(frame.net),net:frame.net?{...frame.net}:null,...(frame.offside&&Number.isFinite(frame.offside.lineX)?{offside:{lineX:frame.offside.lineX}}:{}),...celebration};
  }
  const legacy={length:68,width:44};

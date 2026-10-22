@@ -77,14 +77,15 @@ if(!process.argv.includes('--measure-only')){
     assert.equal(sample.action.holding,sample.browser.hold||sample.browser.transfer===0,'Hand grip changes at the real browser hand-to-foot transfer');
     if(sample.action.holding)poseChecks.holdingFrames++;else poseChecks.transferFrames++;
    }
-   assert.equal(sample.bridge.holding,sample.action.holding,'Production Unity bridge preserves the same holding fact');
+   // WorldViewContract.Validate accepts holding only on a throw-in; any other carrier made Unity fall back to 2D (R133).
+   assert.equal(sample.bridge.holding,sample.action.kind==='throw'?sample.action.holding:undefined,'Production Unity bridge sends holding only for a throw-in (WorldViewContract)');
    assert.equal(sample.bridge.action,sample.action.kind,'Production Unity bridge preserves the same pose');
    if(sample.phase==='waiting'){assert.deepEqual(sample.native,sample.view,'Ball authority and projected position stay together during recovery/placement');}
    if(sample.phase==='follow')assert.equal(sample.action.holding,false,'Hand grip released on actual outgoing flight');
   }
  }
  assert(poseChecks.recoveryFrames>0&&poseChecks.holdingFrames>0&&poseChecks.transferFrames>0);report.poseChecks=poseChecks;
- checks.push('Original catch/recovery actions retained; explicit holding agrees with the hand-to-foot phase');
+ checks.push('Original catch/recovery actions retained; explicit holding agrees with the hand-to-foot phase; the Unity picture carries it only for a throw-in');
  const reviewed=load(reviewBase);report.reviewRound1={base:reviewBase,cases:[]};
  for(const kind of ['smother','run-out','dive','save','distant-recovery']){
   const distant=kind==='distant-recovery',path=distant?'smother':kind,fresh=distant?after.copy(after.call('Hold182.run',0,path,true,-1,false,true)):rows.after.find(r=>r.path===path&&r.held&&r.releaseAt),prior=reviewed.copy(reviewed.call('Hold182.run',fresh.seed,path,true,-1,false,distant));
@@ -94,7 +95,7 @@ if(!process.argv.includes('--measure-only')){
   let premature=0,wrongHolding=0;for(let j=0;j<fresh.trace.length;j++){
    const a=prior.trace[j],b=fresh.trace[j];for(const key of ['at','elapsed','native','view','keeper','releaseOrigin'])assert.deepEqual(a[key],b[key],`Review fixes preserve ball/body fact ${key}`);
    if(original.trace[j]?.action?.kind==='save'&&original.trace[j].phase==='waiting')assert.equal(b.action.kind,'save','Distant boundary also retains the original recovery');
-   assert.equal(b.action.holding,b.browser.hold||b.browser.transfer===0,'Review boundary grip agrees with the real browser pose');assert.equal(b.bridge.holding,b.action.holding);
+   assert.equal(b.action.holding,b.browser.hold||b.browser.transfer===0,'Review boundary grip agrees with the real browser pose');assert.equal(b.bridge.holding,b.action.kind==='throw'?b.action.holding:undefined);
    if(a.action?.kind==='goalKick'&&b.action?.kind==='save')premature++;
    if(a.action?.holding===false&&(a.browser?.hold||a.browser?.transfer===0))wrongHolding++;
   }
