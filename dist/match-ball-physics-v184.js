@@ -6,11 +6,13 @@
 // gravity, quadratic air drag and the Magnus force of a launched side spin,
 // and samples the path once per flight with a fixed 1/120 s substep. Readers
 // of the ball position (progression, 2D/3D painters, loose-ball handover,
-// chasers) use the same table. Free balls run the same integrator while they
-// are airborne (bounce with restitution, tangential friction and spin
-// coupling, post/crossbar cylinders); on the ground the calibrated damping of
-// world-ball-motion-v110 (2.3/s) applies, so chase distances stay as measured.
-// Woodwork: every pre-rolled miss flies against the post and crossbar cylinders;
+// chasers) read the same table; only the engine tick (v150AdvanceFlight) builds
+// and re-solves it (the SI finish completes the launch data after fly returns),
+// so renderer reads between ticks never change the match. Free balls run the same integrator while they are airborne
+// (bounce with restitution, tangential friction and spin coupling, no frame);
+// on the ground the calibrated damping of world-ball-motion-v110 (2.3/s)
+// applies, so chase distances stay as measured.
+// Woodwork (only pre-rolled misses meet the post and crossbar cylinders):
 // a miss whose target lies in the band around the frame (SI finish draws the
 // lateral and height scatter continuously) hits post or bar, the rebound continues
 // as a loose ball and never becomes a goal. No random draw is added anywhere; spin direction
@@ -112,7 +114,6 @@ function v184Substep(st,h,opt){
   st.impacts=(st.impacts||0)+1;
   if(!st.woodwork)st.woodwork={t:st.t+(h-left),frame:hit.frame,x:st.x,y:st.y,z:st.z};
   if(opt.flight)opt.flight=false;  // after the frame the ball may land before the flight ends
-  opt.hit=true;
  }
  if(left>1e-12){st.x+=st.vx*left;st.y+=st.vy*left;st.z+=st.vz*left;}
  const s=Math.exp(-V184.spinDecay*h);st.wx*=s;st.wy*=s;st.wz*=s;
@@ -122,7 +123,7 @@ function v184Substep(st,h,opt){
 // Advance a state by `seconds` on the fixed grid (substep boundaries at
 // multiples of V184.dt from t=0), independent of how the seconds are split.
 function v184Advance(st,seconds,opt={}){
- const o={frame:opt.frame||null,flight:!!opt.flight,miss:!!opt.miss,hit:false};
+ const o={frame:opt.frame||null,flight:!!opt.flight,miss:!!opt.miss};
  let left=Math.max(0,seconds);
  while(left>1e-12){
   const next=(Math.floor(st.t/V184.dt+1e-7)+1)*V184.dt,h=Math.min(left,next-st.t);
@@ -131,25 +132,29 @@ function v184Advance(st,seconds,opt={}){
  return st;
 }
 function v184State(start,v,w){return {x:start.x,y:start.y,z:start.z,vx:v.vx,vy:v.vy,vz:v.vz,wx:w[0],wy:w[1],wz:w[2],t:0,impacts:0,settled:false,stopped:false,woodwork:null};}
-// Launch velocity that reaches `end` at time T (Newton on the integrator, no frame, no ground).
+// Launch velocity that reaches `end` at time T (Newton on the integrator, no frame, no ground);
+// null when the iteration does not converge (residual over .05 m or non-finite), the caller
+// then keeps the engine's straight lerp.
 function v184Launch(start,end,T,w){
- let v={vx:(end.x-start.x)/T,vy:(end.y-start.y)/T,vz:(end.z-start.z)/T+.5*V184.g*T};
+ let v={vx:(end.x-start.x)/T,vy:(end.y-start.y)/T,vz:(end.z-start.z)/T+.5*V184.g*T},err=Infinity;
  const residual=v=>{const st=v184Advance(v184State(start,v,w),T,{flight:true});return [st.x-end.x,st.y-end.y,st.z-end.z];};
  for(let i=0;i<12;i++){
-  const r=residual(v);if(Math.hypot(r[0],r[1],r[2])<1e-5)break;
+  const r=residual(v);err=Math.hypot(r[0],r[1],r[2]);if(err<1e-5)break;
   const eps=.01,J=[];
   for(const key of ['vx','vy','vz']){const d=residual({...v,[key]:v[key]+eps});J.push([(d[0]-r[0])/eps,(d[1]-r[1])/eps,(d[2]-r[2])/eps]);}
   // J[k] is the column for key k; solve J * dv = -r with Cramer's rule
   const M=[[J[0][0],J[1][0],J[2][0]],[J[0][1],J[1][1],J[2][1]],[J[0][2],J[1][2],J[2][2]]],det=m=>m[0][0]*(m[1][1]*m[2][2]-m[1][2]*m[2][1])-m[0][1]*(m[1][0]*m[2][2]-m[1][2]*m[2][0])+m[0][2]*(m[1][0]*m[2][1]-m[1][1]*m[2][0]);
   const D=det(M);if(Math.abs(D)<1e-12)break;
   const col=(m,i,b)=>m.map((row,j)=>row.map((x,k)=>k===i?b[j]:x)),b=[-r[0],-r[1],-r[2]];
-  v={vx:v.vx+det(col(M,0,b))/D,vy:v.vy+det(col(M,1,b))/D,vz:v.vz+det(col(M,2,b))/D};
+  v={vx:v.vx+det(col(M,0,b))/D,vy:v.vy+det(col(M,1,b))/D,vz:v.vz+det(col(M,2,b))/D};err=Infinity;
  }
- return v;
+ if(!(err<1e-5))err=Math.hypot(...residual(v));
+ return err<.05?v:null;
 }
-// Sample table of one flight: positions and velocities at every substep.
+// Sample table of one flight: positions and velocities at every substep (null when the launch has no solution).
 function v184BuildTable(start,end,T,w,frame,miss){
- const v0=v184Launch(start,end,T,w),st=v184State(start,v0,w),n=Math.max(1,Math.ceil(T/V184.dt-1e-9)),pos=new Float64Array(3*(n+1)),vel=new Float64Array(3*(n+1)),times=new Float64Array(n+1);
+ const v0=v184Launch(start,end,T,w);if(!v0)return null;
+ const st=v184State(start,v0,w),n=Math.max(1,Math.ceil(T/V184.dt-1e-9)),pos=new Float64Array(3*(n+1)),vel=new Float64Array(3*(n+1)),times=new Float64Array(n+1);
  const o={frame:frame||null,flight:true,miss};
  const record=i=>{pos[3*i]=st.x;pos[3*i+1]=st.y;pos[3*i+2]=st.z;vel[3*i]=st.vx;vel[3*i+1]=st.vy;vel[3*i+2]=st.vz;times[i]=st.t;};
  record(0);
@@ -169,6 +174,7 @@ function v184Resplice(table,q,zT){
  const t=Math.max(0,Math.min(1,q))*table.T,i=Math.min(table.n-1,Math.floor(t/V184.dt+1e-9)),rest=table.T-table.times[i];
  if(rest<.05){table.zT=zT;return table;}
  const start={x:table.pos[3*i],y:table.pos[3*i+1],z:table.pos[3*i+2]},w=v184SpinAt(table,table.times[i]/table.T),tail=v184BuildTable(start,{...table.end,z:zT},rest,w,null,false);
+ if(!tail){table.zT=zT;return table;}
  for(let j=0;j<=tail.n;j++){const k=i+j;if(k>table.n)break;for(let c=0;c<3;c++){table.pos[3*k+c]=tail.pos[3*j+c];table.vel[3*k+c]=tail.vel[3*j+c];}table.times[k]=table.times[i]+tail.times[j];}
  table.zT=zT;table.endSpin=tail.endSpin;table.endState=tail.endState;return table;
 }
@@ -198,11 +204,9 @@ function v184LaunchSpin(m,kind,launch,start,end,shot){
  const bulgeLeft=obstacle.toward?leftOf(obstacle):!leftOf(obstacle);
  return [0,0,bulgeLeft?-strength:strength];
 }
-function v184Table(m,flight){
- if(!flight||!v184Active(m))return null;
- let table=v184Tables.get(flight);if(table!==undefined)return table;
- table=v184CreateTable(m,flight);v184Tables.set(flight,table);return table;
-}
+// Pure lookup for readers: null until the first engine tick of the flight built the table.
+function v184Table(m,flight){return flight&&v184Active(m)?v184Tables.get(flight)??null:null;}
+function v184EngineTable(m,flight){let table=v184Tables.get(flight);if(table===undefined){table=v184CreateTable(m,flight);v184Tables.set(flight,table);}return table;}
 function v184CreateTable(m,flight){
  const shot=v99Flights.get(flight),meta=v102Flights.get(flight),launch=v184Launches.get(flight)||{},rate=v184Rate(m),T=flight.duration/rate;
  if(!(T>0))return null;
@@ -210,15 +214,15 @@ function v184CreateTable(m,flight){
  if(kind==='throw'||shot?.kind==='goalKick'&&!meta?.high)return null;
  let start,end,z0,zT,frame=null,miss=false;
  if(shot?.kind==='shot'){start=shot.visualStart||{x:flight.x,y:flight.y};end=shot.displayTarget||shot.target;z0=shot.startHeight-.29;zT=shot.endHeight-.29;}
- else if(meta){start=meta.start;end=meta.target;z0=meta.startHeight-.29;zT=meta.endHeight-.29;}
+ else if(meta){start=shot?.kind==='goalKick'&&shot.start||meta.start;end=meta.target;z0=(shot?.kind==='goalKick'?shot.startHeight:meta.startHeight)-.29;zT=meta.endHeight-.29;}   // a held goal kick leaves from the placed ball (v99), not from the keeper's kick point
  else{start={x:flight.x,y:flight.y};end=flight.target;z0=0;zT=0;}
  const S=v184Metres(m,start,Math.max(0,z0)),E=v184Metres(m,end,Math.max(0,zT)),w=v184LaunchSpin(m,kind,launch,S,E,shot);
  miss=Boolean(shot?.kind==='shot'&&!shot.onTarget&&!shot.blocked);   // every miss meets the frame; the sweep decides post, bar or nothing
  if(miss){frame=v184Frame(m);v184MissBand(frame,E);}
  if(S.z===0&&E.z===0&&!w[2]&&!miss)return null;   // ground ball: the engine's straight lerp is exact
- const table=v184BuildTable(S,E,T,w,frame,miss);
- table.flight=flight;table.kind=kind;table.shot=shot||null;table.meta=meta||null;table.launch=launch;
- if(table.woodwork)table.woodwork.handled=false;else miss=false;
+ const table=v184BuildTable(S,E,T,w,frame,miss);if(!table)return null;
+ table.kind=kind;table.shot=shot||null;table.meta=meta||null;
+ if(table.woodwork)table.woodwork.handled=false;
  return table;
 }
 // The miss scatter of the finish model is densest at the posts, and every ball
@@ -232,10 +236,7 @@ function v184MissBand(frame,E){
  const dz=zc-goal.bar;if(Math.abs(dz)<V184.missBand||Math.abs(dz)>=reach)return;E.z=goal.bar+reach-V184.rest;   // under the mouth: clear the bar above
 }
 function v184WantedEnd(table){const h=table.shot?table.shot.endHeight:table.meta?.endHeight;return Number.isFinite(h)?Math.max(0,h-.29):table.zT;}
-function v184Sample(m,table,q){
- const zT=v184WantedEnd(table);if(Math.abs(zT-table.zT)>1e-9&&!table.woodwork)v184Resplice(table,q,zT);
- return v184Legacy(m,v184TableAt(table,q));
-}
+function v184Sample(m,table,q){return v184Legacy(m,v184TableAt(table,q));}
 const v184BaseFly=fly;
 fly=function(target,duration,done){
  const m=match;if(!v184Active(m))return v184BaseFly(target,duration,done);
@@ -262,7 +263,6 @@ v50GoalKick=function(keeper,...args){
 };
 function v184AfterWoodwork(m,flight,table){
  const shooter=table.shot.shooter,frame=table.woodwork.frame,end=v184Legacy(m,table.endState),point={x:end.x,y:end.y};
- const actions=v99Actions.get(m);if(actions?.miss?.flight===flight)actions.miss=null;   // no miss pose behind the goal, the ball is in play
  // Ledger: a 'woodwork' event under the shot and the frame on the shot event itself; the loose ball
  // stays parented to the shot, so rebound chains (loose ball from a shot) keep their meaning.
  if(typeof v117Event==='function'&&typeof v117Ledger==='function'&&v117Ledger(m)){const parent=typeof v117Origin==='function'?v117Origin(m):null,event=v117Event(m,'woodwork',shooter,parent?.id??null);event.frame=frame;event.result='rebound';if(parent)parent.woodwork=frame;}
@@ -302,7 +302,7 @@ v124AdvanceAir=function(current,seconds){
  if(a.settled)return a;
  const dt=Math.max(0,seconds);if(!(dt>0))return a;
  const s=v160PitchScale(current),rate=v184Rate(current),st=v184AirState(current,a,r),x0=st.x,y0=st.y;
- v184Advance(st,dt,{frame:v184Frame(current)});
+ v184Advance(st,dt);   // no frame: only a pre-rolled miss meets post or bar (product rule: woodwork is never a goal)
  a.height=.29+st.z;a.vh=st.vz;a.spin=[st.wx,st.wy,st.wz];a.vxm=st.vx;a.vym=st.vy;a.impacts=(a.impacts||0)+st.impacts;
  // v110 moves the ball by r.v * delta while airborne and by the damped travel once settled: hand over the actual displacement of this tick.
  const tx=(st.x-x0)/s.x,ty=(st.y-y0)/s.y;
@@ -317,11 +317,11 @@ v124AdvanceAir=function(current,seconds){
 function v184Path(m,r,a){
  const sig=[r.x,r.y,a.height,a.vh,a.vxm,a.vym,a.spin?.[0],a.spin?.[1],a.spin?.[2]].join(',');
  let path=v184Paths.get(a);if(path&&path.sig===sig)return path;
- const o={frame:v184Frame(m)},st=v184AirState(m,a,r),pts=[v184Legacy(m,st)];
- for(let i=1;i<=120;i++){v184Advance(st,.05,o);pts.push(v184Legacy(m,st));}
+ const st=v184AirState(m,a,r),pts=[v184Legacy(m,st)];
+ for(let i=1;i<=120;i++){v184Advance(st,.05);pts.push(v184Legacy(m,st));}
  const land=v184AirState(m,a,r);let landing;
  if(land.z<=1e-9&&land.vz<=1e-9)landing={...v184Legacy(m,land),seconds:0};
- else{let t=0;while(t<3&&!(land.impacts>0||land.settled)){v184Advance(land,V184.dt,o);t+=V184.dt;}landing={...v184Legacy(m,land),seconds:land.t};}
+ else{let t=0;while(t<3&&!(land.impacts>0||land.settled)){v184Advance(land,V184.dt);t+=V184.dt;}landing={...v184Legacy(m,land),seconds:land.t};}
  path={sig,pts,landing};v184Paths.set(a,path);return path;
 }
 function v184FreeBallAt(m,r,a,seconds){
@@ -356,11 +356,14 @@ const v184BaseAdvanceFlight=v150AdvanceFlight;
 v150AdvanceFlight=function(m,delta){
  const f=m.flight;
  if(!f||!v184Active(m)||v150SpacePasses.get(m)?.flight===f)return v184BaseAdvanceFlight(m,delta);
- const table=v184Table(m,f);if(!table)return v184BaseAdvanceFlight(m,delta);
+ const table=v184EngineTable(m,f);if(!table)return v184BaseAdvanceFlight(m,delta);
  f.progress+=delta/f.duration;const q=Math.min(1,f.progress);
+ const zT=v184WantedEnd(table);if(Math.abs(zT-table.zT)>1e-9&&!table.woodwork)v184Resplice(table,q,zT);   // only the engine tick re-solves (v102 raises the landing height once a player contests)
  if(q>=1&&!table.woodwork){m.ball.x=f.target.x;m.ball.y=f.target.y;}
  else{const p=v184Sample(m,table,q);m.ball.x=p.x;m.ball.y=p.y;}
- if(q>=1){m.flight=null;f.done();}
+ if(q>=1){m.flight=null;f.done();
+  // v99 sets its miss pose after the done chain; after a frame hit the ball is in play, not behind the goal
+  if(table.woodwork?.handled){const actions=v99Actions.get(m);if(actions?.miss?.flight===f)actions.miss=null;}}
  return true;
 };
 const v184BaseFlightPoint=v109FlightPoint;

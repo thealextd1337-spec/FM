@@ -101,6 +101,11 @@ check('free-ball integration is independent of the step size (grid multiples exa
  assert(ref.impacts>=1,'the ball bounced at least once');
  for(let t=.1;t<=3;t+=.1){const x=runWith(.05,t),y=runWith(.025,t);assert(Math.hypot(x.x-y.x,x.y-y.y,x.z-y.z)<1e-9,'equal at '+t.toFixed(1));}
 });
+check('the launch solver returns null instead of a diverged or non-finite velocity',()=>{
+ assert.equal(build({x:0,y:0,z:0},{x:200,y:0,z:0},.25,[0,0,0],null,false),null,'200 m in .25 s (800 m/s) diverges under drag');
+ assert.equal(build({x:0,y:0,z:0},{x:NaN,y:0,z:0},1,[0,0,0],null,false),null,'non-finite target');
+ assert(build(cases[0].start,cases[0].end,cases[0].T,cases[0].w,null,false),'regular flights still solve');
+});
 check('table sampling interpolates between the recorded substeps',()=>{
  const t=build(cases[4].start,cases[4].end,cases[4].T,cases[4].w,null,false);
  for(let i=0;i<=t.n;i++){const p=at(t,t.times[i]/t.T);assert(Math.abs(p.x-t.pos[3*i])<1e-9&&Math.abs(p.z-t.pos[3*i+2])<1e-9,'sample '+i);}
@@ -122,7 +127,7 @@ check('flights follow the table: progression, v109/v102/v101 readers and v99Ball
  fresh();
  h.run(`globalThis.__bp={tables:0,ground:0,spins:0,kinds:{},maxJump:0,maxView:0,maxLerp:0,prev:new WeakMap()};`,'probe');
  const probe=`(()=>{const m=match,f=m.flight;if(!f)return;const t=v184Table(m,f);
-  if(!t){const meta=v102Flights.get(f);if(meta&&meta.startHeight===.29&&meta.endHeight===.29){const q=Math.min(1,f.progress),lx=f.x+(f.target.x-f.x)*q,ly=f.y+(f.target.y-f.y)*q;__bp.maxLerp=Math.max(__bp.maxLerp,Math.hypot(m.ball.x-lx,m.ball.y-ly));if(!__bp.prev.has(f)){__bp.ground++;__bp.prev.set(f,true);}}return;}
+  if(!t){if(f.progress<=0)return;const meta=v102Flights.get(f);if(meta&&meta.startHeight===.29&&meta.endHeight===.29){const q=Math.min(1,f.progress),lx=f.x+(f.target.x-f.x)*q,ly=f.y+(f.target.y-f.y)*q;__bp.maxLerp=Math.max(__bp.maxLerp,Math.hypot(m.ball.x-lx,m.ball.y-ly));if(!__bp.prev.has(f)){__bp.ground++;__bp.prev.set(f,true);}}return;}
   const q=Math.min(1,f.progress),p=v109FlightPoint(f,q);
   if(!__bp.prev.has(f)){__bp.tables++;__bp.kinds[t.kind]=(__bp.kinds[t.kind]||0)+1;if(t.w0[2])__bp.spins++;}
   if(q>0&&q<1){const d=Math.hypot(p.x-m.ball.x,p.y-m.ball.y);if(d>__bp.maxView)__bp.maxView=d;}   // q 0: created this tick, the ball still sits at the kick
@@ -171,17 +176,19 @@ check('an air state saved without spin/velocity fields (older snapshot) advances
   const a=v124AdvanceAir(m,.05);return {height:a.height,vxm:a.vxm,spin:a.spin,vx:r.vx};})()`);
  assert(r.height>2&&r.height<2.1,'rose during the tick');assert(Math.abs(r.vxm-2)<.02,'horizontal velocity from r.vx');assert.deepEqual(r.spin.map(x=>+x.toFixed(9)),[0,0,0]);
 });
-check('woodwork: a pre-rolled miss whose scatter lies in the frame band hits post or bar, is booked as off-target plus woodwork, continues as loose ball and never scores',()=>{
- const seen={post:0,bar:0};let tries=0;
- const scene=(seed)=>ev(`(()=>{const m=match,s=v150Scale(m),top=v55Field.top,p=m.people.find(q=>q.t===0&&!q.keeper),k=m.people.find(q=>q.t===1&&q.keeper);
+const woodSeeds=[];
+const woodScene=(seed)=>`(()=>{const m=match,s=v150Scale(m),top=v55Field.top,p=m.people.find(q=>q.t===0&&!q.keeper),k=m.people.find(q=>q.t===1&&q.keeper);
   Object.assign(m,{setPiece:null,throwIn:null,kickoff:null,flight:null,rebound:null,goalPause:0,postBanner:null,slide:null,next:Infinity,pendingKickoff:null});
   p.x=.5+3/s.x;p.y=top+14/s.y;p.fin=9;p.tec=12;k.x=.5;k.y=top+2/s.y;k.gk=12;
   for(const r of m.people)if(r.t===1&&!r.keeper){r.x=.5+(r.n%3-1)*.2;r.y=top+40/s.y;}
   for(const q of m.people){q.tx=q.x;q.ty=q.y;q.interceptTarget=null;}
   m.owner=p;m.ball={x:p.x,y:p.y};Native182.seedRandom(${seed});
-  const events=m.ballAccounting.events.length;v55Shoot(p);
+  const events=m.ballAccounting.events.length;v55Shoot(p);v150AdvanceFlight(m,0);   // the engine tick builds the table
   const f=m.flight,t=f&&v184Table(m,f),rel=f&&v99Flights.get(f);
-  return {woodwork:t?.woodwork?.frame||null,onTarget:rel?.onTarget,blocked:rel?.blocked,events,score:[...m.score],pid:p.pid};})()`);
+  return {woodwork:t?.woodwork?.frame||null,onTarget:rel?.onTarget,blocked:rel?.blocked,events,score:[...m.score],pid:p.pid};})()`;
+check('woodwork: a pre-rolled miss whose scatter lies in the frame band hits post or bar, is booked as off-target plus woodwork, continues as loose ball and never scores',()=>{
+ const seen={post:0,bar:0};let tries=0;
+ const scene=(seed)=>ev(woodScene(seed));
  for(let seed=1;seed<=1500&&(!seen.post||!seen.bar);seed++){
   fresh({seed:'wood'+seed});
   const s=scene(Math.imul(seed+1,2654435761)>>>0||1);tries++;
@@ -201,9 +208,52 @@ check('woodwork: a pre-rolled miss whose scatter lies in the frame band hits pos
   assert.deepEqual(final.score,s.score,'no goal from the woodwork rebound (seed '+seed+')');
   assert.equal(inGoal,0,'the free ball never lies inside the goal');
   assert(final.loose>=1,'a loose ball followed');
-  seen[s.woodwork]++;
+  seen[s.woodwork]++;woodSeeds.push(seed);
  }
  assert(seen.post>=1&&seen.bar>=1,`post ${seen.post}, bar ${seen.bar} in ${tries} shots`);
  console.log(JSON.stringify({woodworkScenes:seen,shots:tries}));
+});
+check('after a frame hit the 3D frame shows the loose ball (no faded miss ball, keeper not idle)',()=>{
+ // v99 books its miss pose after the done chain; the engine tick clears it when the ball rebounded from the frame
+ const hv=create({view:true}),evv=e=>{const v=hv.evaluate(e);return v===undefined?undefined:hv.copy(v);};
+ hv.run('finishMatch=function(){match.finished=true;running=false;match.flight=null;}','stub');
+ let checked=0;
+ for(const seed of woodSeeds.slice(0,2)){
+  hv.call('Native183.constructed',{roles:true,seed:'wood'+seed});hv.run('match.firstHalfEnd=5000;match.fullTimeEnd=10000;match.halftime=false;','clock');
+  const s=evv(woodScene(Math.imul(seed+1,2654435761)>>>0||1));
+  assert(s.woodwork,'same scene hits the frame in the view harness (seed '+seed+')');
+  for(let i=0;i<40;i++){hv.call('Native183.advance',.05);
+   const st=evv(`(()=>{const m=match,fr=v98PitchFrame(m),b=v98PitchPoint(m.ball,false);return {flight:!!m.flight,rebound:!!m.rebound,miss:!!v99Actions.get(m)?.miss,d:Math.hypot(fr.ball.x-b.x,fr.ball.z-b.z),opacity:fr.ball.opacity,out:fr.outOfPlayBall,keeperIdle:m.people.some(p=>p.keeper&&v99PlayerAction(m,p)===null&&!!v99Actions.get(m)?.miss)};})()`);
+   if(st.flight)continue;if(!st.rebound)break;
+   assert(!st.miss,'no miss pose while the rebound is in play (seed '+seed+', tick '+i+')');
+   assert(st.d<1e-9&&st.opacity===1&&!st.out,'frame ball is the loose ball: '+JSON.stringify(st));
+   checked++;
+  }
+ }
+ assert(checked>=5,'rebound ticks checked: '+checked);
+});
+check('a held high goal kick starts its table at the placed ball (v99 release start), painters agree at q 0',()=>{
+ fresh({seed:'hold1'});
+ const r=ev(`(()=>{const m=match,s=v150Scale(m),k=m.people.find(q=>q.t===1&&q.keeper),out=m.people.filter(q=>q.t===1&&!q.keeper).sort((a,b)=>a.y-b.y)[0];
+  Object.assign(m,{setPiece:null,throwIn:null,kickoff:null,flight:null,rebound:null,goalPause:0,postBanner:null,slide:null,next:Infinity,pendingKickoff:null});
+  k.x=.5;k.y=v55Field.bottom-5/s.y;out.x=.5+8/s.x;out.y=v55Field.bottom-45/s.y;for(const q of m.people){q.tx=q.x;q.ty=q.y;q.interceptTarget=null;}
+  const hold={x:k.x+.7/s.x,y:k.y-.3/s.y,elevation:.29};m.owner=k;m.ball={...hold};
+  const state=v99ActionState(m);state.kicks.set(k.pid,{kind:'goalKick',keeper:k,phase:'waiting',age:0,held:true,holdPoint:{...hold},kickPoint:{...hold},holdRelease:m.elapsed,holdPlacement:.3});
+  v55HighPass(k,out);v150AdvanceFlight(m,0);
+  const f=m.flight,rel=f&&v99Flights.get(f),meta=f&&v102Flights.get(f),t=f&&v184Table(m,f),view=v99BallView(m),dist=(a,b)=>Math.hypot((a.x-b.x)*s.x,(a.y-b.y)*s.y);
+  return {kind:rel?.kind,held:rel?.held,high:!!meta?.high,table:!!t,dMeta:rel&&meta?dist(rel.start,meta.start):null,tableStart:t?Math.hypot(t.pos[0]-m.ball.x*s.x,t.pos[1]-m.ball.y*s.y):null,view:view?dist(view,m.ball):null};})()`);
+ assert.equal(r.kind,'goalKick');assert(r.held&&r.high&&r.table,'held high goal kick with table: '+JSON.stringify(r));
+ assert(r.dMeta>.3,'the v102 kick point differs from the placed ball: '+r.dMeta);
+ assert(r.tableStart<1e-9&&r.view<1e-9,'table and view start at the ball: '+JSON.stringify(r));
+});
+check('reads between ticks (renderers) do not change the match: equal digests with and without v109/v102/v101 reads',()=>{
+ const run=reads=>{fresh({seed:'rd1'});
+  const read=`(()=>{const f=match.flight;if(!f)return;const q=Math.min(1,f.progress);v109FlightPoint(f,q);const meta=v102Flights.get(f),rel=v99Flights.get(f);if(meta)v102FlightBall(meta,q);if(rel?.kind==='shot')v101ShotPoint(rel,q);})()`;
+  for(let i=0;i<3000&&!ev('match.finished');i++){h.call('Native183.advance');if(reads)h.evaluate(read);}
+  return {digest:String(h.call('Native183.digest',{})),score:ev('match.score'),draws:ev('Native182.rng().draws')};};
+ const plain=run(false),rendered=run(true);
+ assert.equal(rendered.digest,plain.digest,'digest differs with reads: '+JSON.stringify([plain.score,rendered.score]));
+ assert.equal(rendered.draws,plain.draws);
+ console.log(JSON.stringify({readIndependence:plain.score}));
 });
 console.log(JSON.stringify({pass:true,checks:checks.length,names:checks}));
