@@ -187,6 +187,7 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
     if(p.action&&['freeKick','shot','pass','highPass','cross'].includes(p.action.kind))p.action={...p.action,prepareWorld:{x:p.x+prep.direction.x,z:p.z+prep.direction.z}};}}}
  // U-1 (183): a match with the SI marker (match.si.revision 183, new matches) marks its pictures; matches without it keep them unchanged.
  v98PitchFrame=function(current){const frame=basePitchFrame(current);if(current?.si?.revision===183)frame.siRevision=183;v151Observe(current,frame);v151Attention(current,frame);for(const p of frame.players){const action=p.action;if(!action)continue;if(action.target){const targetWorld=v98PitchPoint(action.target,frame.turned);p.action={...action,targetWorld};}const contact=action.contact||(action.kind==='save'?action.target:null)||(['pass','shot','highPass','cross','freeKick','goalKick'].includes(action.kind)&&action.target?v101KickPoint(p.person,action.target):null);if(contact){const spot=v98PitchPoint(contact,frame.turned);p.action={...p.action,contactWorld:{...spot,height:contact.elevation??action.height??.29}};}}if(frame.celebration){const goal=current.goals?.at(-1);frame.celebration={...frame.celebration,scorer:goal&&!goal.ownGoal&&goal.pid?goal.pid:''};}if(current.goalScene&&current.goalPause>0){const view=typeof v119VisibleGoalView==='function'?v119VisibleGoalView(current):null,p=view?.contact||v83GoalPosition(current.goalScene),spot=v98PitchPoint(p,frame.turned);if(!view||view.hit==='rear')frame.net={sign:Math.sign(spot.x),z:spot.z,height:view?.height??.8,age:view?.age??current.goalScene.elapsed,bulge:view?.bulge??p.bulge,...(view?{flowing:true}:{})};}return frame;};
+ let lastPaint=null;
  let shownGeometry=null,host=null,iframe=null,labels=null,message=null,ballGuide=null,current=null,session='',sequence=0,ready=false,loaded=false,loading=false,pending=null,loop=0,lastSent=-Infinity,started=0,failed=false,cameraPose=null,cameraViewKey='',lastPicture=null,loadCount=0,lastProjection=null,suspendedAt=null;
  let ballGuideEnabled=true;try{ballGuideEnabled=localStorage.getItem('d6-ball-guide')!=='off'}catch{}
  const labelMap=new Map();
@@ -220,7 +221,7 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
   window.D6ViewFramePump?.setEnabled(false);
   v100PitchMenu(false);
   if(loop)cancelAnimationFrame(loop);loop=0;
-  host?.remove();host=iframe=labels=message=ballGuide=null;current=null;session='';ready=loaded=loading=false;pending=null;lastPicture=null;lastProjection=null;suspendedAt=null;cameraPose=null;labelMap.clear();
+  host?.remove();host=iframe=labels=message=ballGuide=null;current=null;session='';ready=loaded=loading=false;pending=null;lastPicture=null;lastProjection=null;suspendedAt=null;lastPaint=null;cameraPose=null;labelMap.clear();
  }
  function fail(reason){
   failed=true;window.D6UnityMatch.lastFailure=String(reason);window.D6UnityMatch.lastError=v98Text('Unity ist nicht verfügbar · 2D ist aktiv','Unity is unavailable · using 2D');dispose();v98Failed=true;v98View='2d';v102StopPaint();document.body.classList.remove('v98-pitch3d');draw();
@@ -291,7 +292,12 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
   // A hidden tactical/halftime view suspends the iframe. Its waiting time must
   // not count as an unresponsive renderer or consume the startup deadline.
   if(!visible){if(suspendedAt===null)suspendedAt=now;if(!document.hidden)loop=requestAnimationFrame(render);return;}
-  if(suspendedAt!==null){const gap=now-suspendedAt;started+=gap;if(pending)pending.at+=gap;suspendedAt=null;}
+  if(suspendedAt!==null){const gap=now-suspendedAt;started+=gap;if(pending)pending.at+=gap;suspendedAt=null;lastPaint=now;}
+  // A page that itself painted nothing for over a second (a frozen main thread: a device asleep without a hidden
+  // document, a long pause, a slow screenshot) suspended the iframe too; that gap is no unresponsive renderer
+  // (an 8-11 s screenshot stall failed a running Unity match with "Unity antwortet nicht").
+  if(lastPaint!==null&&now-lastPaint>1000){const gap=now-lastPaint;started+=gap;if(pending)pending.at+=gap;}
+  lastPaint=now;
   if(now-started>120000&&!loaded){fail(v98Text('Unity konnte nicht geladen werden · 2D ist aktiv','Unity could not load · using 2D'));return;}
   if(pending&&now-pending.at>10000){fail(v98Text('Unity antwortet nicht · 2D ist aktiv','Unity is not responding · using 2D'));return;}
   if(!document.hidden&&ready&&!pending&&now-lastSent>=50){
