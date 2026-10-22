@@ -40,6 +40,16 @@ Transfers zeigen Position und Ablöse direkt; weitere Filter sind aufklappbar, i
 
 Nutzerentscheidung vom 12. Oktober 2026: Beim Start einer neuen Karriere entfällt vorerst die Auswahl von Feldgröße und Spieleranzahl. Neue Vereinswelten verwenden immer die Standardfeldgröße (das bisherige Grundfeld) mit fünf Feldspielern plus Torwart je Mannschaft. Die Zusammenfassung nennt diese festen Regeln. Dieser Entscheid ersetzt die frühere Voreinstellung des größeren Feldes und die freie Auswahl beim Karrierestart. Bestehende Karrieren behalten ihre gespeicherten Regeln.
 
+## Optionale Einführung beim Spielstart
+
+Nutzerentscheidungen vom 22. Oktober 2026: Neue Vereinswelten bieten eine optionale geführte Einführung. Im Startablauf erklärt jeder Schritt (Manager, Land, Verein, Prüfen) aufklappbar, was er bedeutet. Im Prüfen-Schritt ist „Einführung zeigen“ vorausgewählt, solange auf dem Gerät noch keine Karriere gespeichert ist, sonst abgewählt.
+
+Die Einführung führt in Kapiteln durch Sponsorwahl, Jugendförderung, die erste Transferphase (Spielersuche, Profil, Kaufen, Verkaufen, eigene Transferliste, Verträge, Transfertag), den Transferschluss, Aufstellung und Taktik sowie das erste Spiel bis zum Spielbericht. Willkommen umfasst die Leitaktion, die Navigation und das Vereinsbüro mit den News. Sobald ein eigener Vertrag verlängert werden kann, zeigt ein eigenes Kapitel die Vertragsverlängerung; es folgt frühestens auf die Transferphase und unterbricht kein laufendes Kapitel.
+
+Ein nicht modales Begleitfenster hebt das gemeinte Element hervor, führt bei Bedarf dorthin und weicht dem Ziel aus. In modalen Dialogen zieht es in den Dialog. Nichts ist erzwungen: Weiter, Zurück, Kapitel überspringen und Einführung beenden sind immer verfügbar; tatsächlich ausgeführte Aktionen schalten den Schritt selbst weiter. Unter Hilfe & Einstellungen lässt sich die Einführung für die aktuelle Karriere ein- und ausschalten oder neu starten; ein Kurzglossar erklärt Farbstufen, Stamm-/Einsatzposition, Frische, Transfertage, Gehälter sowie Crown und Horizon Cup.
+
+Der Fortschritt liegt ausschließlich im Browserspeicher (`doppel6.tutorial`) und gehört zu der Karriere, für die die Einführung gewählt wurde; Spielstände, Export und Schema bleiben unverändert. Bestehende Karrieren zeigen nichts, solange die Einführung nicht in den Einstellungen gestartet wird. Fähigkeiten nennt die Einführung nur als Farbstufen. [Plan](tutorial-plan.md), [Texte](tutorial-texte.md).
+
 ## Vereinsbüro und kompakte Begegnungsvorschau
 
 Nutzerentscheidung vom 12. Oktober 2026, inzwischen mit Release 128 veröffentlicht: Das Vereinsbüro nennt die Spieler des eigenen Vereins mit bevorstehendem Karriereende. Ein Klick auf den Hinweis führt direkt zur Spielervertragsübersicht im Bereich Kader → Verträge. Bereits gespeicherte verbindliche Karriereenden und mögliche Abschiede dürfen sprachlich nicht vermischt werden; die Darstellung verwendet den vorhandenen Karriereendstatus ohne neue Berechnung.

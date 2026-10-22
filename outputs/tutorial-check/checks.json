@@ -1,0 +1,26 @@
+{
+  "pass": true,
+  "build": true,
+  "checks": [
+    "Opt-in is pre-selected while no career is saved",
+    "Chapter 1 starts after saving and leaves the lead action free",
+    "Welcome highlights lead action, navigation, club office, news and sponsor choice",
+    "Sponsor choice and youth funding hand over to the next chapter",
+    "The panel moves into the open offer dialog and points at its confirm button",
+    "Placing an offer advances the step",
+    "Listing an own player advances the step",
+    "Progress survives a reload",
+    "The next transfer day leads to the answers step",
+    "The renew chapter follows chapter 3 and advances on the real offer",
+    "Tutorial progress stays out of the saved career",
+    "With a saved career the opt-in starts unchecked and nothing is shown",
+    "Settings switch, end and restart work for the current career",
+    "Day five opens the deadline chapter",
+    "Dragging a player onto the pitch advances the line-up step",
+    "Pause steps show tactics and freshness and hide while the match runs",
+    "Half-time shows its own step",
+    "Report, results and the closing step finish the match chapter",
+    "Mobile English: panel stays on screen, avoids its target and quotes the translated labels",
+    "The single-file build contains and starts the introduction"
+  ]
+}

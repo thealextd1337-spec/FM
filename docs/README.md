@@ -13,6 +13,7 @@ Historischer Release-132-Hinweis vom 14. Oktober 2026: Release 132 ist im Worktr
 - [Release 132](release-132.md): Umfang, lokale Prüfungen und offene Grenzen vor der Integration.
 - [Release 131](release-131.md): damalige Veröffentlichung und Nachweise.
 - [Archivindex](history/README.md): frühere Dokumentation und inaktive Auftragspläne.
+- [Einführung beim Spielstart](tutorial-plan.md): optionale geführte Einführung durch erste Transferphase und erstes Spiel (Branch `feat/tutorial`, nicht veröffentlicht), noch nicht umgesetzt.
 - [Changelog](CHANGELOG.md): abgeschlossene Änderungen.
 
 ## Änderungen dokumentieren
