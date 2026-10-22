@@ -143,6 +143,13 @@ check('ball line: the third defender marking a receiver behind the ball stops 1 
  assert.equal(on.def2.purpose,'receiver');assert.equal(on.def2.kind,null);assert.equal(on.def2.goalSideM,1);assert.equal(on.def2.readGoalSideM,1);
  assert.equal(on.def0.purpose,'press');assert.equal(on.def1.kind,'cover');
 });
+check('ball line: a real option ahead of the ball within 12 m keeps the receiver mark free (the back-pass option alone is clamped)',()=>{
+ // Same scene as above plus att1 ahead of the ball 11.9 m from def2: def2 still marks att0 (cheaper), but may follow him beyond the ball.
+ const cfg={on:true,carrier:{depth:24,lateral:0,vy:3},defs:[{depth:20.5,lateral:1,line:'def'},{depth:18,lateral:5,line:'mid'},{depth:22,lateral:-9,line:'def'}]};
+ const alone=lineTargets({...cfg,atts:[{depth:32,lateral:-11}]}),ahead=lineTargets({...cfg,atts:[{depth:32,lateral:-11},{depth:20,lateral:-20.5}]});
+ assert.equal(alone.def2.purpose,'receiver');assert.equal(alone.def2.goalSideM,1);
+ assert.equal(ahead.def2.purpose,'receiver');assert(ahead.def2.goalSideM<-1,'free mark beyond the ball: '+ahead.def2.goalSideM);
+});
 check('ball line: a safety defender leashed to a far anchor stays at the ball line instead of running back toward his anchor',()=>{
  const cfg={on:true,carrier:{depth:30,lateral:0,vy:3},defs:[{depth:26.5,lateral:1,line:'def'},{depth:24,lateral:5,line:'att',anchorDepth:58,anchorLateral:5},{depth:17,lateral:-10,line:'def'}]};
  const on=lineTargets(cfg),loose=lineTargets({...cfg,si:{params:{defence:{coverLeash:60}}}});

@@ -280,6 +280,8 @@ function v183DefBallLine(m,p){
  const owner=m.owner,read=m.attackFlow.defenseReads?.[p.pid];
  if(!owner||owner.keeper||owner.t===p.t||m.flight||!read||!['cover','receiver'].includes(read.purpose))return;
  const dir=p.t===0?1:-1,limit=m.ball.y+dir/v150Scale(m).y;
+ // A receiver mark may still step beyond the ball while a real option ahead of the ball is within 12 m of the defender.
+ if(read.purpose==='receiver'&&m.people.some(q=>q.t===owner.t&&!q.keeper&&q!==owner&&!q.slideActive&&v122Metres(q,p)<=12&&(q.y-m.ball.y)*dir>0))return;
  if((p.ty-limit)*dir<0){p.ty=limit;read.target.y=limit;}
 }
 const v183DefBaseDefensiveTarget=v159DefensiveTarget;
