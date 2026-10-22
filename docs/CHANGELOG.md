@@ -2,6 +2,8 @@
 
 ## Noch nicht veröffentlicht
 
+- B29: Unity-Gesichter zeigen wieder die vorgesehenen Haut- und Haarfarben. `WorldViewBridge` gab `_Skin`/`_Hair` bereits linearisiert an `Material.SetColor`, das im linearen Projekt selbst umrechnet; Haut wirkte dadurch rostig-orange, blondes Haar braun. Zusätzlich schloss die Augenmaske in `WorldKit.shader` ein 10-cm-Band über Wangen und Nase von der Hauttönung aus, sodass dort für jeden Hautton der rohe Meshy-Pfirsichton als Streifen erschien; jetzt sind nur nahezu neutrale Texel (Augenweiß) ausgenommen. Trikots, Nummern, Handschuhe und Umgebung bleiben unverändert (Shaderprogramme außer WorldKit-Fragment Pass 0 bytegleich, Stadion in Vorher/Nachher-Totalen pixelgleich). Gemessen (Unity-WebGL, Seed 160113, alle sechs Hauttöne, zwei Torhüter, sieben Haarfarben): Haut-g/r z. B. fair 0,385 → 0,643 (Palette 0,595), light 0,320 → 0,551 (0,530), medium 0,326 → 0,519 (0,426); Anteil abweichender Gesichtspixel bei medium 0,47 → 0,09. `D6Cli.Tests` vollständig grün (bekannter r15-Fall), R132-Sperren 368/368. Reine Darstellung, keine Spielstände betroffen. Neuer Unity-Build und Quellenkennung gehören zur nächsten Veröffentlichung.
+
 ## Release 133 — 18. Oktober 2026
 
 - Gesamten SI-Integrationsstand einschließlich Clientkorrekturen für die Veröffentlichung zusammengeführt. Fußversion, Unity-Laufzeitmetadaten, Laufzeitcache und 3D-Hilfedaten tragen 133; Quelle und Einzeldatei-Build sind versionsgleich. Unity-Payload aus den bereits geprüften Quellen `7ce6f77f...`. Bestehende Welten, Partien und Ergebnisse werden nicht umgerechnet. [Veröffentlichungsbericht](release-133.md).
