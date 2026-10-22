@@ -271,10 +271,23 @@ function v183DefTarget(m,p){
  const spot=v183DefCoverSpot(m,p,owner,presser),anchor={x:p.bx,y:p.by},gap=Math.hypot((spot.x-anchor.x)*s.x,(spot.y-anchor.y)*s.y),limit=Math.min(1,v183Param(m,'defence.coverLeash')/Math.max(.001,gap));
  return v183DefAssign(m,p,v159Point({x:anchor.x+(spot.x-anchor.x)*limit,y:anchor.y+(spot.y-anchor.y)*limit},s,.5),'cover');
 }
+// Ball line (B23): a defender who is neither pressing nor chasing a flight never
+// takes a target upfield of the ball. The cover spot leashed to a far anchor and
+// the mark of a receiver behind the ball (football-flow-v159 'receiver') sent him
+// away from an advancing carrier; now such a target stops 1 m goal-side of the ball
+// (the cached read is corrected too, so the cadence path keeps it).
+function v183DefBallLine(m,p){
+ const owner=m.owner,read=m.attackFlow.defenseReads?.[p.pid];
+ if(!owner||owner.keeper||owner.t===p.t||m.flight||!read||!['cover','receiver'].includes(read.purpose))return;
+ const dir=p.t===0?1:-1,limit=m.ball.y+dir/v150Scale(m).y;
+ if((p.ty-limit)*dir<0){p.ty=limit;read.target.y=limit;}
+}
 const v183DefBaseDefensiveTarget=v159DefensiveTarget;
 v159DefensiveTarget=function(m,p){
  if(!v183DefOn(m)||p.keeper||p.slideActive||v121PositioningPaused(m))return v183DefBaseDefensiveTarget(m,p);
- return v183DefCrossMark(m,p)||v183DefTarget(m,p)||v183DefBaseDefensiveTarget(m,p);
+ const result=v183DefCrossMark(m,p)||v183DefTarget(m,p)||v183DefBaseDefensiveTarget(m,p);
+ if(result)v183DefBallLine(m,p);
+ return result;
 };
 
 // Pace of pressing and covering through the SI-F weiche of v157Pace: pressing
