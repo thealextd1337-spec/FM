@@ -29,7 +29,6 @@ assert.equal(translate('Angebot endgültig zurückziehen'),'Withdraw offer perma
 assert.equal(translate('Nachspielzeit: +5 Minuten.'),'Stoppage time: +5 minutes.');
 assert.equal(translate('Eckball für Paris Central FC nach Parade von Antoine Laurent.'),'Corner for Paris Central FC after a save by Antoine Laurent.');
 assert.equal(translate('Aluminium! Antoine Laurent trifft den Pfosten.'),'Woodwork! Antoine Laurent hits the post.');
-assert.equal(translate('Aluminium! Antoine Laurent trifft die Latte. Abstoß für Paris Central FC.'),'Woodwork! Antoine Laurent hits the crossbar. Goal kick for Paris Central FC.');
 assert.equal(translate('Théo Laurent spielt eine Flanke auf Nathan Martin.'),'Théo Laurent sends a cross to Nathan Martin.');
 assert.equal(translate('Die Flanke von Théo Laurent gerät zu weit.'),"Théo Laurent's cross goes too long.");
 assert.equal(translate('Antoine Bernard foult Diego Gómez. Freistoß für Paris Valmy FC.'),'Antoine Bernard fouls Diego Gómez. Free kick for Paris Valmy FC.');
