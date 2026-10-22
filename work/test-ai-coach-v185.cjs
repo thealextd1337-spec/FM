@@ -40,7 +40,7 @@ const pinned={minutes:15,shotsFor:0,shotsAgainst:0,onFor:0,onAgainst:0,possessio
  const easing={minutes:15,shotsFor:0,shotsAgainst:1,onFor:0,onAgainst:0,possession:.45,territory:.45};
  assert.equal(decide({minute:60,score:0,quality:4,window:easing,active:'pressure'}).why,'pressure');assert.equal(decide({minute:60,score:0,quality:4,window:easing}).why,'calm');
  // Tired team drops the high press unless it chases the game late.
- assert.equal(decide({minute:50,score:0,quality:4,window:pinned,fresh:40}).target.pressing,'Ausgewogen');
+ assert.equal(decide({minute:50,score:0,quality:5,window:pinned,fresh:50}).target.pressing,'Ausgewogen');assert.equal(decide({minute:50,score:0,quality:5,window:pinned,fresh:60}).target.pressing,'Früh');
  assert.equal(decide({minute:80,score:-1,quality:4,window:quiet,fresh:40}).target.pressing,'Früh');
 }
 {

@@ -5,7 +5,7 @@
 // "Gegneranpassung" (judgment.adaptation 1–5) sets check cadence, reaction time and whether the answer fits the problem.
 // Only states with aiCoachRevision 185 (v64MakeState in worlds with the 183 stamp) and only in the played-out match
 // (v65AfterStep); compact matches and all other states keep v64AiAdjust.
-const v185Coach=Object.freeze({revision:185,window:15,checkEvery:Object.freeze([15,15,10,10,5]),gap:10,tiredFresh:45,poorRating:5.3});
+const v185Coach=Object.freeze({revision:185,window:15,checkEvery:Object.freeze([15,15,10,10,5]),gap:10,tiredFresh:55,poorGap:1});
 const v185Words=Object.freeze({
  pressing:Object.freeze({Früh:'frühes Pressing',Abwartend:'abwartendes Pressing',Ausgewogen:'ausgewogenes Pressing'}),
  passing:Object.freeze({Direkt:'direktes Passspiel',Kurz:'kurzes Passspiel',Variabel:'variables Passspiel'}),
@@ -66,7 +66,8 @@ function v185Window(state,side){
  const [shotsFor,shotsAgainst]=d('shots'),[onFor,onAgainst]=d('on'),[pf,pa]=d('poss'),[tf,ta]=d('terr');
  return{minutes:now.minute-from.minute,shotsFor,shotsAgainst,onFor,onAgainst,possession:pf+pa>0?pf/(pf+pa):.5,territory:tf+ta>0?tf/(tf+ta):.5};
 }
-// Substitution: a fitting coach replaces a clearly weak performer from the second half on; otherwise the most tired player
+// Substitution: a fitting coach replaces a clearly weak performer (live rating at least one point below the team mean; ratings
+// rarely fall below the baseline 6) from the second half on; otherwise the most tired player
 // from minute 60 (the previous rule). The incoming player takes the role and is the best bench fit for it.
 function v185Substitution(career,fixture,state,side,q){
  if(state.minute<(q>=3?46:60)||state.substitutions.filter(item=>item.side===side).length+state.pending[side].length>=2)return null;
@@ -74,7 +75,8 @@ function v185Substitution(career,fixture,state,side,q){
  let out=null,why=null;
  if(q>=3&&state.playerPerformance){
   const rated=active.filter(pid=>state.minutes[pid]>=30).map(pid=>[pid,v155Rated(career,fixture,state,pid)?.rating]).filter(([,r])=>Number.isFinite(r)).sort((a,b)=>a[1]-b[1]);
-  if(rated[0]&&rated[0][1]<=v185Coach.poorRating){out=rated[0][0];why='poor';}
+  const mean=rated.reduce((sum,[,r])=>sum+r,0)/Math.max(1,rated.length);
+  if(rated.length>=3&&rated[0][1]<=mean-v185Coach.poorGap){out=rated[0][0];why='poor';}
  }
  if(!out&&state.minute>=60){const tired=[...active].sort((a,b)=>state.fresh[a]-state.fresh[b])[0];if(tired&&(state.fresh[tired]<88||state.minute>=75)){out=tired;why='fresh';}}
  if(!out)return null;
