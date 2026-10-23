@@ -146,7 +146,7 @@ function v65Snapshot(context){
  if(v183RestoreScope(plain)&&plain.whistleAttackCarrier){plain.whistleAttackCarrierPid=plain.whistleAttackCarrier.pid;delete plain.whistleAttackCarrier}
  if(v183RestoreScope(plain)){const lost=v183RestoreNonFinite(plain);if(lost.length)plain.nonFinite=lost}
  context.state.physicalSnapshot={match:plain,log:$('#log').innerHTML,event:$('#event').textContent};
- const saved=v64UiSave();if(saved===false)return false;v65LastSaved=performance.now();return true;
+ const saved=v64UiSave();if(saved===false)return false;v65LastSaved=performance.now();v65SaveSoon=false;return true;
 }
 function v65Restore(context){
  const saved=context.state.physicalSnapshot;if(!saved?.match)return false;
@@ -324,6 +324,7 @@ function v119DeferFinalWhistle(current){
 function v65FulltimeTitle(context){const sides=v25DisplaySides(context),score=match?sides.map(t=>match.score[t]):context.state.score;return `Abpfiff \u00b7 ${v65Club(context,sides[0]).name} ${score[0]} : ${score[1]} ${v65Club(context,sides[1]).name}`;}
 function v65Finish(){
  if(v119DeferFinalWhistle(match))return;
+ v65SaveSoon=false;
  releaseMatchWakeLock();
  const context=v65Context();if(!context||match.finished)return;
  if(context.state.playerLoad){v158EndNative(match);v158RecoverMatch(context.career,context.fixture,context.state,'final-whistle');}

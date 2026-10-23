@@ -45,6 +45,9 @@ async function start(context,unity){
 // App switch, simulated in the page: Playwright/Edge keep test pages visible, so document.hidden/visibilityState are
 // overridden and a real visibilitychange event runs the product handlers (match, Unity bridge, frame pump, wake lock).
 async function minimize(browser,page,state){await page.evaluate(hide=>{if(hide){Object.defineProperty(document,'hidden',{configurable:true,get:()=>true});Object.defineProperty(document,'visibilityState',{configurable:true,get:()=>'hidden'});}else{delete document.hidden;delete document.visibilityState;}document.dispatchEvent(new Event('visibilitychange'));},state==='minimized');}
+// After a resume the clock may legitimately stand still for a moment (kickoff countdown, goal pause, set piece):
+// poll up to 20 s and report the match state if it never moves.
+async function advances(page,from){for(let i=0;i<40;i++){const p=await probe(page);if(p.phase==='live'&&p.elapsed>from)return p;await wait(500);}const p=await probe(page);const extra=await page.evaluate(()=>({kickoff:match?.kickoff?.phase??null,countdown:match?.countdown??null,goalPause:match?.goalPause??null,setPiece:match?.setPiece?.type??null,halftimePause:match?.halftimePause??null,running}));throw Error('clock did not advance from '+from+': '+JSON.stringify({...p,...extra}));}
 async function reopen(context,id){
  const {page,errors}=await open(context);
  await page.locator(`[data-v61-open="${id}"]`).first().click();
@@ -77,7 +80,7 @@ async function reopen(context,id){
    await page.close();
    const re=await reopen(context,id);const restored=await probe(re.page);
    assert.equal(restored.elapsed,paused.elapsed,'restored clock');assert.deepEqual(restored.score,paused.score);
-   await re.page.evaluate(()=>v65Resume());await wait(5000);const after=await probe(re.page);assert.equal(after.phase,'live');assert(after.elapsed>restored.elapsed);
+   await re.page.evaluate(()=>v65Resume());const after=await advances(re.page,restored.elapsed);
    pass('reload resumes the paused match from its snapshot',{elapsed:restored.elapsed,score:restored.score,continuedTo:after.elapsed});
    assert.deepEqual([...errors,...re.errors],[]);await context.close();}
   // 3: crash without pagehide loses at most the last save window.
@@ -88,7 +91,7 @@ async function reopen(context,id){
    const re=await reopen(context,id);const restored=await probe(re.page);
    assert(restored.elapsed<=before.elapsed&&restored.elapsed>0,'restored '+restored.elapsed+' live '+before.elapsed);
    const lostRealSeconds=before.lastSave===null?null:(before.now-before.lastSave)/1000;assert(lostRealSeconds!==null&&lostRealSeconds<=15.5,'window '+lostRealSeconds);
-   await re.page.evaluate(()=>v65Resume());await wait(4000);const after=await probe(re.page);assert.equal(after.phase,'live');assert(after.elapsed>restored.elapsed);
+   await re.page.evaluate(()=>v65Resume());const after=await advances(re.page,restored.elapsed);
    pass('crash without pagehide loses only the last save window',{liveElapsed:before.elapsed,restoredElapsed:restored.elapsed,realSecondsSinceLastSave:+lostRealSeconds.toFixed(2),continuedTo:after.elapsed});
    assert.deepEqual(re.errors,[]);await context.close();}
   // 4: Unity view: hiding pauses with a snapshot; reload resumes.
@@ -97,7 +100,7 @@ async function reopen(context,id){
    await minimize(browser,page,'minimized');await wait(3000);
    const hidden=await probe(page);assert.equal(hidden.phase,'paused');assert.equal(hidden.stored.elapsed,hidden.elapsed);
    await page.close();const re=await reopen(context,id);const restored=await probe(re.page);assert.equal(restored.elapsed,hidden.elapsed);
-   await re.page.evaluate(()=>v65Resume());await wait(6000);const after=await probe(re.page);assert.equal(after.phase,'live');assert(after.elapsed>restored.elapsed);
+   await re.page.evaluate(()=>v65Resume());const after=await advances(re.page,restored.elapsed);
    const unity=await re.page.evaluate(()=>({ready:D6UnityMatch.ready,error:D6UnityMatch.lastError}));
    pass('Unity: hidden page pauses with snapshot, reload resumes',{elapsed:hidden.elapsed,continuedTo:after.elapsed,unity});
    assert.deepEqual([...errors,...re.errors],[]);await context.close();}

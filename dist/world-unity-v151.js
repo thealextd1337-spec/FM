@@ -296,7 +296,9 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
   // A page that itself painted nothing for over a second (a frozen main thread: a device asleep without a hidden
   // document, a long pause, a slow screenshot) suspended the iframe too; that gap is no unresponsive renderer
   // (an 8-11 s screenshot stall failed a running Unity match with "Unity antwortet nicht").
-  if(lastPaint!==null&&now-lastPaint>1000){const gap=now-lastPaint;started+=gap;if(pending)pending.at+=gap;}
+  // Only the part beyond one second is taken out: a loaded page with frequent long frames still counts a second per
+  // frame, so a renderer that really stops answering is detected there as well (B30 review).
+  if(lastPaint!==null&&now-lastPaint>1000){const gap=now-lastPaint-1000;started+=gap;if(pending)pending.at+=gap;}
   lastPaint=now;
   if(now-started>120000&&!loaded){fail(v98Text('Unity konnte nicht geladen werden · 2D ist aktiv','Unity could not load · using 2D'));return;}
   if(pending&&now-pending.at>10000){fail(v98Text('Unity antwortet nicht · 2D ist aktiv','Unity is not responding · using 2D'));return;}
