@@ -1,6 +1,6 @@
 # Entwicklung und Veröffentlichung
 
-Aktueller Veröffentlichungsstand vom 22. Oktober 2026: Release 134 in `work/tutorial`, Branch `release/r134`, auf Release 133 plus der optionalen Einführung (`feat/tutorial`, `7c8c015d`). Die Veröffentlichung ist vom Nutzer beauftragt und erfolgt über `main` und den Produktionsworkflow. Quelle ist `dist/`; Footer, Build, Runtime-Cache, Unity-Produktmetadaten und Hilfedaten tragen 134. [Releasebericht und Prüfungen](release-134.md). B05 und konkrete Nutzerabnahmen bleiben offen; Bestandsspielstände werden nicht umgerechnet.
+Aktueller Veröffentlichungsstand vom 24. Oktober 2026: Release 135 in `work/perf-mobile`, Branch `release/r135`, auf Release 134 plus `fix/mobile-jank` (`7854f3c0`: B01-Entlastung, B30 und Unity-Wächter). Die Veröffentlichung ist vom Nutzer beauftragt und erfolgt über `main` und den Produktionsworkflow. Quelle ist `dist/`; Footer, Build, Runtime-Cache, Unity-Produktmetadaten und Hilfedaten tragen 135. [Releasebericht und Prüfungen](release-135.md). B05 und konkrete Nutzerabnahmen bleiben offen, darunter B01/B30 am Pixel; Bestandsspielstände werden nicht umgerechnet.
 
 ## Aktueller Arbeitsstand und Abschluss
 

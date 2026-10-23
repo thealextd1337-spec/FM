@@ -1,0 +1,22 @@
+{
+  "release": 135,
+  "base": "0eb8d8dd",
+  "feature": "7854f3c0",
+  "workflowCommands": {
+    "total": 129,
+    "passed": 129
+  },
+  "extra": [
+    "work/test-release-version.cjs",
+    "work/check-mobile-jank-parity.cjs (standard-5 892d68d5, large-6 b851ca68; base/new x 2D/Unity equal)",
+    "work/check-old-matches-v182.cjs (158/158) and work/check-old-matches-v183.cjs (340/340) against e4e531c0",
+    "work/check-mobile-jank-save.cjs (6/6)",
+    "work/check-live-r135.cjs dry run against the local build (http://127.0.0.1:4260/)",
+    "work/check-release-r132-publication.py --release 135 --source-id 7ce6f77f..."
+  ],
+  "build": {
+    "index": "7622c40413cc6057e0bf524c2f4f30fe1b33dc1a2a3fcd0832d9f3d52a3e4e88",
+    "download": "7622c40413cc6057e0bf524c2f4f30fe1b33dc1a2a3fcd0832d9f3d52a3e4e88",
+    "identical": true
+  }
+}
