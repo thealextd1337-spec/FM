@@ -109,23 +109,33 @@ const scene=(club,seed,size='standard')=>{g.call('Native183.constructed',{club,s
  run('var v64UiFirstLegScore=(career,fixture,reverse)=>[0,2];');
  assert(!(ev('v185AiCoach')(ctx,ai,'Reguläre Prüfung')||[]).some(e=>e.why==='trail'),'aggregate lead: no chase');
  run('v64UiFirstLegScore=undefined;');delete ctx.fixture.leg;
- // No revert ("Lage beruhigt") after minute 85; earlier the quiet window takes the coach back to his plan.
- state.score[ai]=0;state.score[ctx.ownSide]=0;state.tactics[ai].defense=plan.tactics.defense==='Tief'?'Hoch':'Tief';
- state.minute=88;flat(88);state.lastAiChange[ai]=0;assert(!(ev('v185AiCoach')(ctx,ai,'Reguläre Prüfung')||[]).some(e=>e.kind==='tactics'),'no revert after 85');
- state.minute=80;flat(80);state.lastAiCheck[ai]=-1;state.lastAiChange[ai]=0;assert.equal(ev('v185AiCoach')(ctx,ai,'Reguläre Prüfung').find(e=>e.kind==='tactics')?.why,'calm');
  // Territory: one sample per match minute, however many frames run in it.
  const territory=()=>state.aiCoach.territory[0]+state.aiCoach.territory[1];state.minute=81;ev('v185Observe')(ctx);const once=territory();
  for(let i=0;i<10;i++)ev('v185Observe')(ctx);assert.equal(territory(),once,'frames inside a minute add no territory');
  // Reverts (user, 23 Oct): a key returns to its previous value only after 15 minutes, earlier after a goal since the change, never after 85.
  const press=(minute,on)=>{const last=state.aiCoach.samples.at(-1),from={...structuredClone(last),minute:minute-15},now={...structuredClone(last),minute},own=ctx.ownSide;
   if(on){now.shots[own]+=3;now.on[own]+=2;now.poss[own]+=60;now.terr[own]+=12;}state.aiCoach.samples=[from,now];};
- const reset=()=>{for(const [key,value] of Object.entries(plan.tactics))state.tactics[ai][key]=value;Object.assign(state.aiCoach,{history:[{},{}],answer:[null,null],active:[null,null]});state.score[ai]=0;state.score[ctx.ownSide]=0;state.lastAiChange[ai]=-20;};
+ const reset=()=>{for(const [key,value] of Object.entries(plan.tactics))state.tactics[ai][key]=value;Object.assign(state.aiCoach,{history:[{},{}],answer:[null,null],active:[null,null]});state.score[ai]=0;state.score[ctx.ownSide]=0;state.lastAiChange[ai]=-20;state.firstHalfEnd=45;state.addedMinutes=[0,0];};
  const check=(minute,on,reason='Reguläre Prüfung')=>{state.minute=minute;press(minute,on);state.lastAiCheck[ai]=-1;return(ev('v185AiCoach')(ctx,ai,reason)||[]).filter(e=>e.kind==='tactics');};
  reset();const shape=check(30,true);assert.equal(shape[0]?.why,'pressure');assert.equal(state.tactics[ai].formation,ev('v185Shift')(plan.tactics.formation,-1));
  assert.equal(check(40,false).length,0,'quiet after 10 minutes: no revert yet');assert.equal(check(45,false)[0]?.why,'calm','quiet after 15 minutes: revert');assert.equal(state.tactics[ai].formation,plan.tactics.formation);
  reset();check(30,true);state.score[ai]=1;assert.equal(check(36,false,'Tor')[0]?.changes.formation,plan.tactics.formation,'goal since the change: revert at once');
- reset();check(80,true);state.score[ai]=1;assert.equal(check(87,false,'Tor').filter(e=>e.changes.formation===plan.tactics.formation).length,0,'no revert after minute 85');
- state.score[ai]=0;
+ const shifted=ev('v185Shift')(plan.tactics.formation,-1);
+ // (a) No revert without a goal from the shown minute 85 on, although 15 minutes have passed (level score: no lead rule sets the shape).
+ reset();check(70,true);assert.equal(state.tactics[ai].formation,shifted);assert.equal(check(88,false).filter(e=>'formation' in e.changes).length,0,'no revert at 88 without a goal');assert.equal(state.tactics[ai].formation,shifted);
+ // (b) Boundary: shown 84 reverts, shown 85 does not; the added time of the first half does not count (87 with 3 added = 84).
+ reset();check(68,true);assert.equal(check(84,false)[0]?.changes.formation,plan.tactics.formation,'revert at shown 84');
+ reset();check(68,true);assert.equal(check(85,false).length,0,'no revert at shown 85');
+ reset();state.addedMinutes=[3,0];state.firstHalfEnd=48;check(70,true);assert.equal(check(87,false)[0]?.changes.formation,plan.tactics.formation,'state minute 87 with 3 added = shown 84: revert');
+ // (c) The answer is stored when the check reached the target, not when the 10-minute gap held the change back, and is chosen anew after a goal.
+ reset();check(30,true);assert.equal(state.aiCoach.answer[ai],'block','applied answer stored');
+ reset();state.lastAiChange[ai]=25;check(30,true);assert.equal(state.tactics[ai].formation,plan.tactics.formation);assert.equal(state.aiCoach.answer[ai],null,'held back by the gap: no stored answer');
+ reset();state.aiCoach.answer[ai]='keep';check(30,true);assert.equal(state.tactics[ai].formation,plan.tactics.formation,'kept answer: no extra defender');assert.equal(state.aiCoach.answer[ai],'keep');
+ reset();state.aiCoach.answer[ai]='keep';check(30,true,'Tor');assert.equal(state.tactics[ai].formation,shifted,'after a goal the answer is chosen anew');assert.equal(state.aiCoach.answer[ai],'block');
+ // (d) A goal after the last change lifts the lock (review 2): 1:0 at 75 protected with one more defender and careful duels, conceded 86 and 89.
+ reset();state.score[ai]=1;check(75,true);assert.equal(state.tactics[ai].aggression,'Vorsichtig');state.score[ctx.ownSide]=2;check(89,false,'Tor');
+ assert.equal(state.tactics[ai].aggression,plan.tactics.aggression,'duels back to the plan after late goals');assert.equal(state.tactics[ai].pressing,'Früh','late deficit: high press');
+ state.score[ai]=0;state.score[ctx.ownSide]=0;
 }
 {
  // Release-132 world (no stamp): no marker.

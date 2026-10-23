@@ -95,8 +95,11 @@ function v185Text(club,entry){
 }
 // One check of the computer coach (never the user's side; same timing rules as before: at most every ten minutes, earlier after a goal,
 // also when the same minute was already checked). Second legs count the first leg (aggregate), as the penalty rule does.
-// A key goes back to its value before the last change only after revertGap minutes, earlier only after a goal since that change,
-// never after minute lastRevert (user, 23 Oct 2026).
+// Reverts (user, 23 Oct 2026; review 2): without a goal since its last change a key goes back to its previous value or to the
+// coach's plan only after revertGap minutes and not from the shown minute lastRevert on; after a goal every value may be set again.
+// The pressure answer is kept only when the check reached the whole target, otherwise the next check chooses again.
+// Shown minute of the match clock (v64ClockLabel): the second half does not count the added time of the first half.
+function v185ClockMinute(state){return state.minute>state.firstHalfEnd?state.minute-(state.addedMinutes?.[0]||0):Math.min(state.minute,45);}
 function v185AiCoach(context,side,reason){
  const {career,fixture,state}=context,plan=side===0?fixture.plan.home:fixture.plan.away;
  if(side===context.ownSide||!plan.coachId||reason!=='Tor'&&state.minute===state.lastAiCheck[side])return null;
@@ -106,21 +109,23 @@ function v185AiCoach(context,side,reason){
  const first=fixture.leg===2&&typeof v64UiFirstLegScore==='function'?v64UiFirstLegScore(career,fixture,context.ownSide===1):'';
  const decision=v185Decide({minute:state.minute,score:state.score[side]-state.score[1-side]+(first?first[1]-first[0]:0),quality:q,window:v185Window(state,side),fresh,base:plan.tactics,active:ai.active?.[side]??null,answer:reason==='Tor'?null:ai.answer?.[side]??null,six:v160WorldConfig(career).fieldPlayers===6});
  const out=[];
- // No more reverts ("Lage beruhigt") in the last minutes.
- if((state.minute-state.lastAiChange[side]>=v185Coach.gap||reason==='Tor')&&!(decision.why==='calm'&&state.minute>v185Coach.lastRevert)){
-  const history=(ai.history||=[{},{}])[side],goals=state.score[0]+state.score[1],changes={};
-  for(const key of ['formation','pressing','passing','defense','aggression']){
-   if(decision.target[key]===tactic[key]||key==='formation'&&!v160FormationValid(career,decision.target.formation))continue;
-   const last=history[key];if(last&&decision.target[key]===last.from&&(state.minute>v185Coach.lastRevert||state.minute-last.minute<v185Coach.revertGap&&last.goals===goals))continue;
+ const goals=state.score[0]+state.score[1],late=v185ClockMinute(state)>=v185Coach.lastRevert,keys=['formation','pressing','passing','defense','aggression'];
+ const reachable=key=>key!=='formation'||v160FormationValid(career,decision.target.formation);
+ if(state.minute-state.lastAiChange[side]>=v185Coach.gap||reason==='Tor'){
+  const history=(ai.history||=[{},{}])[side],changes={};
+  for(const key of keys){
+   if(decision.target[key]===tactic[key]||!reachable(key))continue;
+   const last=history[key],back=last&&(decision.target[key]===last.from||decision.target[key]===plan.tactics[key]);
+   if(back&&last.goals===goals&&(late||state.minute-last.minute<v185Coach.revertGap))continue;
    changes[key]=decision.target[key];
   }
   if(Object.keys(changes).length){
    for(const key of Object.keys(changes))history[key]={minute:state.minute,from:tactic[key],goals};
    v64ChangeTactics(career,fixture,state,side,changes,reason);state.lastAiChange[side]=state.minute;(ai.active||=[null,null])[side]=decision.why;
-   out.push({minute:state.minute,side,kind:'tactics',changes,why:decision.why});
+   out.push({minute:state.minute,side,kind:'tactics',changes,why:decision.why,goals});
   }
  }
- (ai.answer||=[null,null])[side]=decision.answer;
+ const now=state.tactics[side];(ai.answer||=[null,null])[side]=keys.every(key=>decision.target[key]===now[key]||!reachable(key))?decision.answer:null;
  const sub=v185Substitution(career,fixture,state,side,q);if(sub)out.push({minute:state.minute,side,kind:'sub',...sub});
  ai.log.push(...out);
  return out;
