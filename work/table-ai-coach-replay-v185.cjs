@@ -22,7 +22,8 @@ const at60=r=>{const s={ai:0,user:0};for(const [minute,side] of r.goals)if(minut
 function keyChanges(r){
  const keys=['formation','pressing','passing','defense','aggression'],perMinute=new Map();for(const [minute,tactics] of r.changes)perMinute.set(minute,tactics);
  let prev=r.base;const out=[];for(const [minute,t] of perMinute){for(const k of keys)if(t[k]!==prev[k])out.push({k,from:prev[k],to:t[k],minute});prev=t;}
- for(const [i,c] of out.entries())c.flip=out.slice(i+1).some(d=>d.k===c.k&&d.minute<=c.minute+10&&d.to===c.from);
+ // Revert = a later change of the same key back to the value before; goal = a goal in between (the situation changed).
+ for(const [i,c] of out.entries()){const back=out.slice(i+1).find(d=>d.k===c.k&&d.to===c.from);if(!back)continue;const gap=back.minute-c.minute,goal=r.goals.some(([m])=>m>c.minute&&m<=back.minute);c.flip=gap<=10;c.flip15=gap<=15;c.goal=goal;}
  return out;
 }
 const changeMinutes=r=>new Set(r.changes.map(c=>c[0])).size,aiSubs=r=>r.subs.filter(s=>s[1]===r.aiSide).length;
@@ -32,7 +33,7 @@ function side(rows){
  return{n:rows.length,goals:[mean(rows.map(goals)),se(rows.map(goals))],shots:[mean(rows.map(shots)),se(rows.map(shots))],draws:[100*mean(draws),100*se(draws)],
   fav1:[100*mean(f1),100*se(f1),f1.length],fav3:[100*mean(f3),100*se(f3),f3.length],aiPoints:[mean(rows.map(aiPoints)),se(rows.map(aiPoints))],
   comeback:[mean(trailing.map(aiPoints)),se(trailing.map(aiPoints)),trailing.length],comebackShare:[100*mean(trailing.map(r=>aiPoints(r)>0?1:0)),trailing.length],
-  changes:mean(rows.map(changeMinutes)),subs:mean(rows.map(aiSubs)),flip:[changes.filter(c=>c.flip).length,changes.length]};
+  changes:mean(rows.map(changeMinutes)),subs:mean(rows.map(aiSubs)),flip:[changes.filter(c=>c.flip).length,changes.length],flipGoal:[changes.filter(c=>c.flip&&c.goal).length,changes.filter(c=>c.flip&&!c.goal).length],flip15:[changes.filter(c=>c.flip15&&c.goal).length,changes.filter(c=>c.flip15&&!c.goal).length]};
 }
 const diff=(rows,f)=>{const d=rows.map(p=>f(p.on)-f(p.off));return[mean(d),se(d)];};
 function subset(filter){const p=pairs.filter(x=>filter(x.on));return{off:side(p.map(x=>x.off)),on:side(p.map(x=>x.on)),paired:{goals:diff(p,goals),shots:diff(p,shots),aiPoints:diff(p,aiPoints)}};}
@@ -59,7 +60,9 @@ for(const [key,s] of [...Object.entries(out.sets),['Standardfeld (Liga)',out.siz
  console.log(`| Tore | ${pm(s.off.goals)} | ${pm(s.on.goals)} | ${pm(s.paired.goals)} |\n| Schüsse | ${pm(s.off.shots)} | ${pm(s.on.shots)} | ${pm(s.paired.shots)} |\n| Remis % | ${pm(s.off.draws,1)} | ${pm(s.on.draws,1)} | |`);
  console.log(`| Favorit ≥ 1 % | ${pm(s.off.fav1,1)} | ${pm(s.on.fav1,1)} | |\n| Favorit ≥ 3 % | ${pm(s.off.fav3,1)} | ${pm(s.on.fav3,1)} | |\n| Punkte KI | ${pm(s.off.aiPoints)} | ${pm(s.on.aiPoints)} | ${pm(s.paired.aiPoints)} |`);
  console.log(`| Punkte KI nach Rückstand 60′ | ${pm(s.off.comeback)} | ${pm(s.on.comeback)} | |\n| KI holt nach Rückstand 60′ Punkte % | ${f(s.off.comebackShare[0],1)} | ${f(s.on.comebackShare[0],1)} | |`);
- console.log(`| Umstellungen je Partie | ${f(s.off.changes)} | ${f(s.on.changes)} | |\n| Wechsel je Partie (KI) | ${f(s.off.subs)} | ${f(s.on.subs)} | |\n| Hin und her (≤ 10 min zurück) | ${s.off.flip[0]}/${s.off.flip[1]} (${f(100*s.off.flip[0]/s.off.flip[1],1)} %) | ${s.on.flip[0]}/${s.on.flip[1]} (${f(100*s.on.flip[0]/s.on.flip[1],1)} %) | |`);
+ console.log(`| Umstellungen je Partie | ${f(s.off.changes)} | ${f(s.on.changes)} | |\n| Wechsel je Partie (KI) | ${f(s.off.subs)} | ${f(s.on.subs)} | |\n| Hin und her (≤ 10 min zurück) | ${s.off.flip[0]}/${s.off.flip[1]} (${f(100*s.off.flip[0]/s.off.flip[1],1)} %) | ${s.on.flip[0]}/${s.on.flip[1]} (${f(100*s.on.flip[0]/s.on.flip[1],1)} %) | |
+| davon mit / ohne Tor dazwischen | ${s.off.flipGoal.join(" / ")} | ${s.on.flipGoal.join(" / ")} | |
+| zurück ≤ 15 min, mit / ohne Tor | ${s.off.flip15.join(" / ")} | ${s.on.flip15.join(" / ")} | |`);
 }
 console.log('\n### Reaktion nach Trainerstufe (Liga, mit 185)\n\n| Stufe | Partien | Umstellungen je Partie | Druck-/Sicherungsantworten je Partie | erste Druckreaktion (Minute) | Rückstand → erste Umstellung (min, n) | Gründe |\n| --- | ---: | ---: | ---: | ---: | ---: | --- |');
 for(const [q,s] of Object.entries(out.stages))console.log(`| ${q} | ${s.matches} | ${f(s.changes)} | ${f(s.pressure)} | ${f(s.firstPressureMinute,1)} | ${f(s.trailDelay[0],1)} (${s.trailDelay[1]}) | ${JSON.stringify(s.reasons)} |`);
