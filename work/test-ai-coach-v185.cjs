@@ -32,6 +32,12 @@ const pinned={minutes:15,shotsFor:0,shotsAgainst:0,onFor:0,onAgainst:0,possessio
  const late=decide({minute:80,score:1,quality:5,window:dominated});assert.equal(late.target.pressing,'Abwartend','late lead under pressure keeps the cautious pressing');
  const comfortable=decide({minute:80,score:2,quality:5,window:quiet});assert.equal(comfortable.target.formation,'2–2–1','fitting coach keeps the shape with a two-goal lead');assert.equal(comfortable.target.pressing,'Abwartend');
  assert.equal(decide({minute:80,score:2,quality:2,window:quiet}).target.formation,'3–1–1','weak coach closes up regardless');
+ // The pressure answer stays while the pressure lasts (user, 23 Oct): a lead protected with one more defender does not switch
+ // to keeping the ball when the window turns to possession only; a new answer is chosen only without a kept one.
+ const kept=decide({minute:55,score:1,quality:5,window:pinned,active:'protect',answer:'block'});assert.equal(kept.target.formation,'3–1–1');assert.equal(kept.target.passing,'Variabel');assert.equal(kept.answer,'block');
+ const fresh=decide({minute:55,score:1,quality:5,window:pinned,active:'protect'});assert.equal(fresh.target.passing,'Kurz');assert.equal(fresh.target.formation,'2–2–1');assert.equal(fresh.answer,'keep');
+ assert.equal(decide({minute:40,score:0,quality:5,window:dominated,active:'pressure',answer:'keep'}).target.formation,'2–2–1','kept ball answer: no extra defender');
+ assert.equal(decide({minute:40,score:0,quality:5,window:quiet}).answer,null,'no pressure, no answer');
 }
 {
  // Problem solved: the window is quiet again, the target is the coach's own plan (revert).
@@ -110,6 +116,16 @@ const scene=(club,seed,size='standard')=>{g.call('Native183.constructed',{club,s
  // Territory: one sample per match minute, however many frames run in it.
  const territory=()=>state.aiCoach.territory[0]+state.aiCoach.territory[1];state.minute=81;ev('v185Observe')(ctx);const once=territory();
  for(let i=0;i<10;i++)ev('v185Observe')(ctx);assert.equal(territory(),once,'frames inside a minute add no territory');
+ // Reverts (user, 23 Oct): a key returns to its previous value only after 15 minutes, earlier after a goal since the change, never after 85.
+ const press=(minute,on)=>{const last=state.aiCoach.samples.at(-1),from={...structuredClone(last),minute:minute-15},now={...structuredClone(last),minute},own=ctx.ownSide;
+  if(on){now.shots[own]+=3;now.on[own]+=2;now.poss[own]+=60;now.terr[own]+=12;}state.aiCoach.samples=[from,now];};
+ const reset=()=>{for(const [key,value] of Object.entries(plan.tactics))state.tactics[ai][key]=value;Object.assign(state.aiCoach,{history:[{},{}],answer:[null,null],active:[null,null]});state.score[ai]=0;state.score[ctx.ownSide]=0;state.lastAiChange[ai]=-20;};
+ const check=(minute,on,reason='Reguläre Prüfung')=>{state.minute=minute;press(minute,on);state.lastAiCheck[ai]=-1;return(ev('v185AiCoach')(ctx,ai,reason)||[]).filter(e=>e.kind==='tactics');};
+ reset();const shape=check(30,true);assert.equal(shape[0]?.why,'pressure');assert.equal(state.tactics[ai].formation,ev('v185Shift')(plan.tactics.formation,-1));
+ assert.equal(check(40,false).length,0,'quiet after 10 minutes: no revert yet');assert.equal(check(45,false)[0]?.why,'calm','quiet after 15 minutes: revert');assert.equal(state.tactics[ai].formation,plan.tactics.formation);
+ reset();check(30,true);state.score[ai]=1;assert.equal(check(36,false,'Tor')[0]?.changes.formation,plan.tactics.formation,'goal since the change: revert at once');
+ reset();check(80,true);state.score[ai]=1;assert.equal(check(87,false,'Tor').filter(e=>e.changes.formation===plan.tactics.formation).length,0,'no revert after minute 85');
+ state.score[ai]=0;
 }
 {
  // Release-132 world (no stamp): no marker.

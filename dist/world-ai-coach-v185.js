@@ -5,7 +5,7 @@
 // "Gegneranpassung" (judgment.adaptation 1–5) sets check cadence, reaction time and whether the answer fits the problem.
 // Only states with aiCoachRevision 185 (v64MakeState in worlds with the 183 stamp) and only in the played-out match
 // (v65AfterStep); compact matches and all other states keep v64AiAdjust.
-const v185Coach=Object.freeze({revision:185,window:15,checkEvery:Object.freeze([15,15,10,10,5]),gap:10,tiredFresh:55,poorGap:1});
+const v185Coach=Object.freeze({revision:185,window:15,checkEvery:Object.freeze([15,15,10,10,5]),gap:10,revertGap:15,lastRevert:85,tiredFresh:55,poorGap:1});
 const v185Words=Object.freeze({
  pressing:Object.freeze({Früh:'frühes Pressing',Abwartend:'abwartendes Pressing',Ausgewogen:'ausgewogenes Pressing'}),
  passing:Object.freeze({Direkt:'direktes Passspiel',Kurz:'kurzes Passspiel',Variabel:'variables Passspiel'}),
@@ -21,14 +21,15 @@ function v185Shift(formation,dir){
  n[from]--;n[dir>0?2:0]++;return n.join('–');
 }
 // Pure decision of one check. window: v185Window of the coached side; fresh: mean freshness of its outfield players;
-// base: the coach's starting tactics; active: reason of the last own change (hysteresis while the pressure lasts).
-// Returns the target tactics (base plus the answer to the current problem) and the reason; the caller applies the difference.
-function v185Decide({minute,score,quality,window:w,fresh,base,active,six}){
+// base: the coach's starting tactics; active: reason of the last own change (hysteresis while the pressure lasts); answer: the
+// pressure answer kept from the last check ('block' one more defender, 'keep' keep the ball), null after a goal (user, 23 Oct).
+// Returns the target tactics (base plus the answer to the current problem), the reason and the answer; the caller applies the difference.
+function v185Decide({minute,score,quality,window:w,fresh,base,active,answer=null,six}){
  const q=Math.max(1,Math.min(5,quality||3)),fit=q>=3,late=(3-q)*5,target={...base};
  const shotGap=w.shotsAgainst-w.shotsFor,onGap=w.onAgainst-w.onFor;
  // Dominance of the opponent in the window: shot surplus, shots on target, possession and territory below half.
  const pressure=w.minutes>=10?shotGap+.5*onGap+4*(.5-w.possession)+4*(.5-w.territory):0,need=1.2+(5-q)*.6-(active==='pressure'||active==='protect'?1:0);
- let why=null;
+ let why=null,kept=null;
  if(score<0){
   if(minute>=30+late){target.pressing='Früh';why='trail';}
   if(minute>=60+late){target.formation=fit?v185Shift(base.formation,1):six?'1–2–3':'1–2–2';if(fit&&w.possession<.5)target.passing='Direkt';}
@@ -41,12 +42,13 @@ function v185Decide({minute,score,quality,window:w,fresh,base,active,six}){
    why=score>0?'protect':'pressure';
    if(!fit){target.defense='Tief';target.pressing='Abwartend';}
    // Chances against: one more defender (leading: fewer fouls near the own box). Only ball and territory against: keep the ball, level teams press higher.
-   else if(shotGap>=2||onGap>=1){target.formation=v185Shift(base.formation,-1);if(score>0)target.aggression='Vorsichtig';}
+   // The answer stays while the pressure lasts and the score is unchanged.
+   else if((kept=answer||(shotGap>=2||onGap>=1?'block':'keep'))==='block'){target.formation=v185Shift(base.formation,-1);if(score>0)target.aggression='Vorsichtig';}
    else{target.passing='Kurz';if(score===0)target.pressing='Früh';}
   }
  }
  if(fit&&target.pressing==='Früh'&&fresh<v185Coach.tiredFresh&&!(score<0&&minute>=75)){target.pressing=base.pressing==='Früh'?'Ausgewogen':base.pressing;why=why||'tired';}
- return{target,why:why||'calm',pressure};
+ return{target,why:why||'calm',pressure,answer:kept};
 }
 
 // Cumulative counters by world side; territory counts the minutes whose first observed state has the ball in the opponent's
@@ -93,6 +95,8 @@ function v185Text(club,entry){
 }
 // One check of the computer coach (never the user's side; same timing rules as before: at most every ten minutes, earlier after a goal,
 // also when the same minute was already checked). Second legs count the first leg (aggregate), as the penalty rule does.
+// A key goes back to its value before the last change only after revertGap minutes, earlier only after a goal since that change,
+// never after minute lastRevert (user, 23 Oct 2026).
 function v185AiCoach(context,side,reason){
  const {career,fixture,state}=context,plan=side===0?fixture.plan.home:fixture.plan.away;
  if(side===context.ownSide||!plan.coachId||reason!=='Tor'&&state.minute===state.lastAiCheck[side])return null;
@@ -100,16 +104,23 @@ function v185AiCoach(context,side,reason){
  const coach=career.world.coaches.find(item=>item.id===plan.coachId),q=coach?.judgment?.adaptation??3,ai=state.aiCoach,tactic=state.tactics[side];
  const field=v64Active(state,side).filter(pid=>state.roles[pid]!=='gk'),fresh=field.reduce((sum,pid)=>sum+state.fresh[pid],0)/Math.max(1,field.length);
  const first=fixture.leg===2&&typeof v64UiFirstLegScore==='function'?v64UiFirstLegScore(career,fixture,context.ownSide===1):'';
- const decision=v185Decide({minute:state.minute,score:state.score[side]-state.score[1-side]+(first?first[1]-first[0]:0),quality:q,window:v185Window(state,side),fresh,base:plan.tactics,active:ai.active?.[side]??null,six:v160WorldConfig(career).fieldPlayers===6});
+ const decision=v185Decide({minute:state.minute,score:state.score[side]-state.score[1-side]+(first?first[1]-first[0]:0),quality:q,window:v185Window(state,side),fresh,base:plan.tactics,active:ai.active?.[side]??null,answer:reason==='Tor'?null:ai.answer?.[side]??null,six:v160WorldConfig(career).fieldPlayers===6});
  const out=[];
  // No more reverts ("Lage beruhigt") in the last minutes.
- if((state.minute-state.lastAiChange[side]>=v185Coach.gap||reason==='Tor')&&!(decision.why==='calm'&&state.minute>85)){
-  const changes={};for(const key of ['formation','pressing','passing','defense','aggression'])if(decision.target[key]!==tactic[key]&&(key!=='formation'||v160FormationValid(career,decision.target.formation)))changes[key]=decision.target[key];
+ if((state.minute-state.lastAiChange[side]>=v185Coach.gap||reason==='Tor')&&!(decision.why==='calm'&&state.minute>v185Coach.lastRevert)){
+  const history=(ai.history||=[{},{}])[side],goals=state.score[0]+state.score[1],changes={};
+  for(const key of ['formation','pressing','passing','defense','aggression']){
+   if(decision.target[key]===tactic[key]||key==='formation'&&!v160FormationValid(career,decision.target.formation))continue;
+   const last=history[key];if(last&&decision.target[key]===last.from&&(state.minute>v185Coach.lastRevert||state.minute-last.minute<v185Coach.revertGap&&last.goals===goals))continue;
+   changes[key]=decision.target[key];
+  }
   if(Object.keys(changes).length){
+   for(const key of Object.keys(changes))history[key]={minute:state.minute,from:tactic[key],goals};
    v64ChangeTactics(career,fixture,state,side,changes,reason);state.lastAiChange[side]=state.minute;(ai.active||=[null,null])[side]=decision.why;
    out.push({minute:state.minute,side,kind:'tactics',changes,why:decision.why});
   }
  }
+ (ai.answer||=[null,null])[side]=decision.answer;
  const sub=v185Substitution(career,fixture,state,side,q);if(sub)out.push({minute:state.minute,side,kind:'sub',...sub});
  ai.log.push(...out);
  return out;
