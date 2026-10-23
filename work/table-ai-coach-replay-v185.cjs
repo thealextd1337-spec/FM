@@ -23,9 +23,9 @@ function keyChanges(r){
  const keys=['formation','pressing','passing','defense','aggression'],perMinute=new Map();for(const [minute,tactics] of r.changes)perMinute.set(minute,tactics);
  let prev=r.base;const out=[];for(const [minute,t] of perMinute){for(const k of keys)if(t[k]!==prev[k])out.push({k,from:prev[k],to:t[k],minute});prev=t;}
  // Revert = a later change of the same key back to the value before; goal = a goal in between (the situation changed).
- // The goal counter of the coach log (last tactics entry of the minute) also catches a goal in the same minute; runs without it compare minutes.
- const goalsAt=minute=>r.log.filter(e=>e.kind==='tactics'&&e.minute===minute&&Number.isFinite(e.goals)).at(-1)?.goals;
- for(const [i,c] of out.entries()){const back=out.slice(i+1).find(d=>d.k===c.k&&d.to===c.from);if(!back)continue;const gap=back.minute-c.minute,goal=goalsAt(back.minute)!==undefined&&goalsAt(c.minute)!==undefined?goalsAt(back.minute)>goalsAt(c.minute):r.goals.some(([m])=>m>c.minute&&m<=back.minute);c.flip=gap<=10;c.flip15=gap<=15;c.goal=goal;}
+ // The goal counter of the coach log entry that changed the key also catches a goal in the same minute; runs without it compare minutes.
+ const goalsAt=(minute,key)=>r.log.filter(e=>e.kind==='tactics'&&e.minute===minute&&key in e.changes&&Number.isFinite(e.goals)).at(-1)?.goals;
+ for(const [i,c] of out.entries()){const back=out.slice(i+1).find(d=>d.k===c.k&&d.to===c.from);if(!back)continue;const gap=back.minute-c.minute,goal=goalsAt(back.minute,c.k)!==undefined&&goalsAt(c.minute,c.k)!==undefined?goalsAt(back.minute,c.k)>goalsAt(c.minute,c.k):r.goals.some(([m])=>m>c.minute&&m<=back.minute);c.flip=gap<=10;c.flip15=gap<=15;c.goal=goal;}
  return out;
 }
 const changeMinutes=r=>new Set(r.changes.map(c=>c[0])).size,aiSubs=r=>r.subs.filter(s=>s[1]===r.aiSide).length;
