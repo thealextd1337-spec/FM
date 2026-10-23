@@ -50,7 +50,8 @@ step=function(delta,realDelta){
 };
 const v84BaseDraw=draw;
 draw=function(...args){
- const result=v84BaseDraw(...args),pending=v84PendingGoal;
+ // B01: the painting below is skipped while the canvas is hidden by a 3D view; the goal-delay check still runs.
+ const result=typeof v98CanvasHidden==='function'&&v98CanvasHidden()?undefined:v84BaseDraw(...args),pending=v84PendingGoal;
  if(pending&&(pending.match!==match||pending.goal!==match?.goals.at(-1)||match?.goalPause<=0||$('#match-overlay').hidden||pending.remaining<=0))v84CancelGoalDelay();
  return result;
 };

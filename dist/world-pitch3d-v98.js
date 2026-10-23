@@ -230,6 +230,13 @@ let v98Offside=null,v98Offender=null,v98Assistant=null,v98Flag=null;
 const v98Audio={enabled:false,context:null,buffers:null,ambient:null,active:new Set(),loading:null,match:null,last:null};
 let v100MenuMatch=null;
 function v98Text(de,en){return window.doppel6Language?.get()==='en'?en:de}
+// B01: unchanged values are not written again. Every write invalidates style/layout and wakes the i18n
+// MutationObserver; the next size read then forces a synchronous layout on each picture.
+function v98Put(element,key,value){if(element&&element[key]!==value)element[key]=value;}
+function v98Attr(element,name,value){value=String(value);if(element&&element.getAttribute(name)!==value)element.setAttribute(name,value);}
+function v98Prop(element,name,value){value=String(value);if(element&&element.style.getPropertyValue(name)!==value)element.style.setProperty(name,value);}
+// B01: the 2D canvas is invisible while a 3D view is shown (body.v98-pitch3d); its painting can be skipped.
+function v98CanvasHidden(){return document.body.classList.contains('v98-pitch3d');}
 function v98IsWorld(){return Boolean(v65WorldActive&&match&&!$('#game-screen').hidden&&document.body.classList.contains('v65-world-match'))}
 function v100PitchMenu(open,restoreFocus=false){
  const panel=$('#v100-pitch-panel'),toggle=$('#v100-pitch-toggle');if(!panel||!toggle)return;
@@ -263,25 +270,25 @@ function v98Toolbar(){
   toolbar.querySelector('#v98-camera').addEventListener('change',event=>{v98CameraMode=event.target.value;v159SaveCamera();v98View='3d';v98Failed=false;draw();});
  }
  if(!toolbar.dataset.nearBound){toolbar.dataset.nearBound='true';toolbar.querySelector('#v159-camera-near').addEventListener('input',event=>{v98CameraNear=Number(event.target.value);v159SaveCamera();v98View='3d';v98Failed=false;draw();});}
- toolbar.hidden=!v98IsWorld();
+ v98Put(toolbar,'hidden',!v98IsWorld());
  if(toolbar.hidden)v100PitchMenu(false);
  if(v100MenuMatch!==match){v100MenuMatch=match;v100PitchMenu(false)}
- toolbar.setAttribute('aria-label',v98Text('Spielfelddarstellung','Pitch view'));
- const toggle=toolbar.querySelector('#v100-pitch-toggle'),menuLabel=v98Text('Darstellung und Ton','View and sound');toggle.setAttribute('aria-label',menuLabel);toggle.title=menuLabel;
- toolbar.querySelector('#v100-camera-label').textContent=v98Text('Kamera','Camera');
+ v98Attr(toolbar,'aria-label',v98Text('Spielfelddarstellung','Pitch view'));
+ const toggle=toolbar.querySelector('#v100-pitch-toggle'),menuLabel=v98Text('Darstellung und Ton','View and sound');v98Attr(toggle,'aria-label',menuLabel);v98Put(toggle,'title',menuLabel);
+ v98Put(toolbar.querySelector('#v100-camera-label'),'textContent',v98Text('Kamera','Camera'));
  const pitchLabel=v98Text('3D-Fußballspiel aus Sicht der TV-Kamera','3D football match from the TV camera');
  if($('#v98-canvas')?.getAttribute('aria-label')!==pitchLabel)$('#v98-canvas')?.setAttribute('aria-label',pitchLabel);
- toolbar.querySelector('[data-v98-view="3d"]').disabled=!v98Orientation.matches;
- const cameraSelect=toolbar.querySelector('#v98-camera');cameraSelect.value=v98CameraMode;cameraSelect.disabled=!v98Orientation.matches;cameraSelect.setAttribute('aria-label',v98Text('TV-Kamera','TV camera'));
- cameraSelect.querySelector('[value="follow"]').textContent=v98Text('TV nah · Mitfahrt','Close TV · Tracking');cameraSelect.querySelector('[value="wide"]').textContent=v98Text('TV weit · Übersicht','Wide TV · Overview');
- cameraSelect.querySelector('[value="sideline"]').textContent=v98Text('Seitenlinie','Sideline');cameraSelect.querySelector('[value="diagonal"]').textContent=v98Text('Diagonal','Diagonal');cameraSelect.querySelector('[value="goal"]').textContent=v98Text('Hintertor','Behind goal');
- const nearControl=toolbar.querySelector('#v159-camera-near');nearControl.value=v98CameraNear;nearControl.disabled=!v98Orientation.matches;nearControl.setAttribute('aria-valuetext',v98CameraNear+' % · '+v98Text('Nähe zum Spiel','Closeness to play'));
- toolbar.querySelector('#v159-camera-near-label').textContent=v98Text('Nähe zum Spiel','Closeness to play');toolbar.querySelector('#v159-camera-near-value').textContent=v98CameraNear+' %';toolbar.querySelector('#v159-camera-far').textContent=v98Text('Weiter','Further');toolbar.querySelector('#v159-camera-close').textContent=v98Text('Näher','Closer');
- for(const button of toolbar.querySelectorAll('[data-v98-view]'))button.setAttribute('aria-pressed',String(button.dataset.v98View===(document.body.classList.contains('v98-pitch3d')?'3d':'2d')));
- toolbar.querySelector('#v98-sound').textContent=v98Text(v98Audio.enabled?'Ton aus':'Ton einschalten',v98Audio.enabled?'Mute sound':'Enable sound');
- toolbar.querySelector('#v98-sound').setAttribute('aria-pressed',String(v98Audio.enabled));
- toolbar.querySelector('#v98-status').textContent=v98Failed?v98Text('3D nicht verfügbar · 2D aktiv','3D unavailable · using 2D'):!v98Orientation.matches?v98Text('3D im Querformat','3D in landscape'):window.D6UserModelStatus==='loading'?v98Text('Spieler werden vorbereitet','Preparing players'):window.D6UserModelStatus==='failed'?v98Text('Spielermodelle nicht verfügbar · Ersatzdarstellung aktiv','Player models unavailable · using fallback'):'';
- toolbar.dataset.status=String(Boolean(toolbar.querySelector('#v98-status').textContent));
+ v98Put(toolbar.querySelector('[data-v98-view="3d"]'),'disabled',!v98Orientation.matches);
+ const cameraSelect=toolbar.querySelector('#v98-camera');v98Put(cameraSelect,'value',String(v98CameraMode));v98Put(cameraSelect,'disabled',!v98Orientation.matches);v98Attr(cameraSelect,'aria-label',v98Text('TV-Kamera','TV camera'));
+ v98Put(cameraSelect.querySelector('[value="follow"]'),'textContent',v98Text('TV nah · Mitfahrt','Close TV · Tracking'));v98Put(cameraSelect.querySelector('[value="wide"]'),'textContent',v98Text('TV weit · Übersicht','Wide TV · Overview'));
+ v98Put(cameraSelect.querySelector('[value="sideline"]'),'textContent',v98Text('Seitenlinie','Sideline'));v98Put(cameraSelect.querySelector('[value="diagonal"]'),'textContent',v98Text('Diagonal','Diagonal'));v98Put(cameraSelect.querySelector('[value="goal"]'),'textContent',v98Text('Hintertor','Behind goal'));
+ const nearControl=toolbar.querySelector('#v159-camera-near');v98Put(nearControl,'value',String(v98CameraNear));v98Put(nearControl,'disabled',!v98Orientation.matches);v98Attr(nearControl,'aria-valuetext',v98CameraNear+' % · '+v98Text('Nähe zum Spiel','Closeness to play'));
+ v98Put(toolbar.querySelector('#v159-camera-near-label'),'textContent',v98Text('Nähe zum Spiel','Closeness to play'));v98Put(toolbar.querySelector('#v159-camera-near-value'),'textContent',v98CameraNear+' %');v98Put(toolbar.querySelector('#v159-camera-far'),'textContent',v98Text('Weiter','Further'));v98Put(toolbar.querySelector('#v159-camera-close'),'textContent',v98Text('Näher','Closer'));
+ for(const button of toolbar.querySelectorAll('[data-v98-view]'))v98Attr(button,'aria-pressed',String(button.dataset.v98View===(document.body.classList.contains('v98-pitch3d')?'3d':'2d')));
+ v98Put(toolbar.querySelector('#v98-sound'),'textContent',v98Text(v98Audio.enabled?'Ton aus':'Ton einschalten',v98Audio.enabled?'Mute sound':'Enable sound'));
+ v98Attr(toolbar.querySelector('#v98-sound'),'aria-pressed',String(v98Audio.enabled));
+ v98Put(toolbar.querySelector('#v98-status'),'textContent',v98Failed?v98Text('3D nicht verfügbar · 2D aktiv','3D unavailable · using 2D'):!v98Orientation.matches?v98Text('3D im Querformat','3D in landscape'):window.D6UserModelStatus==='loading'?v98Text('Spieler werden vorbereitet','Preparing players'):window.D6UserModelStatus==='failed'?v98Text('Spielermodelle nicht verfügbar · Ersatzdarstellung aktiv','Player models unavailable · using fallback'):'');
+ v98Put(toolbar.dataset,'status',String(Boolean(toolbar.querySelector('#v98-status').textContent)));
  if(typeof v132FullscreenUI==='function')v132FullscreenUI();
  return toolbar;
 }
@@ -485,7 +492,8 @@ function v98SyncAudio(allow=true){
  v98Audio.match=match;v98Audio.last=stats;
 }
 const v98PreviousDraw=draw;
-draw=function(){const result=v98PreviousDraw();v98Render(true);return result;};
+// A view change inside v98Render (2D button, fallback, orientation) paints the canvas in the same call.
+draw=function(){const hidden=v98CanvasHidden(),result=v98PreviousDraw();v98Render(true);if(hidden&&!v98CanvasHidden())v98PreviousDraw();return result;};
 const v98PreviousControls=v65UpdateControls;
 v65UpdateControls=function(context){const result=v98PreviousControls(context);v98Render(true);return result;};
 v98Orientation.addEventListener('change',()=>{if(v98IsWorld())draw();});

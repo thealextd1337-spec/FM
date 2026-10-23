@@ -146,7 +146,7 @@ function playback(recv,unity){
   // Each 40 ms timer tick may advance at most 0.05 s of real time (world-physical-v65.js); longer gaps are lost.
   const lost=top.tick.reduce((a,t)=>a+Math.max(0,t-50),0);
   const tickTotal=top.tick.map((_,i)=>(top.step[i+1]||0)+(top.after[i+1]||0)+(top.draw[i+1]||0));
-  report.page={rafMs:stats(top.raf),rafOver20Pct:over(top.raf,20),rafOver33Pct:over(top.raf,33.4),rafOver50Pct:over(top.raf,50),
+  report.page={rafMs:stats(top.raf),rafOver20Pct:over(top.raf,20),rafOver33Pct:over(top.raf,33.4),rafOver50Pct:over(top.raf,50),freezesPerMinute:+(top.raf.filter(x=>x>100).length/(report.wallSeconds/60)).toFixed(1),
    longTasks:{n:top.lt.length,ms:stats(top.lt.map(x=>x[1]))},loaf:{n:top.loaf.length,ms:stats(top.loaf.map(x=>x.d)),blockingSum:+top.loaf.reduce((a,x)=>a+x.b,0).toFixed(0)},
    tickIntervalMs:stats(top.tick),tickOver50Pct:over(top.tick,50),tickOver80Pct:over(top.tick,80),lostRealSecondsPerMinute:+(lost/1000/(report.wallSeconds/60)).toFixed(2),
    stepMs:stats(top.step),afterStepMs:stats(top.after),drawMs:stats(top.draw),tickWorkMs:stats(tickTotal),pitchFrameMs:stats(top.frame),pictureMs:stats(top.picture),postMessageMs:stats(top.post),

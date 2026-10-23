@@ -249,24 +249,27 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
   for(const p of frame.players){
    ids.add(p.id);let label=labelMap.get(p.id);
    if(!label){label=document.createElement('button');label.type='button';label.dataset.player=p.id;label.hidden=true;const number=document.createElement('b'),name=document.createElement('span');label.append(number,name);labels.append(label);labelMap.set(p.id,label);}
-   label.firstChild.textContent=p.number;label.lastChild.textContent=' '+p.person.name.split(' ').at(-1);label.setAttribute('aria-label',p.person.name+' · '+v98Text('Live-Spielerinfo','Live player information'));label.disabled=Boolean(frame.review||frame.replay);
-   label.dataset.team=String(p.team);const clubKit=p.team===0?match.kits.user:match.kits.opponent;label.style.setProperty('--team-color',C.kit(clubKit).main);
+   v98Put(label.firstChild,'textContent',String(p.number??''));v98Put(label.lastChild,'textContent',' '+p.person.name.split(' ').at(-1));v98Attr(label,'aria-label',p.person.name+' · '+v98Text('Live-Spielerinfo','Live player information'));v98Put(label,'disabled',Boolean(frame.review||frame.replay));
+   v98Put(label.dataset,'team',String(p.team));const clubKit=p.team===0?match.kits.user:match.kits.opponent;v98Prop(label,'--team-color',C.kit(clubKit).main);
   }
   for(const [id,label]of labelMap)if(!ids.has(id)){label.remove();labelMap.delete(id);}
  }
  function paintLabels(data){
   if(!Array.isArray(data.markers)||data.sequence<1||data.sequence<(lastProjection?.sequence||0)||data.width<=0||data.height<=0)return;
   if(data.markers.some(p=>!Number.isFinite(p.x)||!Number.isFinite(p.y)||typeof p.id!=='string'||typeof p.visible!=='boolean'))return;
-  lastProjection=data;const placed=[],width=labels.clientWidth,height=labels.clientHeight;
-  const guide=C.ballGuide(data.ballMarker,width,height,data.width,ballGuideEnabled);ballGuide.hidden=!guide;
+  lastProjection=data;const placed=[];
+  // B01: label states first, then one layout read for every size, then the positions (no read after each write).
+  const order=data.markers.filter(m=>labelMap.has(m.id)).sort((a,b)=>Number(b.featured)-Number(a.featured)||(Number.isFinite(a.depth)&&Number.isFinite(b.depth)?a.depth-b.depth:b.y-a.y));
+  for(const marker of order){const label=labelMap.get(marker.id);v98Put(label,'hidden',!marker.visible);label.classList.toggle('is-featured',Boolean(marker.featured));}
+  const width=labels.clientWidth,height=labels.clientHeight,sizes=order.map(marker=>marker.visible&&width>0&&height>0?labelMap.get(marker.id).getBoundingClientRect():null);
+  const guide=C.ballGuide(data.ballMarker,width,height,data.width,ballGuideEnabled);v98Put(ballGuide,'hidden',!guide);
   if(guide){ballGuide.style.left=guide.x+'px';ballGuide.style.top=guide.y+'px';ballGuide.style.width=ballGuide.style.height=guide.size+'px';ballGuide.style.opacity=String(guide.opacity);placed.push({x:guide.x,y:guide.y+guide.size/2,w:guide.size,h:guide.size});}
   // Keep every name, prioritising the ball area and then the nearer player.
   // Displaced names retain a fine leader to the actual Unity head projection.
-  const order=data.markers.filter(m=>labelMap.has(m.id)).sort((a,b)=>Number(b.featured)-Number(a.featured)||(Number.isFinite(a.depth)&&Number.isFinite(b.depth)?a.depth-b.depth:b.y-a.y));
-  for(const marker of order){
-   const label=labelMap.get(marker.id);label.hidden=!marker.visible;label.classList.toggle('is-featured',Boolean(marker.featured));
-   if(marker.visible&&width>0&&height>0){
-    const size=label.getBoundingClientRect(),x=marker.x*width,y=marker.y*height,p=C.labelPosition({x,y,w:size.width||40,h:size.height||16,previous:{x:Number(label.dataset.offsetX)||0,y:Number(label.dataset.offsetY)||0}},placed,width,height);placed.push(p);
+  for(const [index,marker]of order.entries()){
+   const label=labelMap.get(marker.id);
+   if(sizes[index]){
+    const size=sizes[index],x=marker.x*width,y=marker.y*height,p=C.labelPosition({x,y,w:size.width||40,h:size.height||16,previous:{x:Number(label.dataset.offsetX)||0,y:Number(label.dataset.offsetY)||0}},placed,width,height);placed.push(p);
     const dx=x-p.x,dy=y-p.y,leader=C.labelLeader(p,x,y);label.style.left=p.x+'px';label.style.top=p.y+'px';
     label.style.setProperty('--leader-left',leader.left+'px');label.style.setProperty('--leader-top',leader.top+'px');label.style.setProperty('--leader-length',leader.length>4?leader.length+'px':'0px');label.style.setProperty('--leader-angle',leader.angle+'rad');
     label.dataset.offsetX=String(-dx);label.dataset.offsetY=String(-dy);
@@ -341,7 +344,7 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
   window.D6ViewFramePump?.setEnabled(true);if(!loop)render();v98Toolbar();v98SyncAudio();
  };
  const baseToolbar=v98Toolbar;
- v98Toolbar=function(){const toolbar=baseToolbar();if(v98IsWorld()){toolbar.querySelector('[data-v98-view="3d"]').textContent='Unity · TV';const status=toolbar.querySelector('#v98-status');if(failed)status.textContent=window.D6UnityMatch.lastError;else if(!loaded&&v98View==='3d')status.textContent=v98Text('Unity wird geladen','Loading Unity');toolbar.dataset.status=String(Boolean(status.textContent));let button=toolbar.querySelector('#d6-ball-guide-toggle');if(!button){button=document.createElement('button');button.id='d6-ball-guide-toggle';button.type='button';toolbar.querySelector('#v98-sound').after(button);button.addEventListener('click',()=>{ballGuideEnabled=!ballGuideEnabled;try{localStorage.setItem('d6-ball-guide',ballGuideEnabled?'on':'off')}catch{}if(lastProjection)paintLabels(lastProjection);v98Toolbar();});}button.textContent=v98Text('Ballhilfe','Ball guide');button.setAttribute('aria-pressed',String(ballGuideEnabled));button.disabled=v98View!=='3d'||!v98Orientation.matches;}return toolbar;};
+ v98Toolbar=function(){const toolbar=baseToolbar();if(v98IsWorld()){v98Put(toolbar.querySelector('[data-v98-view="3d"]'),'textContent','Unity · TV');const status=toolbar.querySelector('#v98-status');if(failed)v98Put(status,'textContent',String(window.D6UnityMatch.lastError??''));else if(!loaded&&v98View==='3d')v98Put(status,'textContent',v98Text('Unity wird geladen','Loading Unity'));v98Put(toolbar.dataset,'status',String(Boolean(status.textContent)));let button=toolbar.querySelector('#d6-ball-guide-toggle');if(!button){button=document.createElement('button');button.id='d6-ball-guide-toggle';button.type='button';toolbar.querySelector('#v98-sound').after(button);button.addEventListener('click',()=>{ballGuideEnabled=!ballGuideEnabled;try{localStorage.setItem('d6-ball-guide',ballGuideEnabled?'on':'off')}catch{}if(lastProjection)paintLabels(lastProjection);v98Toolbar();});}v98Put(button,'textContent',v98Text('Ballhilfe','Ball guide'));v98Attr(button,'aria-pressed',String(ballGuideEnabled));v98Put(button,'disabled',v98View!=='3d'||!v98Orientation.matches);}return toolbar;};
  // Camera changes and return from 2D must resume the picture loop immediately.
  document.addEventListener('visibilitychange',()=>{if(document.hidden){if(suspendedAt===null)suspendedAt=performance.now();if(v65Context()?.state.phase==='live')v65Pause();}else if(host&&!loop)render();});
  const baseLeave=v65Leave;v65Leave=async function(...args){const result=await baseLeave.apply(this,args);if(!v98IsWorld())dispose();return result;};

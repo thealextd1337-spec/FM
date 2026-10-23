@@ -7,7 +7,7 @@
  // Picture pacing only. Match clocks, contacts and saved state have no reader
  // or writer here. Inactive views use the browser's native frame callbacks.
  const nativeRequest=root.requestAnimationFrame.bind(root),nativeCancel=root.cancelAnimationFrame.bind(root),pending=new Map(),period=1000/60;
- let enabled=false,away=false,sequence=0,raf=0,timer=0,generation=0,scheduled=false,dispatching=false,lastFrame=null,deadline=0,fallbacks=0;
+ let enabled=false,away=false,sequence=0,raf=0,timer=0,generation=0,scheduled=false,dispatching=false,lastFrame=null,deadline=0,fallbacks=0,lastNative=null,nativeGap=null,skipped=0;
  function eligible(){
   if(away||root.document.hidden)return false;
   if(enabled)return true;
@@ -15,14 +15,21 @@
  }
  function clear(){if(raf)nativeCancel(raf);root.clearTimeout(timer);raf=timer=0;scheduled=false;generation++;}
  function schedule(){if(away||scheduled||dispatching||!pending.size)return;scheduled=true;const token=++generation;raf=nativeRequest(t=>fire(t,false,token));if(!eligible())return;const now=root.performance.now();deadline=lastFrame===null?now+period:lastFrame+period;arm(token);}
- function arm(token){timer=root.setTimeout(()=>{if(!scheduled||token!==generation)return;if(!eligible()){timer=0;return;}const now=root.performance.now();if(now<deadline-2){arm(token);return;}fire(now,true,token);},Math.min(8,Math.max(0,deadline-root.performance.now())));}
- function fire(time,fallback,token){if(!scheduled||token!==generation)return;if(fallback&&!eligible())return;clear();lastFrame=time;if(fallback)fallbacks++;const ids=[...pending.keys()];dispatching=true;
+ function arm(token){timer=root.setTimeout(()=>{if(!scheduled||token!==generation)return;if(!eligible()){timer=0;return;}const now=root.performance.now();if(now<due()-2){arm(token);return;}fire(now,true,token);},Math.min(8,Math.max(0,due()-root.performance.now())));}
+ // B01: regular native frames (at least ~48/s) are not overtaken; the fallback waits until one is really missing.
+ function due(){return nativeGap!==null&&nativeGap<=period*1.25&&root.performance.now()-lastNative<100?Math.max(deadline,lastNative+period*1.5):deadline;}
+ // B01: at most one callback per screen frame. A native frame sooner than the period after the last callback (the
+ // fallback of the same screen frame, 120 Hz screens) waits for the next one.
+ function fire(time,fallback,token){if(!scheduled||token!==generation)return;if(fallback&&!eligible())return;
+  if(!fallback){if(lastNative!==null){const gap=time-lastNative;nativeGap=gap>0&&gap<100?gap:null;}lastNative=time;
+   if(lastFrame!==null&&eligible()&&time-lastFrame<period-2){skipped++;raf=nativeRequest(t=>fire(t,false,token));return;}}
+  clear();lastFrame=time;if(fallback)fallbacks++;const ids=[...pending.keys()];dispatching=true;
   try{for(const id of ids){const callback=pending.get(id);if(!callback)continue;pending.delete(id);try{callback(time);}catch(error){if(typeof root.reportError==='function')root.reportError(error);else root.setTimeout(()=>{throw error;},0);}}}finally{dispatching=false;schedule();}
  }
  root.requestAnimationFrame=function(callback){if(typeof callback!=='function')throw new TypeError('Frame callback must be a function');const id=++sequence;pending.set(id,callback);schedule();return id;};
  root.cancelAnimationFrame=function(id){pending.delete(id);if(!pending.size&&!dispatching)clear();};
- root.document.addEventListener('visibilitychange',()=>{clear();lastFrame=null;schedule();});root.addEventListener('pagehide',()=>{away=true;clear();});root.addEventListener('pageshow',()=>{away=false;clear();lastFrame=null;schedule();});
- root.D6ViewFramePump={version:130,setEnabled(value){const next=Boolean(value);if(next===enabled)return;enabled=next;clear();lastFrame=null;schedule();},get enabled(){return enabled&&!away&&!root.document.hidden;},get fallbacks(){return fallbacks;},get pending(){return pending.size;}};
+ root.document.addEventListener('visibilitychange',()=>{clear();lastFrame=lastNative=nativeGap=null;schedule();});root.addEventListener('pagehide',()=>{away=true;clear();});root.addEventListener('pageshow',()=>{away=false;clear();lastFrame=null;schedule();});
+ root.D6ViewFramePump={version:130,setEnabled(value){const next=Boolean(value);if(next===enabled)return;enabled=next;clear();lastFrame=null;schedule();},get enabled(){return enabled&&!away&&!root.document.hidden;},get fallbacks(){return fallbacks;},get skipped(){return skipped;},get pending(){return pending.size;}};
 })(window);
 </script>
   <meta charset="utf-8">
@@ -13302,7 +13309,7 @@ v58Refresh();
 <script>'use strict';
 
 // Die Weltkarriere nutzt denselben Ball- und Regelablauf wie die bisherige Liga.
-let v65WorldActive=null,v65WorldFrame=0,v65LastFrame=0,v65LastSaved=0,v65ProcessedGoals=0,v65PauseRequested=false,v65PendingExit=false,v65PauseView=false,v65PauseTab='lineup',v65PauseTargetTab='lineup',v65SelectedSlot=0,v65Drag=null,v65SwapInfoTimer=0;
+let v65WorldActive=null,v65WorldFrame=0,v65LastFrame=0,v65LastSaved=0,v65LastReport=0,v65SaveSoon=false,v65ProcessedGoals=0,v65PauseRequested=false,v65PendingExit=false,v65PauseView=false,v65PauseTab='lineup',v65PauseTargetTab='lineup',v65SelectedSlot=0,v65Drag=null,v65SwapInfoTimer=0;
 function v65Context(){
  const career=v61CurrentCareer,fixture=career&&v64ActiveFixture(career),state=career?.world.activeMatch?.state;
  return fixture&&state?{career,fixture,state,ownSide:v64UiOwnSide(fixture)}:null;
@@ -13544,7 +13551,9 @@ function v65AfterStep(context){
   v65ApplyTactics(context);
  }
  if(halftime&&state.phase==='live'){v65PauseTargetTab='tactics';v65Pause()}
- if(!match.flight&&!match.slide&&performance.now()-v65LastSaved>700){v65RenderReport(context);v65Snapshot(context)}
+ // B01: every autosave copies, validates and writes all stored worlds. While the match runs it happens at most every
+ // 15 s; pause, halftime, final whistle, leaving and hiding the page (v65SaveSoon) still save at once.
+ if(!match.flight&&!match.slide){const now=performance.now();if(now-v65LastReport>700){v65LastReport=now;v65RenderReport(context)}if(v65SaveSoon||now-v65LastSaved>V65_LIVE_SAVE_MS){if(v65Snapshot(context))v65SaveSoon=false}}
 }
 function v65NeedsPenalties(context){
  const {career,fixture,ownSide}=context,competition=v62Current(career).find(item=>item.id===fixture.competitionId);
@@ -13778,6 +13787,11 @@ function v65Show(context){
  if(running)v65StartLoop();v58Refresh();
  window.scrollTo(0,0);
 }
+const V65_LIVE_SAVE_MS=15000;
+// A hidden or unloading page saves the live match now; during a flight or slide the next possible step does it.
+function v65SaveLive(){if(!v65WorldActive||!match||match.finished||v65Context()?.state.phase!=='live')return;if(!v65Snapshot(v65Context()))v65SaveSoon=true}
+document.addEventListener('visibilitychange',()=>{if(document.hidden)v65SaveLive()});
+window.addEventListener('pagehide',v65SaveLive);
 function v65StartLoop(){
  clearInterval(v65WorldFrame);v65LastFrame=performance.now();
  const tick=()=>{
@@ -19707,7 +19721,8 @@ step=function(delta,realDelta){
 };
 const v84BaseDraw=draw;
 draw=function(...args){
- const result=v84BaseDraw(...args),pending=v84PendingGoal;
+ // B01: the painting below is skipped while the canvas is hidden by a 3D view; the goal-delay check still runs.
+ const result=typeof v98CanvasHidden==='function'&&v98CanvasHidden()?undefined:v84BaseDraw(...args),pending=v84PendingGoal;
  if(pending&&(pending.match!==match||pending.goal!==match?.goals.at(-1)||match?.goalPause<=0||$('#match-overlay').hidden||pending.remaining<=0))v84CancelGoalDelay();
  return result;
 };
@@ -19785,8 +19800,19 @@ v84Style.textContent+=`
 // die sichtbare Leinwand; Beschriftungen bleiben dabei aufrecht.
 const v92WidePitch=window.matchMedia('(min-width:900px), (min-width:600px) and (orientation:landscape)');
 const v92PreviousDraw=draw;
+// B01: the CSS width comes from a ResizeObserver; reading offsetWidth on every tick forced a synchronous layout.
+// A changed width repaints a paused world match once, as the next tick would do while it runs; a new viewport,
+// fullscreen or enlarged state measures at once.
+let v92Width=null;
+function v92CssWidth(canvas){
+ if(typeof ResizeObserver!=='function')return canvas.offsetWidth;
+ const body=document.body.classList,key=innerWidth+'x'+innerHeight+':'+body.contains('v132-fullscreen')+':'+body.contains('v99-expanded')+':'+body.contains('v65-world-match');
+ if(v92Width?.canvas!==canvas){v92Width={canvas,width:canvas.offsetWidth,key};new ResizeObserver(()=>{if(v92Width?.canvas!==canvas)return;const width=canvas.offsetWidth;if(width===v92Width.width)return;v92Width.width=width;if(!running)requestAnimationFrame(()=>{if(!running&&typeof v98IsWorld==='function'&&v98IsWorld())draw()});}).observe(canvas);}
+ else if(v92Width.key!==key){v92Width.width=canvas.offsetWidth;v92Width.key=key;}
+ return v92Width.width;
+}
 function v92PrepareCanvas(canvas,context,world){
- const cssWidth=canvas.offsetWidth||600;
+ const cssWidth=v92CssWidth(canvas)||600;
  const scale=world?Math.min(2,Math.max(1,(window.devicePixelRatio||1)*cssWidth/600)):1;
  const width=Math.round(600*scale),height=Math.round(740*scale);
  if(canvas.width!==width||canvas.height!==height){canvas.width=width;canvas.height=height}
@@ -19798,6 +19824,7 @@ window.v92UprightSprite=(context,x,y)=>{
  context.translate(x,y);context.rotate(-Math.PI/2);context.translate(-x,-y);
 };
 draw=function(){
+ if(typeof v98CanvasHidden==='function'&&v98CanvasHidden())return v92PreviousDraw();
  const canvas=$('#canvas'),context=canvas.getContext('2d'),world=document.body.classList.contains('v65-world-match');
  v92PrepareCanvas(canvas,context,world);
  if(!world||!v92WidePitch.matches)return v92PreviousDraw();
@@ -24918,6 +24945,13 @@ let v98Offside=null,v98Offender=null,v98Assistant=null,v98Flag=null;
 const v98Audio={enabled:false,context:null,buffers:null,ambient:null,active:new Set(),loading:null,match:null,last:null};
 let v100MenuMatch=null;
 function v98Text(de,en){return window.doppel6Language?.get()==='en'?en:de}
+// B01: unchanged values are not written again. Every write invalidates style/layout and wakes the i18n
+// MutationObserver; the next size read then forces a synchronous layout on each picture.
+function v98Put(element,key,value){if(element&&element[key]!==value)element[key]=value;}
+function v98Attr(element,name,value){value=String(value);if(element&&element.getAttribute(name)!==value)element.setAttribute(name,value);}
+function v98Prop(element,name,value){value=String(value);if(element&&element.style.getPropertyValue(name)!==value)element.style.setProperty(name,value);}
+// B01: the 2D canvas is invisible while a 3D view is shown (body.v98-pitch3d); its painting can be skipped.
+function v98CanvasHidden(){return document.body.classList.contains('v98-pitch3d');}
 function v98IsWorld(){return Boolean(v65WorldActive&&match&&!$('#game-screen').hidden&&document.body.classList.contains('v65-world-match'))}
 function v100PitchMenu(open,restoreFocus=false){
  const panel=$('#v100-pitch-panel'),toggle=$('#v100-pitch-toggle');if(!panel||!toggle)return;
@@ -24951,25 +24985,25 @@ function v98Toolbar(){
   toolbar.querySelector('#v98-camera').addEventListener('change',event=>{v98CameraMode=event.target.value;v159SaveCamera();v98View='3d';v98Failed=false;draw();});
  }
  if(!toolbar.dataset.nearBound){toolbar.dataset.nearBound='true';toolbar.querySelector('#v159-camera-near').addEventListener('input',event=>{v98CameraNear=Number(event.target.value);v159SaveCamera();v98View='3d';v98Failed=false;draw();});}
- toolbar.hidden=!v98IsWorld();
+ v98Put(toolbar,'hidden',!v98IsWorld());
  if(toolbar.hidden)v100PitchMenu(false);
  if(v100MenuMatch!==match){v100MenuMatch=match;v100PitchMenu(false)}
- toolbar.setAttribute('aria-label',v98Text('Spielfelddarstellung','Pitch view'));
- const toggle=toolbar.querySelector('#v100-pitch-toggle'),menuLabel=v98Text('Darstellung und Ton','View and sound');toggle.setAttribute('aria-label',menuLabel);toggle.title=menuLabel;
- toolbar.querySelector('#v100-camera-label').textContent=v98Text('Kamera','Camera');
+ v98Attr(toolbar,'aria-label',v98Text('Spielfelddarstellung','Pitch view'));
+ const toggle=toolbar.querySelector('#v100-pitch-toggle'),menuLabel=v98Text('Darstellung und Ton','View and sound');v98Attr(toggle,'aria-label',menuLabel);v98Put(toggle,'title',menuLabel);
+ v98Put(toolbar.querySelector('#v100-camera-label'),'textContent',v98Text('Kamera','Camera'));
  const pitchLabel=v98Text('3D-Fußballspiel aus Sicht der TV-Kamera','3D football match from the TV camera');
  if($('#v98-canvas')?.getAttribute('aria-label')!==pitchLabel)$('#v98-canvas')?.setAttribute('aria-label',pitchLabel);
- toolbar.querySelector('[data-v98-view="3d"]').disabled=!v98Orientation.matches;
- const cameraSelect=toolbar.querySelector('#v98-camera');cameraSelect.value=v98CameraMode;cameraSelect.disabled=!v98Orientation.matches;cameraSelect.setAttribute('aria-label',v98Text('TV-Kamera','TV camera'));
- cameraSelect.querySelector('[value="follow"]').textContent=v98Text('TV nah · Mitfahrt','Close TV · Tracking');cameraSelect.querySelector('[value="wide"]').textContent=v98Text('TV weit · Übersicht','Wide TV · Overview');
- cameraSelect.querySelector('[value="sideline"]').textContent=v98Text('Seitenlinie','Sideline');cameraSelect.querySelector('[value="diagonal"]').textContent=v98Text('Diagonal','Diagonal');cameraSelect.querySelector('[value="goal"]').textContent=v98Text('Hintertor','Behind goal');
- const nearControl=toolbar.querySelector('#v159-camera-near');nearControl.value=v98CameraNear;nearControl.disabled=!v98Orientation.matches;nearControl.setAttribute('aria-valuetext',v98CameraNear+' % · '+v98Text('Nähe zum Spiel','Closeness to play'));
- toolbar.querySelector('#v159-camera-near-label').textContent=v98Text('Nähe zum Spiel','Closeness to play');toolbar.querySelector('#v159-camera-near-value').textContent=v98CameraNear+' %';toolbar.querySelector('#v159-camera-far').textContent=v98Text('Weiter','Further');toolbar.querySelector('#v159-camera-close').textContent=v98Text('Näher','Closer');
- for(const button of toolbar.querySelectorAll('[data-v98-view]'))button.setAttribute('aria-pressed',String(button.dataset.v98View===(document.body.classList.contains('v98-pitch3d')?'3d':'2d')));
- toolbar.querySelector('#v98-sound').textContent=v98Text(v98Audio.enabled?'Ton aus':'Ton einschalten',v98Audio.enabled?'Mute sound':'Enable sound');
- toolbar.querySelector('#v98-sound').setAttribute('aria-pressed',String(v98Audio.enabled));
- toolbar.querySelector('#v98-status').textContent=v98Failed?v98Text('3D nicht verfügbar · 2D aktiv','3D unavailable · using 2D'):!v98Orientation.matches?v98Text('3D im Querformat','3D in landscape'):window.D6UserModelStatus==='loading'?v98Text('Spieler werden vorbereitet','Preparing players'):window.D6UserModelStatus==='failed'?v98Text('Spielermodelle nicht verfügbar · Ersatzdarstellung aktiv','Player models unavailable · using fallback'):'';
- toolbar.dataset.status=String(Boolean(toolbar.querySelector('#v98-status').textContent));
+ v98Put(toolbar.querySelector('[data-v98-view="3d"]'),'disabled',!v98Orientation.matches);
+ const cameraSelect=toolbar.querySelector('#v98-camera');v98Put(cameraSelect,'value',String(v98CameraMode));v98Put(cameraSelect,'disabled',!v98Orientation.matches);v98Attr(cameraSelect,'aria-label',v98Text('TV-Kamera','TV camera'));
+ v98Put(cameraSelect.querySelector('[value="follow"]'),'textContent',v98Text('TV nah · Mitfahrt','Close TV · Tracking'));v98Put(cameraSelect.querySelector('[value="wide"]'),'textContent',v98Text('TV weit · Übersicht','Wide TV · Overview'));
+ v98Put(cameraSelect.querySelector('[value="sideline"]'),'textContent',v98Text('Seitenlinie','Sideline'));v98Put(cameraSelect.querySelector('[value="diagonal"]'),'textContent',v98Text('Diagonal','Diagonal'));v98Put(cameraSelect.querySelector('[value="goal"]'),'textContent',v98Text('Hintertor','Behind goal'));
+ const nearControl=toolbar.querySelector('#v159-camera-near');v98Put(nearControl,'value',String(v98CameraNear));v98Put(nearControl,'disabled',!v98Orientation.matches);v98Attr(nearControl,'aria-valuetext',v98CameraNear+' % · '+v98Text('Nähe zum Spiel','Closeness to play'));
+ v98Put(toolbar.querySelector('#v159-camera-near-label'),'textContent',v98Text('Nähe zum Spiel','Closeness to play'));v98Put(toolbar.querySelector('#v159-camera-near-value'),'textContent',v98CameraNear+' %');v98Put(toolbar.querySelector('#v159-camera-far'),'textContent',v98Text('Weiter','Further'));v98Put(toolbar.querySelector('#v159-camera-close'),'textContent',v98Text('Näher','Closer'));
+ for(const button of toolbar.querySelectorAll('[data-v98-view]'))v98Attr(button,'aria-pressed',String(button.dataset.v98View===(document.body.classList.contains('v98-pitch3d')?'3d':'2d')));
+ v98Put(toolbar.querySelector('#v98-sound'),'textContent',v98Text(v98Audio.enabled?'Ton aus':'Ton einschalten',v98Audio.enabled?'Mute sound':'Enable sound'));
+ v98Attr(toolbar.querySelector('#v98-sound'),'aria-pressed',String(v98Audio.enabled));
+ v98Put(toolbar.querySelector('#v98-status'),'textContent',v98Failed?v98Text('3D nicht verfügbar · 2D aktiv','3D unavailable · using 2D'):!v98Orientation.matches?v98Text('3D im Querformat','3D in landscape'):window.D6UserModelStatus==='loading'?v98Text('Spieler werden vorbereitet','Preparing players'):window.D6UserModelStatus==='failed'?v98Text('Spielermodelle nicht verfügbar · Ersatzdarstellung aktiv','Player models unavailable · using fallback'):'');
+ v98Put(toolbar.dataset,'status',String(Boolean(toolbar.querySelector('#v98-status').textContent)));
  if(typeof v132FullscreenUI==='function')v132FullscreenUI();
  return toolbar;
 }
@@ -25173,7 +25207,8 @@ function v98SyncAudio(allow=true){
  v98Audio.match=match;v98Audio.last=stats;
 }
 const v98PreviousDraw=draw;
-draw=function(){const result=v98PreviousDraw();v98Render(true);return result;};
+// A view change inside v98Render (2D button, fallback, orientation) paints the canvas in the same call.
+draw=function(){const hidden=v98CanvasHidden(),result=v98PreviousDraw();v98Render(true);if(hidden&&!v98CanvasHidden())v98PreviousDraw();return result;};
 const v98PreviousControls=v65UpdateControls;
 v65UpdateControls=function(context){const result=v98PreviousControls(context);v98Render(true);return result;};
 v98Orientation.addEventListener('change',()=>{if(v98IsWorld())draw();});
@@ -25384,7 +25419,7 @@ function v132ToggleReview(){
 }
 function v132MarkerUI(panel,state,frames){
  const track=panel.querySelector('.v132-markers'),events=panel.querySelector('.v132-events'),first=Number(frames[0]?.clock||0),last=Number(frames.at(-1)?.clock||0),markers=(state?.markers||[]).filter(marker=>frames.length&&marker.clock>=first-.2&&marker.clock<=last+.2);
- const menu=panel.querySelector('.v119-event-menu');menu.hidden=!markers.length;if(!markers.length)menu.open=false;const summary=menu.querySelector('summary');summary.textContent='⋮';summary.title=v98Text('Ereignisse','Events')+' ('+markers.length+')';summary.setAttribute('aria-label',summary.title);events.hidden=!markers.length;events.setAttribute('aria-label',v98Text('Ereignisse in der Rückschau','Recorded match events'));
+ const menu=panel.querySelector('.v119-event-menu');v98Put(menu,'hidden',!markers.length);if(!markers.length)v98Put(menu,'open',false);const summary=menu.querySelector('summary'),summaryTitle=v98Text('Ereignisse','Events')+' ('+markers.length+')';v98Put(summary,'textContent','⋮');v98Put(summary,'title',summaryTitle);v98Attr(summary,'aria-label',summaryTitle);v98Put(events,'hidden',!markers.length);v98Attr(events,'aria-label',v98Text('Ereignisse in der Rückschau','Recorded match events'));
  const language=v98Text('de','en'),key=language+':'+markers.map(marker=>marker.id).join('/');
  if(events.dataset.key!==key){events.dataset.key=key;events.replaceChildren();for(const marker of markers){const [symbol,de,en]=v132MarkerKinds[marker.kind],name=v98Text(de,en),minute=marker.minute||Math.max(1,Math.floor(marker.elapsed*90/75))+'′',button=document.createElement('button');button.type='button';button.dataset.kind=marker.kind;button.dataset.clock=marker.clock;button.textContent=`${symbol} ${minute}`;button.title=`${name} · ${minute}${marker.name?' · '+marker.name:''}`;button.setAttribute('aria-label',button.title);button.addEventListener('click',()=>{v131Seek(marker.clock-3);menu.open=false;summary.focus();});events.append(button);}}
  const rangeKey=key+':'+first+':'+last;if(track.dataset.key!==rangeKey){track.dataset.key=rangeKey;track.replaceChildren();for(const marker of markers){const pin=document.createElement('span');pin.dataset.kind=marker.kind;pin.textContent=v132MarkerKinds[marker.kind][0];pin.style.left=100*clamp((Math.max(first,marker.clock-3)-first)/Math.max(.001,last-first),0,1)+'%';track.append(pin);}}
@@ -25393,9 +25428,12 @@ function v131ReviewUI(){
  const state=match&&v103Replays.get(match),stage=$('#match-area .v42-pitch-stage');let panel=$('#v131-review');
  if(!stage||!v103CanReplay()){v132StopReview();panel?.remove();return;}
  if(!panel){panel=document.createElement('div');panel.id='v131-review';panel.innerHTML='<label><span></span><span class="v132-track"><input type="range" min="0" max="0" step="0.01"><span class="v132-markers" aria-hidden="true"></span></span></label><output></output><button type="button" data-v132-play></button><button type="button" data-v132-live></button><details class="v119-event-menu"><summary></summary><nav class="v132-events"></nav></details>';stage.append(panel);v132RevealControls(stage);panel.querySelector('input').addEventListener('input',e=>v131Seek(e.target.value));panel.querySelector('[data-v132-live]').addEventListener('click',()=>v131ReturnLive());panel.querySelector('[data-v132-play]').addEventListener('click',v132ToggleReview);panel.addEventListener('keydown',event=>{if(event.key==='Escape'){const menu=panel.querySelector('.v119-event-menu');if(menu.open){menu.open=false;menu.querySelector('summary').focus();event.stopPropagation();event.preventDefault();}}});panel.addEventListener('focusout',event=>{if(event.relatedTarget&&panel.contains(event.relatedTarget))return;requestAnimationFrame(()=>{if(!panel.contains(document.activeElement))panel.querySelector('.v119-event-menu').open=false;});});}
- const frames=state?.timeline||[],slider=panel.querySelector('input'),review=state?.review;panel.querySelector('span').textContent=v98Text('Rückschau','Match review');slider.setAttribute('aria-label',v98Text('Spielszene zurück- und vorspulen','Seek recorded match'));slider.min=frames[0]?.clock||0;slider.max=frames.at(-1)?.clock||0;slider.disabled=frames.length<2;slider.value=review?.time??slider.max;const recordedSince=v132Clock(frames[0]?.broadcast);slider.title=v98Text('Aufzeichnung dieser Sitzung seit ','This session recorded since ')+recordedSince+v98Text('; nach Neuladen beginnt die Aufzeichnung neu.','; recording starts again after reload.');slider.setAttribute('aria-description',slider.title);
- const sample=frames.length?v103ReplaySample(frames,Number(slider.value)):null,info=sample?.broadcast||v132Broadcast(match);panel.querySelector('output').textContent=(review?.playing?'▶ · ':review?'Ⅱ · ':'LIVE · ')+v132Clock(info);panel.querySelector('[data-v132-live]').disabled=!review;
- const play=panel.querySelector('[data-v132-play]'),historical=review&&review.time<Number(slider.max),playing=historical?review.playing:running,requested=!historical&&running&&v65PauseRequested,playLabel=historical?(playing?v98Text('Rückschau pausieren','Pause review'):v98Text('Rückschau abspielen','Play review')):playing?(requested?v98Text('Pause angefordert','Pause requested'):v98Text('Spiel pausieren','Pause match')):match.halftimePause>0?v98Text('2. Halbzeit starten','Start second half'):v98Text('Spiel fortsetzen','Resume match');play.textContent=requested?'…':playing?'Ⅱ':'▶';play.title=playLabel;play.setAttribute('aria-label',playLabel);play.setAttribute('aria-pressed',String(Boolean(playing)));play.disabled=historical?frames.length<2:match.finished;const live=panel.querySelector('[data-v132-live]');live.title=v98Text('Zurück zu Live','Return to live');live.setAttribute('aria-label',live.title);live.textContent='● Live';v132MarkerUI(panel,state,frames);stage.style.setProperty('--v132-review-height',panel.offsetHeight+'px');
+ const frames=state?.timeline||[],slider=panel.querySelector('input'),review=state?.review;v98Put(panel.querySelector('span'),'textContent',v98Text('Rückschau','Match review'));v98Attr(slider,'aria-label',v98Text('Spielszene zurück- und vorspulen','Seek recorded match'));v98Put(slider,'min',String(frames[0]?.clock||0));v98Put(slider,'max',String(frames.at(-1)?.clock||0));v98Put(slider,'disabled',frames.length<2);v98Put(slider,'value',String(review?.time??slider.max));const recordedSince=v132Clock(frames[0]?.broadcast),sliderTitle=v98Text('Aufzeichnung dieser Sitzung seit ','This session recorded since ')+recordedSince+v98Text('; nach Neuladen beginnt die Aufzeichnung neu.','; recording starts again after reload.');v98Put(slider,'title',sliderTitle);v98Attr(slider,'aria-description',sliderTitle);
+ const sample=frames.length?v103ReplaySample(frames,Number(slider.value)):null,info=sample?.broadcast||v132Broadcast(match);v98Put(panel.querySelector('output'),'textContent',(review?.playing?'▶ · ':review?'Ⅱ · ':'LIVE · ')+v132Clock(info));v98Put(panel.querySelector('[data-v132-live]'),'disabled',!review);
+ const play=panel.querySelector('[data-v132-play]'),historical=review&&review.time<Number(slider.max),playing=historical?review.playing:running,requested=!historical&&running&&v65PauseRequested,playLabel=historical?(playing?v98Text('Rückschau pausieren','Pause review'):v98Text('Rückschau abspielen','Play review')):playing?(requested?v98Text('Pause angefordert','Pause requested'):v98Text('Spiel pausieren','Pause match')):match.halftimePause>0?v98Text('2. Halbzeit starten','Start second half'):v98Text('Spiel fortsetzen','Resume match');v98Put(play,'textContent',requested?'…':playing?'Ⅱ':'▶');v98Put(play,'title',playLabel);v98Attr(play,'aria-label',playLabel);v98Attr(play,'aria-pressed',String(Boolean(playing)));v98Put(play,'disabled',Boolean(historical?frames.length<2:match.finished));const live=panel.querySelector('[data-v132-live]'),liveTitle=v98Text('Zurück zu Live','Return to live');v98Put(live,'title',liveTitle);v98Attr(live,'aria-label',liveTitle);v98Put(live,'textContent','● Live');v132MarkerUI(panel,state,frames);
+ // B01: the panel height reaches the stage from a ResizeObserver instead of offsetHeight on every picture.
+ if(typeof ResizeObserver!=='function')stage.style.setProperty('--v132-review-height',panel.offsetHeight+'px');
+ else if(!panel.v132Height){panel.v132Height=new ResizeObserver(()=>{if(panel.parentElement)v98Prop(panel.parentElement,'--v132-review-height',panel.offsetHeight+'px');});panel.v132Height.observe(panel);}
 }
 new MutationObserver(()=>{if(match&&v103Replays.get(match)?.active)v103ReplayUI()}).observe(v47PlayerDialog,{attributes:true,attributeFilter:['open']});
 // Broadcast snapshots travel with pictures, never with a second match simulation.
@@ -25458,12 +25496,12 @@ function v132BroadcastUI(frame){
  const state=v103Replays.get(match),sample=frame||(!state?.review&&!state?.active?v98PitchFrame(match):v103ReplayFrame(performance.now(),false)),info=sample?.broadcast||v132Broadcast(match);if(!info)return;
  const round=/^(?:R)?(\d+)$/.exec(info.round),roundLabel=round?v98Text('Spieltag ','Matchday ')+round[1]:({QF:v98Text('Viertelfinale','Quarter-final'),SF:v98Text('Halbfinale','Semi-final'),F:v98Text('Finale','Final')})[info.round];
  const kind=info.type==='league'?v98Text('Ligaspiel','League match'):info.type==='cup'?v98Text('Pokalspiel','Cup match'):v98Text('Europacup','European cup');
- const identity=v119TVTheme(info);tv.dataset.competition=identity.key;tv.dataset.motif=identity.motif;for(const name of ['accent','ink','base','font'])tv.style.setProperty('--tv-'+name,identity[name]);const country=info.country&&v61CountryNames[info.country];const competitionLabel=info.type==='league'&&country?v98Text(country,window.doppel6Language?.localize(country)||country)+' · '+v98Text('Liga','League')+(info.division?' '+info.division:''):info.type==='cup'&&country?v98Text(country,window.doppel6Language?.localize(country)||country)+' · '+v98Text('Pokal','Cup'):kind;const caption=competitionLabel+(roundLabel?' · '+roundLabel:'');tv.querySelector('.v132-tv-kind').textContent=caption;
- for(const t of [0,1]){const node=tv.querySelector(`[data-tv-team="${t}"]`);node.textContent=info.names[t].replace(/^(?:FC|CF|AC|SC|SV|AS)\s+/i,'').slice(0,3).toLocaleUpperCase();node.title=info.names[t];node.style.setProperty('--kit',info.colours[t]);}
- tv.querySelector('strong').textContent=info.score.join(' : ');
- const aggregate=tv.querySelector('.v141-tv-aggregate');aggregate.hidden=!info.aggregate;aggregate.textContent=info.aggregate||'';aggregate.setAttribute('aria-label',v98Text('Gesamt','Aggregate')+' '+(info.aggregate||''));
- const clock=v132Clock(info);tv.querySelector('time').textContent=clock;
- const status=state?.review?v98Text('Rückschau','Match review'):state?.active?v98Text('Wiederholung','Replay'):match.finished?v98Text('Abpfiff','Full time'):match.halftimePause>0?v98Text('Halbzeit','Half time'):running?'LIVE':v98Text('Pause','Paused');tv.querySelector('small').textContent=status;tv.setAttribute('aria-label',`${caption} · ${info.names[0]} ${info.score[0]} : ${info.score[1]} ${info.names[1]}${info.aggregate?' · '+v98Text('Gesamt','Aggregate')+' '+info.aggregate:''} · ${clock} · ${status}`);
+ const identity=v119TVTheme(info);v98Put(tv.dataset,'competition',String(identity.key));v98Put(tv.dataset,'motif',String(identity.motif));for(const name of ['accent','ink','base','font'])v98Prop(tv,'--tv-'+name,identity[name]);const country=info.country&&v61CountryNames[info.country];const competitionLabel=info.type==='league'&&country?v98Text(country,window.doppel6Language?.localize(country)||country)+' · '+v98Text('Liga','League')+(info.division?' '+info.division:''):info.type==='cup'&&country?v98Text(country,window.doppel6Language?.localize(country)||country)+' · '+v98Text('Pokal','Cup'):kind;const caption=competitionLabel+(roundLabel?' · '+roundLabel:'');v98Put(tv.querySelector('.v132-tv-kind'),'textContent',caption);
+ for(const t of [0,1]){const node=tv.querySelector(`[data-tv-team="${t}"]`);v98Put(node,'textContent',info.names[t].replace(/^(?:FC|CF|AC|SC|SV|AS)\s+/i,'').slice(0,3).toLocaleUpperCase());v98Put(node,'title',info.names[t]);v98Prop(node,'--kit',info.colours[t]);}
+ v98Put(tv.querySelector('strong'),'textContent',info.score.join(' : '));
+ const aggregate=tv.querySelector('.v141-tv-aggregate');v98Put(aggregate,'hidden',!info.aggregate);v98Put(aggregate,'textContent',String(info.aggregate||''));v98Attr(aggregate,'aria-label',v98Text('Gesamt','Aggregate')+' '+(info.aggregate||''));
+ const clock=v132Clock(info);v98Put(tv.querySelector('time'),'textContent',clock);
+ const status=state?.review?v98Text('Rückschau','Match review'):state?.active?v98Text('Wiederholung','Replay'):match.finished?v98Text('Abpfiff','Full time'):match.halftimePause>0?v98Text('Halbzeit','Half time'):running?'LIVE':v98Text('Pause','Paused');v98Put(tv.querySelector('small'),'textContent',status);v98Attr(tv,'aria-label',`${caption} · ${info.names[0]} ${info.score[0]} : ${info.score[1]} ${info.names[1]}${info.aggregate?' · '+v98Text('Gesamt','Aggregate')+' '+info.aggregate:''} · ${clock} · ${status}`);
 }
 function v132ScreenState(active){
  if(active&&!document.body.classList.contains('v132-fullscreen'))v132ScreenScroll=window.scrollY;
@@ -25490,18 +25528,33 @@ function v133ToggleEnlarge(){
  if(!v98IsWorld()||document.body.classList.contains('v132-fullscreen'))return;
  v99Expanded=!v99Expanded;document.body.classList.toggle('v99-expanded',v99Expanded);v132RevealControls();draw();
 }
+// B01: the stage size comes from a ResizeObserver; getBoundingClientRect on every picture forced a layout. A new
+// viewport, fullscreen or enlarged state measures at once, so the first picture of that state is exact as before.
+const v132StageSizes=new WeakMap();
+function v132LayoutKey(){const body=document.body.classList;return innerWidth+'x'+innerHeight+':'+body.contains('v132-fullscreen')+':'+body.contains('v99-expanded');}
+function v132StageSize(stage){
+ if(typeof ResizeObserver!=='function')return stage.getBoundingClientRect();
+ let size=v132StageSizes.get(stage);const key=v132LayoutKey();
+ if(!size||size.key!==key){const rect=stage.getBoundingClientRect();if(!size)new ResizeObserver(()=>{const rect=stage.getBoundingClientRect(),old=v132StageSizes.get(stage);if(old.width===rect.width&&old.height===rect.height)return;v132StageSizes.set(stage,{width:rect.width,height:rect.height,key:v132LayoutKey()});v132FlatWidth(stage);}).observe(stage);size={width:rect.width,height:rect.height,key};v132StageSizes.set(stage,size);}
+ return size;
+}
+// Flat fullscreen width of the rotated 2D canvas (only 2D fullscreen uses it).
+function v132FlatWidth(stage){
+ if(!document.body.classList.contains('v132-fullscreen')||document.body.classList.contains('v98-pitch3d'))return;
+ const rect=v132StageSize(stage);v98Prop(stage,'--v132-flat-width',(v92WidePitch.matches?Math.min(rect.height,rect.width*600/740):rect.width)+'px');
+}
 function v132FullscreenUI(){
  const stage=$('#match-area .v42-pitch-stage');if(!stage)return;
  if(!v98IsWorld()){v132LeaveFullscreen();$('#v99-expand')?.remove();$('#v133-enlarge')?.remove();$('#v132-screen-pause')?.remove();$('#v132-tv')?.remove();return;}
  if(!stage.dataset.v132Controls){stage.dataset.v132Controls='true';stage.addEventListener('pointerdown',()=>v132RevealControls(stage));stage.addEventListener('pointerleave',event=>{if(event.pointerType==='mouse')stage.classList.remove('v132-show-controls')});v132RevealControls(stage);}
  let expand=$('#v99-expand');if(!expand){expand=document.createElement('button');expand.id='v99-expand';expand.type='button';expand.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M14 4h6v6m0-6-7 7M10 20H4v-6m0 6 7-7"/></svg>';expand.addEventListener('click',v132ToggleFullscreen);stage.append(expand);}
- const active=document.body.classList.contains('v132-fullscreen'),label=active?v98Text('Vollbild verlassen','Exit fullscreen'):v98Text('Vollbild öffnen','Enter fullscreen');expand.setAttribute('aria-label',label);expand.title=label;expand.setAttribute('aria-pressed',String(active));expand.querySelector('svg').style.transform=active?'rotate(180deg)':'';
+ const active=document.body.classList.contains('v132-fullscreen'),label=active?v98Text('Vollbild verlassen','Exit fullscreen'):v98Text('Vollbild öffnen','Enter fullscreen');v98Attr(expand,'aria-label',label);v98Put(expand,'title',label);v98Attr(expand,'aria-pressed',String(active));v98Put(expand.querySelector('svg').style,'transform',active?'rotate(180deg)':'');
  let enlarge=$('#v133-enlarge');if(!enlarge){enlarge=document.createElement('button');enlarge.id='v133-enlarge';enlarge.type='button';enlarge.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="9" r="5"/><path d="M13 13l7 7M6 9h6"/><path data-plus d="M9 6v6"/></svg>';enlarge.addEventListener('click',v133ToggleEnlarge);stage.append(enlarge);}
- enlarge.hidden=active;enlarge.title=v99Expanded?v98Text('Bild verkleinern','Shrink image'):v98Text('Bild vergrößern','Enlarge image');enlarge.setAttribute('aria-label',enlarge.title);enlarge.setAttribute('aria-pressed',String(v99Expanded));enlarge.querySelector('[data-plus]').style.display=v99Expanded?'none':'';
+ v98Put(enlarge,'hidden',active);const enlargeTitle=v99Expanded?v98Text('Bild verkleinern','Shrink image'):v98Text('Bild vergrößern','Enlarge image');v98Put(enlarge,'title',enlargeTitle);v98Attr(enlarge,'aria-label',enlargeTitle);v98Attr(enlarge,'aria-pressed',String(v99Expanded));v98Put(enlarge.querySelector('[data-plus]').style,'display',v99Expanded?'none':'');
  let pause=$('#v132-screen-pause');if(!pause){pause=document.createElement('button');pause.id='v132-screen-pause';pause.type='button';pause.addEventListener('click',()=>{if(v103Replays.get(match)?.review){if(!v103CanReplay())v131ReturnLive();return;}if(running){v65PauseTargetTab='lineup';v65Pause();}else v65Resume();draw();});stage.append(pause);}
- pause.hidden=!active;pause.disabled=Boolean(v103Replays.get(match)?.review&&v103CanReplay()||match.finished||match.halftimePause>0);pause.title=v103Replays.get(match)?.review&&!v103CanReplay()?v98Text('Zurück zu Live','Return to live'):running?(v65PauseRequested?v98Text('Pause angefordert','Pause requested'):v98Text('Pause','Pause')):v98Text('Fortsetzen','Resume');pause.setAttribute('aria-label',pause.title);pause.textContent=running?(v65PauseRequested?'…':'Ⅱ'):'▶';
- if(active&&!document.body.classList.contains('v98-pitch3d')){const rect=stage.getBoundingClientRect();stage.style.setProperty('--v132-flat-width',(v92WidePitch.matches?Math.min(rect.height,rect.width*600/740):rect.width)+'px');}
- let tactics=$('#v119-screen-tactics');if(!tactics){tactics=document.createElement('button');tactics.id='v119-screen-tactics';tactics.type='button';tactics.addEventListener('click',()=>{const context=v65Context();if(!context||match.finished)return;v131ReturnLive(false);v132LeaveFullscreen();if(context.state.phase==='live'){v65PauseTargetTab='tactics';v65Pause();}else if(context.state.phase==='paused'){v65PauseView=true;v65PauseTab='tactics';v65UpdateControls(context);v58Refresh();$('#v65-pause-tabs')?.scrollIntoView({block:'start'});}draw();});stage.append(tactics);}tactics.hidden=!active;tactics.disabled=Boolean(match.finished);tactics.textContent=v98Text('Taktik','Tactics');tactics.title=v98Text('Taktikansicht öffnen','Open tactics');tactics.setAttribute('aria-label',tactics.title);
+ v98Put(pause,'hidden',!active);v98Put(pause,'disabled',Boolean(v103Replays.get(match)?.review&&v103CanReplay()||match.finished||match.halftimePause>0));const pauseTitle=v103Replays.get(match)?.review&&!v103CanReplay()?v98Text('Zurück zu Live','Return to live'):running?(v65PauseRequested?v98Text('Pause angefordert','Pause requested'):v98Text('Pause','Pause')):v98Text('Fortsetzen','Resume');v98Put(pause,'title',pauseTitle);v98Attr(pause,'aria-label',pauseTitle);v98Put(pause,'textContent',running?(v65PauseRequested?'…':'Ⅱ'):'▶');
+ v132FlatWidth(stage);
+ let tactics=$('#v119-screen-tactics');if(!tactics){tactics=document.createElement('button');tactics.id='v119-screen-tactics';tactics.type='button';tactics.addEventListener('click',()=>{const context=v65Context();if(!context||match.finished)return;v131ReturnLive(false);v132LeaveFullscreen();if(context.state.phase==='live'){v65PauseTargetTab='tactics';v65Pause();}else if(context.state.phase==='paused'){v65PauseView=true;v65PauseTab='tactics';v65UpdateControls(context);v58Refresh();$('#v65-pause-tabs')?.scrollIntoView({block:'start'});}draw();});stage.append(tactics);}v98Put(tactics,'hidden',!active);v98Put(tactics,'disabled',Boolean(match.finished));v98Put(tactics,'textContent',v98Text('Taktik','Tactics'));const tacticsTitle=v98Text('Taktikansicht öffnen','Open tactics');v98Put(tactics,'title',tacticsTitle);v98Attr(tactics,'aria-label',tacticsTitle);
  v132BroadcastUI();
 }
 document.addEventListener('fullscreenchange',()=>{if(document.fullscreenElement===$('#match-area')){v132NativeScreen=true;v132ScreenState(true);}else if(v132NativeScreen)v132ScreenState(false);if(v98IsWorld())draw();});
@@ -25843,24 +25896,27 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
   for(const p of frame.players){
    ids.add(p.id);let label=labelMap.get(p.id);
    if(!label){label=document.createElement('button');label.type='button';label.dataset.player=p.id;label.hidden=true;const number=document.createElement('b'),name=document.createElement('span');label.append(number,name);labels.append(label);labelMap.set(p.id,label);}
-   label.firstChild.textContent=p.number;label.lastChild.textContent=' '+p.person.name.split(' ').at(-1);label.setAttribute('aria-label',p.person.name+' · '+v98Text('Live-Spielerinfo','Live player information'));label.disabled=Boolean(frame.review||frame.replay);
-   label.dataset.team=String(p.team);const clubKit=p.team===0?match.kits.user:match.kits.opponent;label.style.setProperty('--team-color',C.kit(clubKit).main);
+   v98Put(label.firstChild,'textContent',String(p.number??''));v98Put(label.lastChild,'textContent',' '+p.person.name.split(' ').at(-1));v98Attr(label,'aria-label',p.person.name+' · '+v98Text('Live-Spielerinfo','Live player information'));v98Put(label,'disabled',Boolean(frame.review||frame.replay));
+   v98Put(label.dataset,'team',String(p.team));const clubKit=p.team===0?match.kits.user:match.kits.opponent;v98Prop(label,'--team-color',C.kit(clubKit).main);
   }
   for(const [id,label]of labelMap)if(!ids.has(id)){label.remove();labelMap.delete(id);}
  }
  function paintLabels(data){
   if(!Array.isArray(data.markers)||data.sequence<1||data.sequence<(lastProjection?.sequence||0)||data.width<=0||data.height<=0)return;
   if(data.markers.some(p=>!Number.isFinite(p.x)||!Number.isFinite(p.y)||typeof p.id!=='string'||typeof p.visible!=='boolean'))return;
-  lastProjection=data;const placed=[],width=labels.clientWidth,height=labels.clientHeight;
-  const guide=C.ballGuide(data.ballMarker,width,height,data.width,ballGuideEnabled);ballGuide.hidden=!guide;
+  lastProjection=data;const placed=[];
+  // B01: label states first, then one layout read for every size, then the positions (no read after each write).
+  const order=data.markers.filter(m=>labelMap.has(m.id)).sort((a,b)=>Number(b.featured)-Number(a.featured)||(Number.isFinite(a.depth)&&Number.isFinite(b.depth)?a.depth-b.depth:b.y-a.y));
+  for(const marker of order){const label=labelMap.get(marker.id);v98Put(label,'hidden',!marker.visible);label.classList.toggle('is-featured',Boolean(marker.featured));}
+  const width=labels.clientWidth,height=labels.clientHeight,sizes=order.map(marker=>marker.visible&&width>0&&height>0?labelMap.get(marker.id).getBoundingClientRect():null);
+  const guide=C.ballGuide(data.ballMarker,width,height,data.width,ballGuideEnabled);v98Put(ballGuide,'hidden',!guide);
   if(guide){ballGuide.style.left=guide.x+'px';ballGuide.style.top=guide.y+'px';ballGuide.style.width=ballGuide.style.height=guide.size+'px';ballGuide.style.opacity=String(guide.opacity);placed.push({x:guide.x,y:guide.y+guide.size/2,w:guide.size,h:guide.size});}
   // Keep every name, prioritising the ball area and then the nearer player.
   // Displaced names retain a fine leader to the actual Unity head projection.
-  const order=data.markers.filter(m=>labelMap.has(m.id)).sort((a,b)=>Number(b.featured)-Number(a.featured)||(Number.isFinite(a.depth)&&Number.isFinite(b.depth)?a.depth-b.depth:b.y-a.y));
-  for(const marker of order){
-   const label=labelMap.get(marker.id);label.hidden=!marker.visible;label.classList.toggle('is-featured',Boolean(marker.featured));
-   if(marker.visible&&width>0&&height>0){
-    const size=label.getBoundingClientRect(),x=marker.x*width,y=marker.y*height,p=C.labelPosition({x,y,w:size.width||40,h:size.height||16,previous:{x:Number(label.dataset.offsetX)||0,y:Number(label.dataset.offsetY)||0}},placed,width,height);placed.push(p);
+  for(const [index,marker]of order.entries()){
+   const label=labelMap.get(marker.id);
+   if(sizes[index]){
+    const size=sizes[index],x=marker.x*width,y=marker.y*height,p=C.labelPosition({x,y,w:size.width||40,h:size.height||16,previous:{x:Number(label.dataset.offsetX)||0,y:Number(label.dataset.offsetY)||0}},placed,width,height);placed.push(p);
     const dx=x-p.x,dy=y-p.y,leader=C.labelLeader(p,x,y);label.style.left=p.x+'px';label.style.top=p.y+'px';
     label.style.setProperty('--leader-left',leader.left+'px');label.style.setProperty('--leader-top',leader.top+'px');label.style.setProperty('--leader-length',leader.length>4?leader.length+'px':'0px');label.style.setProperty('--leader-angle',leader.angle+'rad');
     label.dataset.offsetX=String(-dx);label.dataset.offsetY=String(-dy);
@@ -25935,7 +25991,7 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
   window.D6ViewFramePump?.setEnabled(true);if(!loop)render();v98Toolbar();v98SyncAudio();
  };
  const baseToolbar=v98Toolbar;
- v98Toolbar=function(){const toolbar=baseToolbar();if(v98IsWorld()){toolbar.querySelector('[data-v98-view="3d"]').textContent='Unity · TV';const status=toolbar.querySelector('#v98-status');if(failed)status.textContent=window.D6UnityMatch.lastError;else if(!loaded&&v98View==='3d')status.textContent=v98Text('Unity wird geladen','Loading Unity');toolbar.dataset.status=String(Boolean(status.textContent));let button=toolbar.querySelector('#d6-ball-guide-toggle');if(!button){button=document.createElement('button');button.id='d6-ball-guide-toggle';button.type='button';toolbar.querySelector('#v98-sound').after(button);button.addEventListener('click',()=>{ballGuideEnabled=!ballGuideEnabled;try{localStorage.setItem('d6-ball-guide',ballGuideEnabled?'on':'off')}catch{}if(lastProjection)paintLabels(lastProjection);v98Toolbar();});}button.textContent=v98Text('Ballhilfe','Ball guide');button.setAttribute('aria-pressed',String(ballGuideEnabled));button.disabled=v98View!=='3d'||!v98Orientation.matches;}return toolbar;};
+ v98Toolbar=function(){const toolbar=baseToolbar();if(v98IsWorld()){v98Put(toolbar.querySelector('[data-v98-view="3d"]'),'textContent','Unity · TV');const status=toolbar.querySelector('#v98-status');if(failed)v98Put(status,'textContent',String(window.D6UnityMatch.lastError??''));else if(!loaded&&v98View==='3d')v98Put(status,'textContent',v98Text('Unity wird geladen','Loading Unity'));v98Put(toolbar.dataset,'status',String(Boolean(status.textContent)));let button=toolbar.querySelector('#d6-ball-guide-toggle');if(!button){button=document.createElement('button');button.id='d6-ball-guide-toggle';button.type='button';toolbar.querySelector('#v98-sound').after(button);button.addEventListener('click',()=>{ballGuideEnabled=!ballGuideEnabled;try{localStorage.setItem('d6-ball-guide',ballGuideEnabled?'on':'off')}catch{}if(lastProjection)paintLabels(lastProjection);v98Toolbar();});}v98Put(button,'textContent',v98Text('Ballhilfe','Ball guide'));v98Attr(button,'aria-pressed',String(ballGuideEnabled));v98Put(button,'disabled',v98View!=='3d'||!v98Orientation.matches);}return toolbar;};
  // Camera changes and return from 2D must resume the picture loop immediately.
  document.addEventListener('visibilitychange',()=>{if(document.hidden){if(suspendedAt===null)suspendedAt=performance.now();if(v65Context()?.state.phase==='live')v65Pause();}else if(host&&!loop)render();});
  const baseLeave=v65Leave;v65Leave=async function(...args){const result=await baseLeave.apply(this,args);if(!v98IsWorld())dispose();return result;};

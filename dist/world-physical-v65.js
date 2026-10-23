@@ -1,7 +1,7 @@
 'use strict';
 
 // Die Weltkarriere nutzt denselben Ball- und Regelablauf wie die bisherige Liga.
-let v65WorldActive=null,v65WorldFrame=0,v65LastFrame=0,v65LastSaved=0,v65ProcessedGoals=0,v65PauseRequested=false,v65PendingExit=false,v65PauseView=false,v65PauseTab='lineup',v65PauseTargetTab='lineup',v65SelectedSlot=0,v65Drag=null,v65SwapInfoTimer=0;
+let v65WorldActive=null,v65WorldFrame=0,v65LastFrame=0,v65LastSaved=0,v65LastReport=0,v65SaveSoon=false,v65ProcessedGoals=0,v65PauseRequested=false,v65PendingExit=false,v65PauseView=false,v65PauseTab='lineup',v65PauseTargetTab='lineup',v65SelectedSlot=0,v65Drag=null,v65SwapInfoTimer=0;
 function v65Context(){
  const career=v61CurrentCareer,fixture=career&&v64ActiveFixture(career),state=career?.world.activeMatch?.state;
  return fixture&&state?{career,fixture,state,ownSide:v64UiOwnSide(fixture)}:null;
@@ -243,7 +243,9 @@ function v65AfterStep(context){
   v65ApplyTactics(context);
  }
  if(halftime&&state.phase==='live'){v65PauseTargetTab='tactics';v65Pause()}
- if(!match.flight&&!match.slide&&performance.now()-v65LastSaved>700){v65RenderReport(context);v65Snapshot(context)}
+ // B01: every autosave copies, validates and writes all stored worlds. While the match runs it happens at most every
+ // 15 s; pause, halftime, final whistle, leaving and hiding the page (v65SaveSoon) still save at once.
+ if(!match.flight&&!match.slide){const now=performance.now();if(now-v65LastReport>700){v65LastReport=now;v65RenderReport(context)}if(v65SaveSoon||now-v65LastSaved>V65_LIVE_SAVE_MS){if(v65Snapshot(context))v65SaveSoon=false}}
 }
 function v65NeedsPenalties(context){
  const {career,fixture,ownSide}=context,competition=v62Current(career).find(item=>item.id===fixture.competitionId);
@@ -477,6 +479,11 @@ function v65Show(context){
  if(running)v65StartLoop();v58Refresh();
  window.scrollTo(0,0);
 }
+const V65_LIVE_SAVE_MS=15000;
+// A hidden or unloading page saves the live match now; during a flight or slide the next possible step does it.
+function v65SaveLive(){if(!v65WorldActive||!match||match.finished||v65Context()?.state.phase!=='live')return;if(!v65Snapshot(v65Context()))v65SaveSoon=true}
+document.addEventListener('visibilitychange',()=>{if(document.hidden)v65SaveLive()});
+window.addEventListener('pagehide',v65SaveLive);
 function v65StartLoop(){
  clearInterval(v65WorldFrame);v65LastFrame=performance.now();
  const tick=()=>{
