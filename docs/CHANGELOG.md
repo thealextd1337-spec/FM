@@ -2,6 +2,8 @@
 
 ## Noch nicht veröffentlicht
 
+- B01 (`fix/mobile-jank`, Basis Release 134): Live-Partien entlasten den Hauptthread, 2D und Unity. Der Autosave während der laufenden Partie erfolgt höchstens alle 15 s statt alle 0,7 s. Pause, Halbzeit, Abpfiff und Verlassen speichern unverändert sofort, `visibilitychange` (verborgen) und `pagehide` ebenfalls, während Ballflug/Grätsche beim nächsten möglichen Takt. Die unsichtbare 2D-Leinwand wird im Unity-/3D-Modus nicht gemalt; ein Wechsel auf 2D malt im selben Aufruf. Bedienleisten, Rückschau, TV-Leiste und Namensschilder schreiben nur geänderte Werte; Größen kommen aus einem ResizeObserver statt aus erzwungenen Layouts. Die Bildpumpe ruft höchstens einmal je Bildschirmbild (≤ 60/s); ihr Ersatztimer weicht regelmäßigen Browserframes. Eine 30-Hz-Grenze half in der Messung nicht und ist nicht enthalten. Partien bleiben bytegleich: vier gleiche Digests je Konfiguration (vorher/nachher × 2D/Unity), 158/340 Altszenen, 127/127 Workflowbefehle. Bestehende Spielstände unverändert. Keine Versionsanhebung, nicht veröffentlicht. [Bericht](diag-mobile-jank-2026-10-23.md).
+
 ## Release 134 — 22. Oktober 2026
 
 - Release 134 veröffentlicht Release 133 plus die optionale Einführung. Fußversion, Unity-Laufzeitmetadaten, Laufzeitcache und 3D-Hilfedaten tragen 134; Quelle und Einzeldatei-Build sind versionsgleich. Unity-Payload unverändert (`7ce6f77f...`). Bestehende Welten werden nicht umgerechnet. [Veröffentlichungsbericht](release-134.md).

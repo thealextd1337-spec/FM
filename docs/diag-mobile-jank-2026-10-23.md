@@ -1,6 +1,6 @@
 # B01-Diagnose: Ruckeln auf Mobilgeräten (2D und Unity), 23. Oktober 2026
 
-Nur Diagnose, kein Fix. Stand Release 134 (`0eb8d8dd`), Worktree `work/perf-mobile`, Branch `diag/mobile-jank`. Einzeldatei-Build `outputs/index.html` (Release 134, SHA-256 `a10cd8e7…00f9`) mit Unity-WebGL aus `outputs/platform/unity-web/`, lokaler Server wie im Android-Runner (Port 4250).
+Diagnose; die Umsetzung der Fixes 1 → 3 → 4 → 2 steht [am Ende](#umsetzung-fixmobile-jank). Stand Release 134 (`0eb8d8dd`), Worktree `work/perf-mobile`, Branch `diag/mobile-jank`. Einzeldatei-Build `outputs/index.html` (Release 134, SHA-256 `a10cd8e7…00f9`) mit Unity-WebGL aus `outputs/platform/unity-web/`, lokaler Server wie im Android-Runner (Port 4250).
 
 **Kein Android-Gerät angeschlossen** (`adb devices` leer). Alle Werte stammen aus Desktop-Edge mit Emulation (915 × 412, DPR 3, Touch, Android-UA, `(pointer:coarse)` → Unity `reduced`) und CPU-Drosselung 4×/6×. Desktop-GPU, Bildschirm ~56 Hz. Das ist keine Pixel-Messung. 4× liegt ungefähr bei einem Pixel 9 Pro XL, 6× entspricht einem warmen oder gedrosselten Gerät.
 
@@ -68,3 +68,51 @@ Empfohlene Reihenfolge: 1 (Stufe 1) → 3 → 4 → 2. Danach eine Gerätemessun
 - Volle 90-Minuten-Heapkurve: höchstens 3 Minuten am Stück gemessen. Die Rückschau-Zeitleiste (`timeline.push`, 6/s) wird nicht gekürzt; über 3 min war kein Wachstum messbar.
 - THREE-Ersatzrenderer, Torrückschau-Wiedergabe, Elfmeterschießen, kleines Feld/5 Spieler, Release 131 und älter.
 - Pixel-genaue Bildpräsentation: Unity-Glätte wurde aus gemessenen Ankunftszeiten mit der C#-Regel aus `WorldViewPlayback.cs` auf einem idealen 60-Hz-Raster nachgerechnet, nicht vom Bildschirm abgelesen.
+
+## Umsetzung (`fix/mobile-jank`)
+
+Nutzerauftrag vom 23. Oktober 2026: Fixes 1 → 3 → 4 → 2, Basis Release 134 `0eb8d8dd`. Kein Push, kein Deploy, keine Versionsanhebung; 5 und 6 (Interpolation) sind nicht umgesetzt.
+
+1. **Autosave** (`world-physical-v65.js`): Während der laufenden Partie höchstens alle 15 s (`V65_LIVE_SAVE_MS`). Der Spielbericht wird weiter alle 0,7 s aktualisiert. Pause, Halbzeit, Abpfiff und Verlassen speichern wie bisher sofort. `visibilitychange` (verborgen) und `pagehide` speichern sofort; während Ballflug oder Grätsche (kein sicherer Snapshot) beim nächsten möglichen Takt. Schritt 2 (nur die aktive Welt kopieren und validieren, kleiner Live-Checkpoint) ist **nicht** umgesetzt: Er ändert Speicherpfad und Backup-Semantik und ist damit weder klein noch risikoarm. Er bleibt Vorschlag, denn jeder verbleibende Save kostet weiter 0,2–0,8 s.
+2. **Verdeckte 2D-Leinwand** (`world-goal-banner-v84.js`, `world-pitch-layout-v92.js`, `world-pitch3d-v98.js`): Solange `body.v98-pitch3d` gilt (Unity oder THREE sichtbar, Leinwand per CSS unsichtbar), entfällt das Malen der Kette unterhalb von v84. Geprüft wurden alle Hüllen: v12, v44, v55, v56, v74 und v83 malen nur bzw. stellen kurz verschobene Positionen im `finally` wieder her. Die Tor-Verzögerungsprüfung v84, `v98Render`, v100 (Elfmeterball) und die Rückschau-UI v103 laufen weiter. Wechselt `v98Render` auf 2D (Knopf, Rückfall, Drehung), malt derselbe Aufruf die Leinwand sofort.
+3. **Layout-Thrashing** (`world-pitch3d-v98.js`, `world-goal-replay-v103.js`, `world-unity-v151.js`, `world-pitch-layout-v92.js`): `v98Put`/`v98Attr`/`v98Prop` schreiben in Toolbar, Vollbild-, Rückschau-, TV-Leiste und Namensschildern nur geänderte Werte. Leinwandbreite, Bühnengröße und Rückschauhöhe kommen aus ResizeObservern. Bei neuer Fenstergröße, Vollbild oder Vergrößerung wird sofort gemessen, das erste Bild eines Zustands bleibt also exakt. `paintLabels` setzt erst alle Zustände, liest dann alle Größen in einem Layout und schreibt danach die Positionen.
+4. **Bildpumpe** (`view-frame-scheduler-v130.js`, bytegleich in `unity-match/runtime.js`): Höchstens ein Aufruf je Bildschirmbild. Ein nativer Frame früher als 1/60 s − 2 ms nach dem letzten Aufruf wartet (60 Hz → 60/s, 120 Hz → 60/s, 144 Hz → 48/s, 90 Hz → 45/s). Bei regelmäßigen Browserframes (≥ ~48/s) greift der Ersatztimer erst nach 1,5 Perioden ohne Frame. Fehlen Frames oder kommen gedrosselt (z. B. 30 Hz), füllt er wie bisher auf. Eine 30-Hz-Grenze auf Touch wurde gemessen: Unity 4× 4,3 statt 2,5 s/min verlorene Spielzeit und 27,5 statt 40 Unity-Bilder/s, bei 6× 14,1 statt 11,9 s/min. Sie hilft nicht und ist nicht enthalten.
+
+### Vorher/Nachher
+
+Gleiches Messskript, abwechselnd eingefrorener Basisbaum (`git archive 0eb8d8dd`) und neuer Build, eine Lane, 90 s je Lauf. Mobilemulation 915 × 412, DPR 3, Touch; großes Feld, 6 Feldspieler, neue Welt (SI-183). Die gespeicherte QA-Karriere hat 2,0 MB, mit zwei weiteren Welten 6,0 MB; der Auftrag nannte 2,4 bzw. 6,3 MB, die QA-Welt variiert. Einfrierer = Hauptthread-Bildintervall > 100 ms.
+
+| Ansicht | CPU | Stand | Bildintervall p50/p95/p99 ms | > 33 ms | Einfrierer > 100 ms/min | Spielzeit verloren s/min | Autosaves/min | Zeichnen ms/Takt | Unity Bilder/s |
+|---|---|---|---|---|---|---|---|---|---|
+| 2D | 4× | 2,0 MB vorher | 17,9/18,1/176,9 | 2,4 % | 51,3 | 8,3 | 51,3 | 7,78 | – |
+| 2D | 4× | 2,0 MB **nachher** | 17,8/18,1/18,5 | 0,2 % | 4,7 | 1,6 | 4 | 5,16 | – |
+| 2D | 4× | 6,0 MB vorher | 17,9/18,1/494,6 | 2,6 % | 46,6 | 22 | 46 | 7,75 | – |
+| 2D | 4× | 6,0 MB **nachher** | 17,8/18,1/18,5 | 0,2 % | 4 | 2,8 | 4 | 5,04 | – |
+| 2D | 6× | 2,0 MB vorher | 17,9/35,4/284,7 | 7,2 % | 54,7 | 14,9 | 54 | 12,38 | – |
+| 2D | 6× | 2,0 MB **nachher** | 17,9/18,1/18,6 | 0,8 % | 5,3 | 2,4 | 4 | 8,22 | – |
+| 2D | 6× | 6,0 MB vorher | 17,9/35/604,9 | 5,5 % | 36,6 | 22,4 | 36,6 | 11,37 | – |
+| 2D | 6× | 6,0 MB **nachher** | 17,9/18,1/18,6 | 0,8 % | 5,3 | 4,5 | 4 | 8,19 | – |
+| Unity | 4× | 2,0 MB vorher | 53,2/107,4/231,4 | 99,1 % | 52,5 | 21,6 | 49,2 | 12,23 | 32,6 |
+| Unity | 4× | 2,0 MB **nachher** | 17,9/18,1/35,6 | 2,5 % | 4 | 2,5 | 4 | 0,67 | 40 |
+| Unity | 4× | 6,0 MB vorher | 53/89,6/547,8 | 98,4 % | 40,5 | 29,5 | 39,8 | 11,86 | 26,8 |
+| Unity | 4× | 6,0 MB **nachher** | 17,9/34,3/36 | 5 % | 4,7 | 3,8 | 4 | 0,68 | 45,3 |
+| Unity | 6× | 2,0 MB vorher | 89,1/337,3/358,5 | 100 % | 192,1 | 33,4 | 44,5 | 20,57 | 17,2 |
+| Unity | 6× | 2,0 MB **nachher** | 35,5/54/71,6 | 74,3 % | 6,6 | 11,9 | 4 | 1,14 | 23,4 |
+| Unity | 6× | 6,0 MB vorher | 89/850,6/906,7 | 100 % | 128 | 41,2 | 33,8 | 20,03 | 11,9 |
+| Unity | 6× | 6,0 MB **nachher** | 35,8/54,2/71,7 | 79,5 % | 8 | 14,9 | 4 | 1,18 | 21,5 |
+
+Die verbleibenden ~4–8 Einfrierer pro Minute sind im Wesentlichen die vier Saves pro Minute. Ein Save kostet bei 4× 0,19 s (2 MB) bis 0,51 s (6 MB), bei 6× 0,30 bis 0,81 s. Unity bleibt bei 6× CPU-gebunden (19 ms Unity-Arbeit je Bild).
+
+### Prüfungen
+
+- **Bytegleiche Partien:** `work/check-mobile-jank-parity.cjs` mit festen 0,05-s-Schritten (`D6QAScenario`: 20′, Pause, Rückkehr, Halbzeit, 60′, JSON-Checkpoint, Abpfiff). standard-5 und large-6 ergeben je vier identische Digests (vorher/nachher × 2D/Unity): `892d68d5` und `b851ca68`. Alle Karrieren gültig, Spiele gebucht.
+- **R132/R133-Altchecks:** `check-old-matches-v182.cjs` 158/158, `check-old-matches-v183.cjs` 340/340 Szenen gegen `e4e531c0`, inklusive RNG-Ziehungen und P02.
+- **Workflow-Block** aus `.github/workflows/deploy.yml`: 127/127 Befehle grün (Node 24), darunter die erweiterte `test-view-frame-scheduler-v130.cjs` mit 23 Prüfungen. Der alte Scheduler fällt im neuen 60-Hz-Fall mit 239 statt ~120 Aufrufen in 2 s durch. Von Tests umgeschriebene Nachweisdateien wurden zurückgesetzt.
+- **Speichern/Fortsetzen:** `work/check-mobile-jank-save.cjs` (Build, gespeicherte QA-Karriere): 2 Saves in 32 s Live-Spiel, Abstand 15,0–15,4 s. Verbergen speichert sofort (Snapshot gleich Matchuhr), die Partie läuft nach Rückkehr weiter, und nach Neuladen setzt sie exakt am Pausenstand fort. Bei einem Absturz per `Page.crash` ohne `pagehide` gingen 8,8 s Echtzeit seit dem letzten Save verloren (≤ 15 s); danach weiter. Unity: Verbergen pausiert mit Snapshot, Neuladen setzt fort, Unity bereit. Der App-Wechsel ist in der Seite simuliert (überschriebenes `document.hidden` plus echtes `visibilitychange`), weil Playwright/Edge Testseiten nicht verbergen.
+- **UI:** `check-fullscreen-tv-v132`, `check-halftime-fullscreen-v136`, `check-review-events-v132`, `run-fullscreen-regression-v136` sowie `platform/qa/check-world-unity.cjs` (Rückkehr, Verlassen, fehlender Build → 2D, Offline-Build, Fremdnachrichten, keine Seitenfehler) bestehen. `check-mobile-performance-v135.cjs` und `run-mobile-regression-v135.cjs parity` scheitern auf dem unveränderten Basisbaum identisch (veraltete THREE-/Fixture-Harnesses, nicht im Workflow).
+- **Unity-Wächter bei 6×:** 8 Dauerläufe (300–480 s, mit Halbzeit). 6 laufen durch; 2 fallen mit `Invalid match picture player` auf 2D zurück. Derselbe Rückfall tritt auf dem Basisbaum in 2 von 4 Läufen auf → vorbestehend, als B30 erfasst. Kein Rückfall wegen fehlender Quittung.
+- **Einzeldatei-Build** `outputs/index.html` neu erzeugt; Version unverändert 134.
+
+### Grenzen
+
+Keine Gerätemessung: Es war kein Android-Gerät angeschlossen, alle Werte stammen aus Desktop-Emulation mit Desktop-GPU und 56-Hz-Bildschirm. Echte große Spielstände (7–22 MB) sind nicht geprüft; jeder Save kostet linear mehr, bleibt aber auf einen pro 15 s begrenzt. 2D zeigt weiterhin nur die 25-Hz-Takte; das ist Fix 5 (Interpolation) und eine offene Nutzerentscheidung. Auf 90/144-Hz-Bildschirmen begrenzt die Pumpe Unity auf 45/48 Aufrufe/s.
