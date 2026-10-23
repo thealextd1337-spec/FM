@@ -279,9 +279,11 @@ function v183DefTarget(m,p){
 function v183DefBallLine(m,p){
  const owner=m.owner,read=m.attackFlow.defenseReads?.[p.pid];
  if(!owner||owner.keeper||owner.t===p.t||m.flight||!read||!['cover','receiver'].includes(read.purpose))return;
- const dir=p.t===0?1:-1,limit=m.ball.y+dir/v150Scale(m).y;
- // A receiver mark may still step beyond the ball while a real option ahead of the ball is within 12 m of the defender.
- if(read.purpose==='receiver'&&m.people.some(q=>q.t===owner.t&&!q.keeper&&q!==owner&&!q.slideActive&&v122Metres(q,p)<=12&&(q.y-m.ball.y)*dir>0))return;
+ const dir=p.t===0?1:-1,s=v150Scale(m),limit=clamp(m.ball.y+dir/s.y,v55Field.top+.5/s.y,v55Field.bottom-.5/s.y);
+ // The mark of a receiver who himself stands ahead of the ball stays free (its zone blend may lie
+ // beyond the ball); only the mark of a back-pass option is clamped. Same choice as
+ // world-football-flow-v159.js (receiver branch), kept in step by test-si-defence-v183.
+ if(read.purpose==='receiver'){const marked=m.people.filter(q=>q.t===owner.t&&!q.keeper&&q!==owner&&!q.slideActive&&v122Metres(q,p)<13).map(q=>{const lane=passLaneGeometry(p,owner,q);return{q,cost:v122Metres(p,q)-((q.y-owner.y)*(owner.t===0?-1:1)*s.y)*.10+(lane?.t?-.6:0)};}).sort((a,b)=>a.cost-b.cost||a.q.n-b.q.n)[0]?.q;if(marked&&(marked.y-m.ball.y)*dir>0)return;}
  if((p.ty-limit)*dir<0){p.ty=limit;read.target.y=limit;}
 }
 const v183DefBaseDefensiveTarget=v159DefensiveTarget;
