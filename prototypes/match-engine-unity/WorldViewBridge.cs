@@ -69,7 +69,8 @@ public partial class ProbeBridge {
         material.SetFloat("_Style",Math.Max(0,Array.IndexOf(new[]{"plain","stripe","stripes","hoops","halves","pinstripes","diagonal"},p.kit.style)));
         var skins=new Dictionary<string,string>{{"fair","#e9b996"},{"light","#d6a17c"},{"warm","#c28b60"},{"medium","#ad7550"},{"brown","#895638"},{"deep","#67442e"}};
         var hair=new Dictionary<string,string>{{"black","#242329"},{"dark-brown","#332922"},{"brown","#58402d"},{"light-brown","#876445"},{"blond","#bca177"},{"auburn","#a25e35"},{"gray","#96918a"}};
-        material.SetColor("_Skin",ColorOf(skins.TryGetValue(p.skin??"",out var skin)?skin:skins["warm"]));material.SetColor("_Hair",ColorOf(hair.TryGetValue(p.hair??"",out var h)?h:hair["brown"]));
+        // SetColor converts sRGB to linear itself (linear project); ColorOf would convert twice and redden skin/hair.
+        material.SetColor("_Skin",Srgb(skins.TryGetValue(p.skin??"",out var skin)?skin:skins["warm"]));material.SetColor("_Hair",Srgb(hair.TryGetValue(p.hair??"",out var h)?h:hair["brown"]));
         // The received squad number, in whichever kit colour (or white/ink)
         // contrasts most with both the shirt and its pattern. Keepers get gloves.
         Color Srgb(string code){ColorUtility.TryParseHtmlString(code,out var c);return c;}
