@@ -123,3 +123,8 @@
  .fl-competition-report .fl-report-score-team .v61-crest{width:28px;height:33px}
 }
 @media(prefers-reduced-motion:reduce){#v47-match-report.fl-dialog *,#v47-competition.fl-dialog *,.v47-player-dialog.fl-dialog *{animation:none!important;transition:none!important}}
+#v47-match-report.fl-dialog .v185-ai-coach{margin:16px 0 4px}
+#v47-match-report.fl-dialog .v185-ai-coach h3{margin:0 0 6px;font:600 13px/1.4 var(--fl-font)}
+#v47-match-report.fl-dialog .v185-ai-coach ul{margin:0;padding:0;list-style:none}
+#v47-match-report.fl-dialog .v185-ai-coach li{display:flex;gap:8px;padding:3px 0;font:400 12px/1.5 var(--fl-font)}
+#v47-match-report.fl-dialog .v185-ai-coach time{flex:0 0 2.8em;color:var(--fl-muted);font-variant-numeric:tabular-nums}

@@ -82,7 +82,7 @@ check('a stored match without a later clock parameter reads the registered defau
 check('clock package off (any stored rate) replays the 182 constructor exactly, without match.si',()=>{
  const h=harness();
  for(const scene of copy0(h.call('Native183.constructedScenes')).filter((s,i)=>i%4===0)){
-  const marked=h.call('Native183.constructedDigest',scene,{withoutSi:true,si:{packages:OFF,clockRate:.42},segments:[250,250]}),legacy=h.call('Native183.constructedDigest',scene,{si:false,segments:[250,250]});
+  const marked=h.call('Native183.constructedDigest',scene,{withoutSi:true,si:{packages:OFF,clockRate:.42},ball:false,segments:[250,250]}),legacy=h.call('Native183.constructedDigest',scene,{si:false,segments:[250,250]});
   assert.equal(marked,legacy,scene.id);
  }
 });
@@ -92,8 +92,9 @@ const SCRIPT=`(()=>{const m=match,v=m.owner,o=m.people.filter(p=>p.t!==v.t&&!p.k
 const GOAL=`(()=>{const m=match,s=m.people.filter(p=>!p.keeper&&p.t===0)[0],k=m.people.find(p=>p.keeper&&p.t===1);for(const p of m.people)if(!p.keeper){p.x=.5+(p.bx-.5)*.3;p.y=.5+(p.by-.5)*.3;p.tx=p.x;p.ty=p.y}m.owner=s;m.flight=null;m.setPiece=null;m.rebound=null;m.kickoff=null;v50Goal(s,k,false,null)})()`;
 // Plays on until a field player owns the ball in open play (no restart, goal scene, banner or loose ball).
 function warm(h,ticks=300,dt=.05){for(let i=0;i<ticks;i++)h.call('Native183.advance',dt);for(let i=0;i<400&&!h.evaluate('!!match.owner&&!match.owner.keeper&&!match.flight&&!match.kickoff&&!match.setPiece&&!match.postBanner&&!(match.goalPause>0)&&!match.throwIn&&!match.rebound&&!match.halftimePause'); i++)h.call('Native183.advance',dt);}
+// ball:false: the ball-physics marker 184 of marked matches is a separate feature; the comparison isolates the clock.
 function scripted(si,{club='GER-2',seed='script'}={}){
- const h=harness();h.call('Native183.constructed',{club,seed,size:'standard',roles:true,si});
+ const h=harness();h.call('Native183.constructed',{club,seed,size:'standard',roles:true,si,ball:false});
  warm(h);assert(h.evaluate(SCRIPT),'foul created');
  for(let i=0;i<220;i++)h.call('Native183.advance',.05);
  const first=h.call('Native183.digest',{withoutSi:true});
@@ -227,7 +228,7 @@ check('foul event: the animation duration equals the lock (1.8 s) and is absent 
 const GOAL_NATURAL=`(()=>{const m=match,s=m.people.filter(p=>!p.keeper&&p.t===0).sort((a,b)=>a.y-b.y)[0],k=m.people.find(p=>p.keeper&&p.t===1);m.owner=s;m.flight=null;m.setPiece=null;m.rebound=null;m.kickoff=null;v50Goal(s,k,false,null)})()`;
 const KICKOFF_CONFIGS=[{club:'GER-2',size:'large',warm:700},{club:'ESP-1',size:'standard',warm:600},{club:'ENG-4',size:'standard',warm:500}];
 function kickoffAfterGoal(si,{club='GER-2',size='standard',warm:warmTicks=300,goal=GOAL_NATURAL}={}){
- const h=harness();h.call('Native183.constructed',{club,seed:'ko5',size,roles:true,si});
+ const h=harness();h.call('Native183.constructed',{club,seed:'ko5',size,roles:true,si,ball:false});   // ball physics 184 off: the comparison isolates the clock
  h.evaluate('match.people.forEach(p=>{p.sta=100})');   // fatigue follows the virtual minute by design; keep the starting position equal at every rate
  warm(h,warmTicks);h.evaluate(goal);
  // mean distance of the field players of one team to their base position of the kickoff formation

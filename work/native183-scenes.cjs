@@ -19,7 +19,8 @@ function inContext(){
  // stamp:false removes the 183 world stamp (a career of release 132): the
  // constructor default then writes no marker (work/test-si-newworld-v183.cjs).
  // The large pitch uses six field players as in production careers.
- function constructed({club='GER-2',seed='si183',size='standard',roles=false,si,stamp=true}={}){
+ // ball:false leaves the ball-physics marker 184 out (constructor option, see v65CreateMatch).
+ function constructed({club='GER-2',seed='si183',size='standard',roles=false,si,stamp=true,ball}={}){
   let h=0;for(const ch of `${club}:${seed}:${size}`)h=(Math.imul(h,31)+ch.charCodeAt(0))>>>0;
   N.seedRandom(h||1);
   const career=v61CreateCareer(club,`native183-${seed}`);career.world.matchConfig={version:1,fieldSize:size,fieldPlayers:size==='large'?6:5};
@@ -27,7 +28,8 @@ function inContext(){
   const fixture=v62Fixtures(career).find(f=>f.homeId===club||f.awayId===club);
   v64PrepareFixture(career,fixture);const state=v64MakeState(career,fixture);career.world.activeMatch={fixtureId:fixture.id,state};
   v61CurrentCareer=career;active={career,fixture,state,ownSide:fixture.homeId===club?0:1};v65WorldActive=active;state.phase='live';
-  v65CreateMatch(active,si===undefined?undefined:{si});
+  const options={};if(si!==undefined)options.si=si;if(ball===false)options.ball=false;
+  v65CreateMatch(active,Object.keys(options).length?options:undefined);
   if(roles)assignRoles(match);
   return match;
  }
@@ -59,8 +61,8 @@ function inContext(){
   for(const [club,seed]of [['GER-2','a'],['ENG-4','b'],['ESP-1','c']])for(const size of ['standard','large'])for(const roles of [false,true])list.push({id:`${club}:${seed}:${size}:${roles?'roles':'plain'}`,config:{club,seed,size,roles}});
   return list;}
  // Digest after each segment; the scene continues natively between them.
- function constructedDigest(scene,{si,withoutSi=false,segments=[300,300,300]}={}){
-  constructed({...scene.config,si});const out=[];
+ function constructedDigest(scene,{si,ball,withoutSi=false,segments=[300,300,300]}={}){
+  constructed({...scene.config,si,ball});const out=[];
   for(const ticks of segments){run(ticks);out.push(digest({withoutSi}));if(match.finished)break;}
   return out.join('\n');}
  // v182 scenes with their 182 markers (loose ball, pursuit); base comparison.

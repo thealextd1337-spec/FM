@@ -106,7 +106,7 @@ function v64MakeState(career,fixture){
   const player=career.world.clubs.flatMap(club=>club.roster).find(item=>item.pid===pid);
   fresh[pid]=player.fresh;minutes[pid]=0;stats[pid]={goals:0,assists:0,shots:0};
  }
- const state={...(v183WorldSi(career)?{siGrid:true}:{}),fixtureId:fixture.id,minute:0,firstHalfEnd:45,fullTimeEnd:90,stoppages:[0,0],addedMinutes:[0,0],score:[0,0],active:[...plan.home.starters],awayActive:[...plan.away.starters],bench:[...plan.home.bench],awayBench:[...plan.away.bench],roles:{...plan.home.roles,...plan.away.roles},orientation:{},instructions:{},tactics:[{...plan.home.tactics},{...plan.away.tactics}],tacticChanges:[],pending:[[],[]],substitutions:[],exited:[],events:[],fresh,minutes,stats,phase:'prematch',lastAiCheck:[-1,-1],lastAiChange:[-20,-20]};
+ const state={...(v183WorldSi(career)?{siGrid:true,aiCoachRevision:185}:{}),fixtureId:fixture.id,minute:0,firstHalfEnd:45,fullTimeEnd:90,stoppages:[0,0],addedMinutes:[0,0],score:[0,0],active:[...plan.home.starters],awayActive:[...plan.away.starters],bench:[...plan.home.bench],awayBench:[...plan.away.bench],roles:{...plan.home.roles,...plan.away.roles},orientation:{},instructions:{},tactics:[{...plan.home.tactics},{...plan.away.tactics}],tacticChanges:[],pending:[[],[]],substitutions:[],exited:[],events:[],fresh,minutes,stats,phase:'prematch',lastAiCheck:[-1,-1],lastAiChange:[-20,-20]};
  for(const side of [0,1])v64RefreshAiInstructions(career,fixture,state,side);
  if(typeof v64ApplyCareerPlan==='function')v64ApplyCareerPlan(career,fixture,state);
  if(career.world.matchConfig)state.geometry=v160WorldGeometry(career);
