@@ -212,6 +212,8 @@ const asyncChecks=(async()=>{
 const {create}=require('./native183-scenes.cjs');
 function played(){
  const g=create({view:false}),made=(config)=>{g.call('Native183.constructed',config);return g;};
+ // A checkpoint can fall into a goal pause; v65Restore then shows the overlay with the display sides (world-physical-v65.js), absent in the VM.
+ g.run('var v25DisplaySides=()=>[0,1];');
  check('played-out: a new world creates matches with marker 183 (clock rate, packages), a world of release 132 creates matches without marker',()=>{
   made({club:'GER-2',seed:'siw-new'});
   const si=g.copy(g.evaluate('match.si'));assert.equal(si.revision,183);assert(si.clockRate>0);assert(Object.values(si.packages).some(Boolean));assert.equal(g.evaluate('v183Marked(match)'),true);

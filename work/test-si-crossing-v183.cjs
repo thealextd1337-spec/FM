@@ -226,8 +226,11 @@ check('restore during the signal keeps attackFlow.crossRun as plain data and the
 check('a blocked cross into space removes attackFlow.crossRun (no re-kick from a stale signal)',()=>{
  for(const seed of [0,1]){const b=call('blocked',{seed});assert.equal(b.pending,false,'no queued turn');assert.ok(b.blocks>=1,'blocked: '+JSON.stringify(b));assert.equal(b.run,null,'crossRun after the block');}
 });
-check('full constructor matches: crosses into space occur, their state is plain JSON (both sizes)',()=>{
- for(const size of ['standard','large']){const r=call('play',{size});assert.ok(r.plain,'plain');assert.ok(r.spaceCrosses>=1,size+' space crosses '+r.spaceCrosses);assert.ok(r.runs>=1,'signals '+r.runs);}
+check('full constructor matches: crosses into space occur, their state is plain JSON (both sizes, three seeds summed)',()=>{
+ // One match yields 0-10 space crosses (large pitch, base 40fad42e: 4/4/2/9/4/5 over six seeds; with the B28 ball line
+ // 4/0/3/6/2/5), so a single seed is a coin flip. Three seeds summed: base 15 (large) / 19 (standard), B28 13 / 40;
+ // the threshold 4 (mean above one per match) stays far below both and is not met by a switched-off option (0).
+ for(const size of ['standard','large']){let space=0,runs=0;for(const seed of ['b22-play','p2','p3']){const r=call('play',{size,seed});assert.ok(r.plain,'plain '+seed);space+=r.spaceCrosses;runs+=r.runs;}assert.ok(space>=4,size+' space crosses over three seeds '+space);assert.ok(runs>=3,size+' signals '+runs);}
  const off=call('play',{params:{options:{crossSpace:0}}});assert.equal(off.spaceCrosses,0);assert.equal(off.runs,0);
 });
 

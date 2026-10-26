@@ -45,7 +45,7 @@ check('v50Foul keeps its own contact gate; with the package every awarded foul i
 const allOff=Object.fromEntries(copy(ev('[...V183_PACKAGES]')).map(p=>[p,false]));
 check('package off replays a constructed match exactly like the 182 constructor (digest without match.si)',()=>{
  for(const scene of copy(h.call('Native183.constructedScenes')).filter((s,i)=>i%4===1)){
-  const off=h.call('Native183.constructedDigest',scene,{si:{packages:allOff},withoutSi:true,segments:[250,250]}),legacy=h.call('Native183.constructedDigest',scene,{si:false,segments:[250,250]});
+  const off=h.call("Native183.constructedDigest",scene,{si:{packages:allOff},ball:false,withoutSi:true,segments:[250,250]}),legacy=h.call('Native183.constructedDigest',scene,{si:false,segments:[250,250]});
   assert.equal(off,legacy,scene.id);
  }
 });
@@ -130,6 +130,40 @@ check('safety defender: the choice is sticky within 1.5 m, a clearly nearer play
   const tick=()=>{v102State(m).clock+=.05;for(const p of [d0,d1,d2])v159DefensiveTarget(m,p);return m.attackFlow.defence.cover[0];};
   put(d0,3,.2);put(d1,8,-1);put(d2,12,1);out.push(tick());put(d2,7.2,1);out.push(tick());put(d2,5,1);out.push(tick());return out;})()`));
  assert.deepEqual(r,['def1','def1','def2']);
+});
+// ----- ball line (B28): no defensive target upfield of the ball -----
+const lineTargets=cfg=>{scene(cfg);return copy(ev(`(()=>{const m=match,s=v150Scale(m),out={};Native182.advance();
+  for(const p of m.people.filter(x=>x.pid.startsWith('def'))){v159DefensiveTarget(m,p);const read=m.attackFlow.defenseReads?.[p.pid];out[p.pid]={purpose:read?.purpose||null,kind:read?.kind||null,goalSideM:+((p.ty-m.ball.y)*s.y).toFixed(2),readGoalSideM:read?+((read.target.y-m.ball.y)*s.y).toFixed(2):null};}
+  return out;})()`));};
+check('ball line: the third defender marking a receiver behind the ball stops 1 m goal-side of the ball (base: 6 m upfield)',()=>{
+ // Team 0 defends the bottom goal: goal-side = larger y. The carrier advances; att0 offers 8 m behind the ball, 10 m from def2 (within the 12 m leash of the def anchor).
+ const cfg={carrier:{depth:24,lateral:0,vy:3},defs:[{depth:20.5,lateral:1,line:'def'},{depth:18,lateral:5,line:'mid'},{depth:22,lateral:-9,line:'def'}],atts:[{depth:32,lateral:-11}]};
+ const off=lineTargets({...cfg,on:false}),on=lineTargets({...cfg,on:true});
+ assert.equal(off.def2.purpose,'receiver');assert(off.def2.goalSideM<-3,'base target upfield of the ball: '+off.def2.goalSideM);
+ assert.equal(on.def2.purpose,'receiver');assert.equal(on.def2.kind,null);assert.equal(on.def2.goalSideM,1);assert.equal(on.def2.readGoalSideM,1);
+ assert.equal(on.def0.purpose,'press');assert.equal(on.def1.kind,'cover');
+});
+check('ball line: only the mark of a back-pass option is clamped; a marked receiver ahead of the ball keeps his mark, another option nearby frees nothing',()=>{
+ // Same scene as above. With att1 ahead of the ball 11.9 m away def2 still marks att0 (cheaper) and is still clamped (review round 1);
+ // with att1 alone ahead of the ball he marks att1 and follows him goal-side of the ball.
+ const cfg={on:true,carrier:{depth:24,lateral:0,vy:3},defs:[{depth:20.5,lateral:1,line:'def'},{depth:18,lateral:5,line:'mid'},{depth:22,lateral:-9,line:'def'}]};
+ const both=lineTargets({...cfg,atts:[{depth:32,lateral:-11},{depth:20,lateral:-20.5}]}),ahead=lineTargets({...cfg,atts:[{depth:20,lateral:-20.5}]});
+ assert.equal(both.def2.purpose,'receiver');assert.equal(both.def2.goalSideM,1);
+ assert.equal(ahead.def2.purpose,'receiver');assert(ahead.def2.goalSideM>1.5,'free mark of the receiver ahead: '+ahead.def2.goalSideM);
+ // Ball at the own goal line: the clamped target stays .5 m inside the pitch, never behind the goal line.
+ const deep=lineTargets({on:true,carrier:{depth:.3,lateral:4,vy:0},defs:[{depth:2,lateral:3,line:'def'},{depth:3,lateral:-2,line:'mid'},{depth:1,lateral:-6,line:'def'}],atts:[{depth:6,lateral:-8}]});
+ const goalLine=copy(ev('(()=>{const s=v150Scale(match);return {bottom:(v55Field.bottom-match.ball.y)*s.y};})()'));
+ for(const id of ['def1','def2'])if(deep[id].purpose==='receiver'||deep[id].purpose==='cover')assert(deep[id].goalSideM<=goalLine.bottom-.49,id+' inside the pitch: '+deep[id].goalSideM+' vs goal line '+goalLine.bottom);
+ assert(['def1','def2'].some(id=>['receiver','cover'].includes(deep[id].purpose)),'scene has a clamped role');
+});
+check('ball line: a safety defender leashed to a far anchor stays at the ball line instead of running back toward his anchor',()=>{
+ const cfg={on:true,carrier:{depth:30,lateral:0,vy:3},defs:[{depth:26.5,lateral:1,line:'def'},{depth:24,lateral:5,line:'att',anchorDepth:58,anchorLateral:5},{depth:17,lateral:-10,line:'def'}]};
+ const on=lineTargets(cfg),loose=lineTargets({...cfg,si:{params:{defence:{coverLeash:60}}}});
+ assert.equal(on.def1.kind,'cover');assert.equal(on.def1.goalSideM,1);
+ // Without the leash the cover spot itself lies goal-side of the ball and is not touched.
+ assert.equal(loose.def1.kind,'cover');assert(loose.def1.goalSideM>4,String(loose.def1.goalSideM));
+ // Pressing targets are never clamped: the presser's point may lie wherever the pursuit puts it.
+ assert.equal(on.def0.purpose,'press');
 });
 check('the package off leaves every defensive target to the previous function (same targets as without marker)',()=>{
  const unmarked=targets({...ROLE_BASE,on:null}),off=targets({...ROLE_BASE,on:false});
