@@ -1,0 +1,52 @@
+{
+ "base": null,
+ "setup": {
+  "config": null,
+  "unity": true,
+  "people": 12,
+  "perTeam": [
+   6,
+   6
+  ],
+  "keepers": [
+   1,
+   1
+  ],
+  "geometry": {
+   "version": 1,
+   "length": 68,
+   "width": 44,
+   "goalWidth": 9.705882352941178,
+   "goalHeight": 3.2352941176470593,
+   "penaltyDepth": 10.5953488372093,
+   "penaltyWidth": 24.264705882352942,
+   "ballRadius": 0.1764
+  },
+  "expectedPerTeam": 6,
+  "unityReady": true,
+  "ack": {
+   "players": 12,
+   "ids": 12,
+   "allReal": true
+  },
+  "error": null
+ },
+ "pendingAtFreeze": true,
+ "afterFreeze": {
+  "ack": 75,
+  "error": null,
+  "failure": null
+ },
+ "before": {
+  "ack": 43,
+  "error": null,
+  "failure": null
+ },
+ "silent": {
+  "ack": 76,
+  "error": "Unity ist nicht verfügbar · 2D ist aktiv",
+  "failure": "Unity antwortet nicht · 2D ist aktiv"
+ },
+ "errors": []
+}
+watchdog: freeze tolerated, silent renderer detected

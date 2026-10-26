@@ -1,0 +1,1 @@
+{"pass":true,"scenes":158,"differing":[],"base":"C:\\Users\\alex\\AppData\\Local\\Temp\\si0\\base-e4e531c0","scope":"Unmarked native scenes (loose balls and defensive pursuit) on base vs. current dist; full digests incl. RNG draws."}

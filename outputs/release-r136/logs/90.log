@@ -1,0 +1,31 @@
+Managed match 1 S1:AUT:LEAGUE:R1:AUT-5-AUT-4:1 world matches 48
+Managed match 2 S1:AUT:CUP:R16:2:1 world matches 144
+Managed match 3 S1:AUT:LEAGUE:R2:AUT-5-AUT-3:1 world matches 192
+Managed match 4 S1:HORIZON:R32:12:1 world matches 221
+Managed match 5 S1:AUT:LEAGUE:R3:AUT-5-AUT-6:1 world matches 269
+Managed match 6 S1:AUT:LEAGUE:R4:AUT-5-AUT-2:1 world matches 317
+Managed match 7 S1:HORIZON:R32:12:2 world matches 346
+Managed match 8 S1:AUT:LEAGUE:R5:AUT-5-AUT-1:1 world matches 394
+Managed match 9 S1:AUT:CUP:QF:1:1 world matches 463
+Managed match 10 S1:AUT:LEAGUE:R6:AUT-7-AUT-5:1 world matches 511
+Managed match 11 S1:AUT:LEAGUE:R7:AUT-8-AUT-5:1 world matches 580
+Managed match 12 S1:AUT:LEAGUE:R8:AUT-4-AUT-5:1 world matches 645
+Managed match 13 S1:AUT:LEAGUE:R9:AUT-3-AUT-5:1 world matches 701
+Managed match 14 S1:AUT:CUP:SF:0:1 world matches 729
+Managed match 15 S1:AUT:LEAGUE:R10:AUT-6-AUT-5:1 world matches 777
+Managed match 16 S1:AUT:LEAGUE:R11:AUT-2-AUT-5:1 world matches 833
+Managed match 17 S1:AUT:LEAGUE:R12:AUT-1-AUT-5:1 world matches 881
+Managed match 18 S1:AUT:LEAGUE:R13:AUT-5-AUT-7:1 world matches 930
+Managed match 19 S1:AUT:LEAGUE:R14:AUT-5-AUT-8:1 world matches 991
+{
+  pass: true,
+  knockoutSeasons: 80,
+  maxCountryDraws: 30,
+  fullNativeSeasonMatches: 991,
+  ownGames: 19,
+  checkpoint: true,
+  competitions: 26,
+  seasonClosed: true,
+  saveRoundtrip: true,
+  legacyUnchanged: true
+}

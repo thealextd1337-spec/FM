@@ -1,0 +1,9 @@
+PASS new-season ages 29/30/32/33 use the approved exact losses
+PASS physical floors clamp immediately at one with unchanged technical/mental/keeper values
+PASS 29→30 and 32→33 transition once; field player and keeper calculation identical
+PASS serialization, transfer and historical replay never age twice
+PASS under-30 and floor-only transitions are still recorded as completed
+PASS pure immutable aging leaves height/foot/talent/caps and retirement decisions untouched
+PASS browser UMD exports only D6Aging and agrees with Node
+PASS invalid permanent skills, age and ledger do not silently calculate
+Aging: 8 scenario groups passed (pure season transitions; retirement logic untouched).

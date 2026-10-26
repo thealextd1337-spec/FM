@@ -25,6 +25,7 @@ function vmHarness(){
  for(const f of ['player-foundation-preview-v153.js','world-player-foundation-v153.js','world-player-performance-v155.js','world-economy-v66.js','world-youth-manager-v67.js','world-transfer-list-v72.js','world-honours-v74.js','world-payments-v124.js','world-expansion-catalog-v161.js','world-expansion-v161.js','world-expansion-domestic-v164.js','world-expansion-crown-v165.js','world-expansion-horizon-v166.js','world-expansion-progression-v167.js','world-expansion-economy-v168.js','world-squad-planning-v179.js','world-expansion-stories-v170.js','world-youth-legacy-v176.js'])g.run(read(f),f);
  const phys=read('world-physical-v65.js'),a=phys.indexOf('function v65ApplyTactics('),b=phys.indexOf('\n}\n',a)+3;
  g.run(phys.slice(a,b),'v65ApplyTactics');
+ g.run(phys.match(/const V65_LIVE_SAVE_MS=\d+;/)[0].replace('const ','var '),'v65-live-save-ms'); // B01 autosave cadence read by v65AfterStep
  g.run(phys.slice(phys.indexOf('function v65SyncMinute('),phys.indexOf('function v65NeedsPenalties(')),'v65AfterStep-chain');
  const pres=read('match-presentation-v74.js'),c0=pres.indexOf('function v74ClockLabel(');g.run(pres.slice(c0,pres.indexOf('\n}\n',c0)+3),'v74ClockLabel');
  g.run(read('world-ai-coach-v185.js'),'world-ai-coach-v185.js');

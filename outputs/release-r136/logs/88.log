@@ -1,0 +1,10 @@
+{
+  pass: true,
+  countrySeasons: 480,
+  preparedCompetitions: 24,
+  preparedFixtures: 768,
+  completedSeasonFixtures: 852,
+  sharedCalendar: true,
+  shootout: true,
+  saveRoundtrip: true
+}

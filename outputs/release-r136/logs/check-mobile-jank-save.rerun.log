@@ -1,0 +1,6 @@
+PASS live autosave at most every 15 s {"seconds":32.057,"saves":2,"gapsMs":[15042]}
+PASS hiding the page saves at once {"phase":"paused","elapsed":6.096552000000247,"storedElapsed":6.096552000000247,"storedPhase":"paused"}
+PASS match continues after returning {"elapsedBefore":6.096552000000247,"elapsedAfter":7.884261000000033}
+PASS reload resumes the paused match from its snapshot {"elapsed":7.884261000000033,"score":[1,0],"continuedTo":7.903511000000034}
+PASS crash without pagehide loses only the last save window {"liveElapsed":5.279966999999891,"restoredElapsed":2.2028929999999285,"realSecondsSinceLastSave":9.01,"continuedTo":2.265570999999857}
+PASS Unity: hidden page pauses with snapshot, reload resumes {"elapsed":1.6586184999998568,"continuedTo":1.7253004999999284,"unity":{"ready":true,"error":null}}

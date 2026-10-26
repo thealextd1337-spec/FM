@@ -1,0 +1,17 @@
+v65AfterStep-chain:70
+ if(!match.flight&&!match.slide){const now=performance.now();if(now-v65LastReport>700){v65LastReport=now;v65RenderReport(context)}if(v65SaveSoon||now-v65LastSaved>V65_LIVE_SAVE_MS){if(v65Snapshot(context))v65SaveSoon=false}}
+                                                                                                                                                                   ^
+
+ReferenceError: V65_LIVE_SAVE_MS is not defined
+    at v65AfterStep (v65AfterStep-chain:70:164)
+    at fixture:1:125
+    at play (F:\Neuer Ordner (2)\ChatGPT\Fussballmanager\work\release-r136\work\replay-ai-coach-v185.cjs:92:36)
+    at Object.<anonymous> (F:\Neuer Ordner (2)\ChatGPT\Fussballmanager\work\release-r136\work\test-ai-coach-v185.cjs:164:12)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+
+Node.js v24.22.1

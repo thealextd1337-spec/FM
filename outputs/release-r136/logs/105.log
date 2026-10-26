@@ -1,0 +1,5 @@
+PASS scene: substitute on shortly before the end, air duel at the landing after the deferred final whistle
+PASS fixed dating: the duel stands at the played clock (fullTimeEnd - .001) and v65Finish completes the load
+PASS legacy dating replays the abort (RangeError in v65Finish) in the same scenes
+PASS ordinary play: every action outside the deferred whistle keeps the legacy minute exactly
+OK 4 checks (v158 final-whistle load, B21)

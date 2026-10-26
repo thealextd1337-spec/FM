@@ -1,0 +1,70 @@
+{
+  "status": "passed",
+  "network": false,
+  "sourceId": "b434de968015f08eaa33a057f0aeb982d4debdda1001dc2193aedb7873b630b3",
+  "uploadOrder": [
+    {
+      "source": "outputs\\platform\\unity-web\\Build\\unity-web.data",
+      "target": "unity/Build/unity-web.data",
+      "bytes": 56159726,
+      "sha256": "ed88a3b6ff6f339d237f93ad0c97cf4e2a0d8c9be9bab34a7706bf932ac15d1e"
+    },
+    {
+      "source": "outputs\\platform\\unity-web\\Build\\unity-web.framework.js",
+      "target": "unity/Build/unity-web.framework.js",
+      "bytes": 300906,
+      "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+    },
+    {
+      "source": "outputs\\platform\\unity-web\\Build\\unity-web.loader.js",
+      "target": "unity/Build/unity-web.loader.js",
+      "bytes": 27914,
+      "sha256": "7bfe50b30384d0befb8b633557c169e1fbbd8fb67c36cf925c0e85e232184d38"
+    },
+    {
+      "source": "outputs\\platform\\unity-web\\Build\\unity-web.wasm",
+      "target": "unity/Build/unity-web.wasm",
+      "bytes": 35798832,
+      "sha256": "111883c616f5e6f6a63236928b1921d2a28af69a4187f384fa58989e1551e44d"
+    },
+    {
+      "source": "dist\\unity-match\\runtime.html",
+      "target": "unity-match/runtime.html",
+      "bytes": 440,
+      "sha256": "0a11e8eaba95b19006a1085a3d76124eb28db02d23514a4f2f1d6c8d1565fafa"
+    },
+    {
+      "source": "dist\\unity-match\\runtime.js",
+      "target": "unity-match/runtime.js",
+      "bytes": 6574,
+      "sha256": "3a44a89c8b336515e59601d813aad0f121e6c06dc95ab68e85ce1d7fc3c16673"
+    },
+    {
+      "source": "dist\\unity-match\\.htaccess",
+      "target": "unity-match/.htaccess",
+      "bytes": 75,
+      "sha256": "e6341a7c0465a7f21a828d0296457bcc43bf6cace7105ce9b0cf871c3b9bacc4"
+    },
+    {
+      "source": "outputs\\platform\\unity-web\\.htaccess",
+      "target": "unity/.htaccess",
+      "bytes": 187,
+      "sha256": "336516b218abd942e316fc3cec61ede27c32d46cc1b431aa43052a5391242bd7"
+    },
+    {
+      "source": "outputs\\platform\\unity-web\\probe-build.json",
+      "target": "unity/probe-build.json",
+      "bytes": 7250,
+      "sha256": "c40376d72adf9744d101e01f7acd01e758d4beed5cbe6243dc9a54b6f1d9ddcd"
+    }
+  ],
+  "httpChecks": [
+    "unity/Build/unity-web.data",
+    "unity/Build/unity-web.framework.js",
+    "unity/Build/unity-web.loader.js",
+    "unity/Build/unity-web.wasm",
+    "unity-match/runtime.html",
+    "unity-match/runtime.js",
+    "unity/probe-build.json"
+  ]
+}

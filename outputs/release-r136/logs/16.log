@@ -1,0 +1,21 @@
+PASS every new-world creator writes the stamp 183 and the world validates
+PASS stamp validation: absent (release 132) or 183, nothing else
+PASS JSON round trip keeps the stamp of a new world and never adds one to a world of release 132; validation does not write
+PASS playing a season day by day keeps the stamp of a new world and does not give one to an old world
+PASS compact: a new world writes marker 183 with its snapshot; a world of release 132 writes marker 178 with the frozen parameters
+PASS compact: initialisation never re-marks an existing performance state, also not after the stamp was removed
+PASS compact: a full match of a world of release 132 equals the frozen controller of release 132 (also after a JSON resume)
+PASS compact: goal level of a world of release 132 stays low, a new world has the new level; the same seeds differ only by the stamp
+PASS compact: a stored match keeps its marker when the career is loaded (no stamp is added, none is removed)
+PASS grid defaults: a new world fills lines of four and more symmetrically, a world of release 132 keeps the old cells
+PASS grid defaults: the match state of a new world carries the flag, a state of release 132 does not
+PASS grid defaults: the career plan editor (formation change outside a match) follows the stamp
+PASS sponsor: the league goal of a world of release 132 stays 11 + squad (scaled to 14 matches in the 12-country world)
+PASS sponsor: a new world asks for the goal count of its squad class (14 matches); the cup goal stays
+PASS sponsor: later seasons of both worlds follow the same rule (formula by stamp, not by season)
+PASS sponsor: the schema-14 world (6 teams per league, 10 matches) scales the new goal level with its matches
+PASS played-out: a new world creates matches with marker 183 (clock rate, packages), a world of release 132 creates matches without marker
+PASS played-out: explicit harness overrides still decide (si:false without marker, object with marker) in either world
+PASS played-out: a match of a world of release 132 plays exactly like the constructor without marker (same draws, 900 ticks, large pitch too)
+PASS played-out: a stored match keeps its marker through snapshot and restore in both worlds
+PASS storage, export and import keep the stamp of a new world and never add one to an old world

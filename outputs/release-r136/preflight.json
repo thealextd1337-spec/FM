@@ -1,0 +1,17 @@
+{
+  "release": 136,
+  "base": "37a23a9a",
+  "features": {"feat/ai-tactics": "8ba80dd4", "fix/si-defender-drift": "81c52b59", "fix/unity-skin-colors": "f312c5ce"},
+  "unitySourceId": "b434de968015f08eaa33a057f0aeb982d4debdda1001dc2193aedb7873b630b3",
+  "workflowCommands": {"total": 135, "passed": 135, "note": "#109 test-ai-coach-v185 first red (replay harness lacked V65_LIVE_SAVE_MS from release 135), green after the harness fix"},
+  "extra": [
+    "work/test-release-version.cjs",
+    "work/check-old-matches-v182.cjs (158/158) and work/check-old-matches-v183.cjs (340/340) against e4e531c0",
+    "work/test-world-unity-picture-contract.cjs (0 rejected pictures) and work/test-world-unity-watchdog.cjs",
+    "work/check-mobile-jank-save.cjs (6/6 alone; one red run in parallel with the live dry run: fixed 6 s wait after resume)",
+    "work/check-live-r136.cjs dry run against the local build (http://127.0.0.1:4262/), files dry-run-*",
+    "work/check-release-r132-publication.py --release 136 --source-id b434de96..."
+  ],
+  "balance": "match files byte-identical to demo/kimodo-ball 5f967b2e; Node replay 192 league pairs 3.84 -> 3.46 (+B28) -> 3.61 (+B28+185) goals",
+  "build": {"index": "515ba8a9d14a45ad758a2bcbc0c73672f080988de93dbda6c59ca971dd7ff099", "download": "515ba8a9d14a45ad758a2bcbc0c73672f080988de93dbda6c59ca971dd7ff099", "identical": true}
+}
