@@ -27,7 +27,7 @@ Vor dem Push liefen `work/test-release-version.cjs` und alle 135 Befehle des Pro
 
 Nachweise liegen unter `outputs/release-r136/`. `main` wird ohne Umschreiben der Historie vorgespult; der Produktionsworkflow wiederholt die Prüfungen, lädt zuerst die Unity-Laufzeit und danach die Spielseite hoch.
 
-Nach dem Deployment vergleicht `work/check-live-r136.cjs` die öffentliche Spielseite, die Runtime-Dateien und die Unity-Builddateien laut Manifest per SHA-256 mit dem lokalen Stand. Dazu startet es in einem isolierten Browserprofil je eine Partie in Unity und in 2D und prüft Speichern und Neuladen.
+Nach dem Deployment vergleicht `work/check-live-r136.cjs` die öffentliche Spielseite, die Runtime-Dateien und die Unity-Builddateien laut Manifest per SHA-256 mit dem lokalen Stand. Dazu startet es in einem isolierten Browserprofil je eine Partie in Unity und in 2D und prüft Speichern und Neuladen. Ergebnis am 26. Oktober 2026 nach Deploy-Lauf 40370380214: alle Prüfungen bestanden (erster Versuch: Zeitlimit beim Laden der 96-MB-Seite, Bytevergleich bereits grün). Die [Abnahme-Checkliste](abnahme-release-136.md) führt durch die offenen Nutzerabnahmen.
 
 ## Grenzen
 
