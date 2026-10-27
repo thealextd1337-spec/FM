@@ -1,8 +1,15 @@
-[{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "android_app",
-    "package_name": "at.cakamper.doppel6",
-    "sha256_cert_fingerprints": ["C9:54:82:31:83:F2:23:6E:85:C3:37:7D:2E:B4:2D:CA:0F:0E:26:A8:F8:5F:66:9B:DB:C7:39:CF:D0:DC:19:75"]
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "at.cakamper.doppel6",
+      "sha256_cert_fingerprints": [
+        "8F:76:C1:DA:30:1B:DC:25:64:7F:DA:1E:13:56:2D:B4:CE:C2:00:97:D6:2D:D1:B0:41:19:6D:A5:FD:CC:11:7E",
+        "C9:54:82:31:83:F2:23:6E:85:C3:37:7D:2E:B4:2D:CA:0F:0E:26:A8:F8:5F:66:9B:DB:C7:39:CF:D0:DC:19:75"
+      ]
+    }
   }
-}]
+]

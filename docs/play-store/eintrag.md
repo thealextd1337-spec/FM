@@ -5,7 +5,7 @@ Stand: 27. Oktober 2026. Entwurf für die erste Play-Version (Nutzerentscheidung
 ## Ablauf bis zur Veröffentlichung
 
 1. **Nutzer:** Play-Console-Konto als Privatperson anlegen (einmalig 25 US-Dollar, Ausweis- und Gerätebestätigung mit einem echten Android-Handy).
-2. App anlegen, die Formulare unten ausfüllen, `app-release.aab` in einen geschlossenen Test laden. Danach den Fingerabdruck des App-Signaturschlüssels von Google in `dist/.well-known/assetlinks.json` ergänzen und veröffentlichen ([Android-App](../android-app.md#bauen-und-signieren)).
+2. **Erledigt am 27. Oktober 2026:** App angelegt, `app-release.aab` in einen geschlossenen Test geladen (Nutzer). Der Fingerabdruck des App-Signaturschlüssels von Google steht seit Release 138 in `dist/.well-known/assetlinks.json` ([Android-App](../android-app.md#bauen-und-signieren)). Offen sind die Formulare unten.
 3. **Nutzer:** mindestens 12 Testpersonen mit Android-Handy und Google-Konto einladen. Sie müssen sich anmelden und 14 Tage ununterbrochen dabei bleiben. Zu empfehlen sind 15–20, falls jemand austritt.
 4. Nach 14 Tagen den Produktionszugang beantragen: Rekrutierung, Rückmeldungen, Änderungen, Zielgruppe. Die Prüfung dauert meist bis zu 7 Tage.
 5. Produktion freigeben. Die erste Version geht in den gewählten Ländern sofort an 100 %; eine Staffelung gibt es erst bei Updates.

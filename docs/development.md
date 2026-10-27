@@ -1,6 +1,6 @@
 # Entwicklung und Veröffentlichung
 
-Aktueller Veröffentlichungsstand vom 27. Oktober 2026: Release 137 in `work/release-r136`, Branch `release/r137`, auf Release 136 plus Vorbereitung der Android-App: Web-Manifest, App-Symbole, Service Worker für den Offline-Start, Domainnachweis `assetlinks.json`, öffentliche Datenschutzseite und die TWA-Hülle in `work/platform/android-twa/`. Die Veröffentlichung ist vom Nutzer beauftragt (27. Oktober 2026) und erfolgt über `main` und den Produktionsworkflow. Footer, Build, Runtime-Cache, Unity-Produktmetadaten und Hilfedaten tragen 137; der Unity-Binärbuild ist unverändert. [Releasebericht](release-137.md), [Android-App](android-app.md). Bestandsspielstände werden nicht umgerechnet.
+Aktueller Veröffentlichungsstand vom 27. Oktober 2026: Release 138 in `work/release-r136`, Branch `release/r138`, auf Release 137 plus dem Fingerabdruck des Play-App-Signaturschlüssels in `assetlinks.json`. Die Veröffentlichung ist vom Nutzer beauftragt und erfolgt über `main` und den Produktionsworkflow. Footer, Build, Runtime-Cache, Unity-Produktmetadaten und Hilfedaten tragen 138; der Unity-Binärbuild ist unverändert. [Releasebericht](release-138.md), [Android-App](android-app.md). Bestandsspielstände werden nicht umgerechnet.
 
 ## Aktueller Arbeitsstand und Abschluss
 
