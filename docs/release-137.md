@@ -24,6 +24,8 @@ Vor dem Push liefen `work/test-release-version.cjs` und alle Befehle des Produkt
 
 Nachweise liegen unter `outputs/release-r137/`.
 
+Ergebnis am 27. Oktober 2026: Release-Commit `0dafb1b0`, Deploy-Lauf 40494364641 in allen Schritten erfolgreich. Googles Digital-Asset-Links-Dienst liest `assetlinks.json` mit Paket und Fingerabdruck. `work/check-live-r137.cjs` hat im ersten Versuch alles bestanden: alle 15 Dateien bytegleich, Unity- und 2D-Partie, Speichern und Neuladen, Offline-Neustart der Live-Seite mit Unity-Partie.
+
 ## Grenzen
 
 Kein Test auf einem echten Android-Gerät, kein Play-Konto, kein Upload. Offen sind Paketname/Domain, Play-Zielgruppe (Familienrichtlinie) und Handy-Screenshots. Der Offline-Start mit Unity braucht ein 3D-Spiel nach dem ersten Besuch. Die Zurück-Taste verhält sich wie in Chrome und ist am Gerät zu prüfen. Nutzerabnahmen aus [Release 136](abnahme-release-136.md) bleiben offen.
