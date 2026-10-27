@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "network": false,
+  "uploadOrder": [
+    "/site/unity/Build/unity-web.data",
+    "/site/unity/Build/unity-web.framework.js",
+    "/site/unity/Build/unity-web.loader.js",
+    "/site/unity/Build/unity-web.wasm",
+    "/site/unity-match/runtime.html",
+    "/site/unity-match/runtime.js",
+    "/site/unity-match/.htaccess",
+    "/site/unity/.htaccess",
+    "/site/sw.js",
+    "/site/manifest.webmanifest",
+    "/site/icons/icon-192.png",
+    "/site/icons/icon-512.png",
+    "/site/icons/icon-maskable-512.png",
+    "/site/datenschutz.html",
+    "/site/.well-known/assetlinks.json",
+    "/site/unity/probe-build.json",
+    "/site/index.deploy-ea4c3b61d0bf.html",
+    "rename index.deploy-ea4c3b61d0bf.html -> index.html"
+  ],
+  "httpChecks": [
+    "unity/Build/unity-web.data",
+    "unity/Build/unity-web.framework.js",
+    "unity/Build/unity-web.loader.js",
+    "unity/Build/unity-web.wasm",
+    "unity-match/runtime.html",
+    "unity-match/runtime.js",
+    "sw.js",
+    "manifest.webmanifest",
+    "icons/icon-192.png",
+    "icons/icon-512.png",
+    "icons/icon-maskable-512.png",
+    "datenschutz.html",
+    ".well-known/assetlinks.json",
+    "unity/probe-build.json",
+    "index.html"
+  ],
+  "indexSha256": "ea4c3b61d0bf742affaad14aa8a21da9366b52707e376f7954f95aa9224e7e04"
+}

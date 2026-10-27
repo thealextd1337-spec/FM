@@ -53,6 +53,11 @@ class DeployTests(unittest.TestCase):
         (unity / ".htaccess").write_text("AddType application/wasm .wasm")
         for name in ("runtime.html", "runtime.js", ".htaccess"):
             (runtime / name).write_text(name)
+        app = root / "app"
+        (app / ".well-known").mkdir(parents=True)
+        (app / "sw.js").write_text("sw")
+        (app / ".well-known" / "assetlinks.json").write_text("[]")
+        (root / "app-files.json").write_text(json.dumps(["sw.js", ".well-known/assetlinks.json"]))
         return unity, runtime
 
     def test_complete_assets_verified_without_publishing_index(self):
@@ -68,11 +73,13 @@ class DeployTests(unittest.TestCase):
             unity, runtime = self.fixture(Path(folder))
             # Fake FTPS does not use TLS; keep this offline test independent of
             # the host OpenSSL configuration removed by the clean environment.
-            with mock.patch.object(deploy, "UNITY", unity), mock.patch.object(deploy, "RUNTIME", runtime), mock.patch.dict(os.environ, secrets, clear=True), mock.patch.object(deploy.ssl, "create_default_context", return_value=object()), mock.patch.object(deploy, "FTP_TLS", FakeFTP), mock.patch.object(deploy, "urlopen", side_effect=live):
+            app = {"APP": Path(folder) / "app", "APP_FILES": Path(folder) / "app-files.json"}
+            with mock.patch.multiple(deploy, **app), mock.patch.object(deploy, "UNITY", unity), mock.patch.object(deploy, "RUNTIME", runtime), mock.patch.dict(os.environ, secrets, clear=True), mock.patch.object(deploy.ssl, "create_default_context", return_value=object()), mock.patch.object(deploy, "FTP_TLS", FakeFTP), mock.patch.object(deploy, "urlopen", side_effect=live):
                 deploy.publish()
-        self.assertEqual(len(FakeFTP.instance.files), 9)
+        self.assertEqual(len(FakeFTP.instance.files), 11)
+        self.assertIn("/site/.well-known/assetlinks.json", FakeFTP.instance.files)
         self.assertEqual(FakeFTP.instance.calls[-1], "/site/unity/probe-build.json")
-        self.assertEqual(len(requests), 7)
+        self.assertEqual(len(requests), 9)
         self.assertFalse(any(name.endswith("index.html") for name in FakeFTP.instance.files))
         self.assertFalse(any(name.endswith(".htaccess") for name in requests))
 

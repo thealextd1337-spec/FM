@@ -1,0 +1,12 @@
+ok   parameters registered with the defaults of the Torjäger round
+ok   lead intensity: 0 when level or behind; min(lead,leadCap)/leadCap times leadEarly..1 over the clock
+ok   score state: shoot and risk weights fall with the lead intensity, the risk weight late in a level game; neutral without parameters
+ok   score state: SI-2 carrier and run pace by leadPace and levelPace; the trailing team keeps its pace
+ok   score state: SI-2 zone leash of a leading team shrinks by leashLead x lead intensity
+ok   keeper during an opposing high ball: keeperShift for a corner, keeperShiftOpen for every other flight
+ok   SI-5 duel recognition with the score-state factor: a leading carrier in a duel on the large pitch gets carrierCloseGain, not carrierPaceGain
+ok   SI-5 duel recognition by marker: independent of the pace values (carrierPace equal to carrierClosePace) and of the call detail
+ok   SI-5 without SI-2: the carrier always takes carrierCloseGain, independent of the score state (fallback of the marker)
+ok   full constructor matches with the defaults (both pitch sizes) finish without errors; no new attackFlow keys
+
+10 passed, 0 failed

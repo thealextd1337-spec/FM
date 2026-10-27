@@ -1,0 +1,5 @@
+PASS manifest and icons [{"src":"/icons/icon-192.png","size":"192x192","declared":"192x192"},{"src":"/icons/icon-512.png","size":"512x512","declared":"512x512"},{"src":"/icons/icon-maskable-512.png","size":"512x512","declared":"512x512"}]
+PASS app files served
+PASS worker controls the page and cached page and Unity build
+PASS offline start opens release 137 and a Unity match
+PASS online again: the page comes from the network

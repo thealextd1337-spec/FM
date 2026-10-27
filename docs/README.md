@@ -9,6 +9,8 @@ Historischer Release-132-Hinweis vom 14. Oktober 2026: Release 132 ist im Worktr
 - [Bugliste](Bugliste.md): bekannte Fehler und offene Prüfungen; kein automatischer Arbeitsauftrag.
 - [Entscheidungen](entscheidungen.md): aktueller Umfang, zurückgestellte Ideen und verworfene Fortsetzungen.
 - [Spielerintelligenz 183 nur für neue Spielstände](spielerintelligenz-neue-spielstaende-183.md): Stempel `world.siRevision`, Entscheidungspunkte, Sponsorziel.
+- [Release 137](release-137.md): Vorbereitung der Android-App (Offline-Start, App-Dateien, Datenschutzseite, TWA-Hülle).
+- [Android-App](android-app.md): Trusted Web Activity, Bauen, Signieren, Offline-Start; [Play-Store-Eintrag](play-store/eintrag.md) als Entwurf.
 - [Release 136](release-136.md): Ballphysik 184, KI-Trainer 185, Verteidiger-Korrektur B28 und Unity-Gesichtsfarben B29.
 - [Release 135](release-135.md): flüssigere Live-Partien (B01) und Unity ohne 2D-Rückfall bei Torwart-Halten (B30).
 - [Release 134](release-134.md): optionale Einführung für neue Vereinswelten.

@@ -1,0 +1,24 @@
+PASS inactive2D uses native callbacks only
+PASS public visible Unity gets same frame fallback
+PASS sameorigin Unity iframe inherits scope
+PASS one callback when native wins
+PASS one callback when fallback wins
+PASS cancel both race paths
+PASS callbacks share a frame timestamp
+PASS nested requests wait for next frame
+PASS render cost does not add a fresh 16ms wait
+PASS one callback can cancel another pending callback
+PASS hidden pauses and visible resumes
+PASS pagehide suspends queue and pageshow resumes exactlyonce
+PASS callback exception does not prevent other callbacks
+PASS 15.625ms timer coalescing preserves over50 real callback FPS
+PASS leaving3D keeps pending native callback and removes timer
+PASS crossorigin iframe cannot inherit3D scope
+PASS iframe runtime embeds exactlythe same scheduler
+PASS 60 Hz screen gets one callback per screen frame
+PASS 120 Hz screen gets at most 60 callbacks per second
+PASS 144 Hz screen gets at most 60 callbacks per second
+PASS missing native frames still get the timer fallback
+PASS inactive 2D keeps every native 120 Hz frame
+PASS throttled 30 Hz native frames are filled to about 60 per second
+{"checks":23,"passed":23}

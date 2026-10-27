@@ -1,4 +1,4 @@
-"""Upload and verify the frozen Unity runtime before publishing the new page."""
+"""Upload and verify the frozen Unity runtime and the app files before publishing the new page."""
 
 import hashlib
 import json
@@ -12,6 +12,9 @@ from deploy_ftps import LIVE_URL, setting
 
 UNITY = Path("outputs/platform/unity-web")
 RUNTIME = Path("dist/unity-match")
+# Installed-app files (service worker, web manifest, icons, privacy page, Android asset links), same path on the site.
+APP = Path("dist")
+APP_FILES = Path("work/app-files.json")
 
 
 def sha256(path):
@@ -37,6 +40,10 @@ def publication_files():
             raise RuntimeError("Unity iframe runtime missing")
         files.append((file, "unity-match/" + name))
     files.append((UNITY / ".htaccess", "unity/.htaccess"))
+    for name in json.loads(APP_FILES.read_text(encoding="utf-8")):
+        if ".." in PurePosixPath(name).parts or not (APP / name).is_file():
+            raise RuntimeError("App file missing: " + name)
+        files.append((APP / name, name))
     # Publish the manifest only after the four hash-bound runtime files.
     files.append((UNITY / "probe-build.json", "unity/probe-build.json"))
     return files

@@ -1,0 +1,7 @@
+PASS 5 Feldspieler, Saison 1: 259 Partien, JSON und einmalige Buchungen
+PASS 5 Feldspieler, Saison 2: 259 Partien, JSON und einmalige Buchungen
+PASS 5 Feldspieler, Saison 3: 259 Partien, JSON und einmalige Buchungen
+PASS 6 Feldspieler, Saison 1: 259 Partien, JSON und einmalige Buchungen
+PASS 6 Feldspieler, Saison 2: 259 Partien, JSON und einmalige Buchungen
+PASS 6 Feldspieler, Saison 3: 259 Partien, JSON und einmalige Buchungen
+{"pass":true,"rows":[{"fieldPlayers":5,"season":1,"players":517,"bytes":7155524,"matches":259},{"fieldPlayers":5,"season":2,"players":537,"bytes":8421261,"matches":259},{"fieldPlayers":5,"season":3,"players":505,"bytes":10033916,"matches":259},{"fieldPlayers":6,"season":1,"players":520,"bytes":7774492,"matches":259},{"fieldPlayers":6,"season":2,"players":531,"bytes":9109929,"matches":259},{"fieldPlayers":6,"season":3,"players":499,"bytes":10835207,"matches":259}]}

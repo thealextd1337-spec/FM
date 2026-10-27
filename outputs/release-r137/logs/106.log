@@ -1,0 +1,20 @@
+ok   parameters: the add-on registers its keys in options and setplay and stores them with the match
+ok   estimate: a runner's path raises the arrival above the standing receiver; a spot beyond his cover is unreachable; the point estimate without a runner is unchanged in kind
+ok   options: the carrier gets one cross into space per runner at a box spot (closed ground pass), none with crossSpace 0 or the setplay package off
+ok   execution: the ball floats to the spot, the runner is contender, enters the box after the kick, the signal lives during the flight; arrivals and air shots over the seeds
+ok   execution large pitch: same mechanism
+ok   offside is judged at the kick: a runner beyond the line when the ball leaves is whistled, not one who enters during the flight
+ok   signal (crossLead): the runner follows the signal at the line until the kick, the carrier kicks at kickAt, the clamp releases in the air
+ok   signal aborted: a runner offside at kickAt gets no cross; the carrier decides anew
+ok   restore during the signal keeps attackFlow.crossRun as plain data and the match kicks after the restore
+ok   a blocked cross into space removes attackFlow.crossRun (no re-kick from a stale signal)
+ok   full constructor matches: crosses into space occur, their state is plain JSON (both sizes, three seeds summed)
+     standard: keeper offset at the landing 0.04 m (share 1, default) / 0.59 m (.4) / 1.20 m (0)
+     large: keeper offset at the landing 0.04 m (share 1, default) / 0.46 m (.4) / 0.95 m (0)
+ok   SI-K2 keeper: during a cross into space he steps onto the landing-goal line (keeperShiftOpen 1, the default since the Torjäger round), part of the way at .4, not with 0; pure target, both sizes
+ok   SI-K2 spaceSpread: the landing error of a cross into space scales with setplay.spaceSpread (estimate and execution)
+     nearest defender at the landing 1.84 m (crossMark 0: 1.87 m), n=7
+ok   SI-K2 marker: a signalled run gets one marker (plain record), who is closer to the landing than without crossMark
+ok   SI-K2 estimate: the nearest defender moves during the wait (lead) as well, so the duel value falls below the uncontested .92
+ok   SI-K2 offside snapshot: one shared set per evaluation gives the same option list with fewer snapshots
+{"pass":true,"suite":"si-crossing-v183","checks":16,"failures":[]}

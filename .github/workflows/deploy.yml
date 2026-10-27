@@ -168,7 +168,7 @@ jobs:
           node work/test-expansion-sponsors.cjs
           node work/test-no-player-images.cjs
 
-      - name: Unity-Laufzeit vor der neuen Spielseite hochladen und prüfen
+      - name: Unity-Laufzeit und App-Dateien vor der neuen Spielseite hochladen und prüfen
         env:
           W4Y_FTP_HOST: ${{ secrets.W4Y_FTP_HOST }}
           W4Y_FTP_USER: ${{ secrets.W4Y_FTP_USER }}

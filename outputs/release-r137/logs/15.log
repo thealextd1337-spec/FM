@@ -1,0 +1,14 @@
+PASS snapshot follows the pitch size, older careers count as standard, constants frozen and copied
+PASS new matches store marker 183 and the pitch snapshot; initialisation never re-marks existing states
+PASS shot rate: strength gap, 3 % home bonus only for the home side, deep defensive line of the opponent
+PASS shot result levers: finishing, keeper (gk) and gap act on the intended step
+PASS within-team finishing share: expected shooter unchanged, own deviation counts with finSelf
+PASS score state: leader/trailer/level factors, side-aware, absent block neutral
+PASS home bonus only for side 0 on a non-neutral pitch, none on neutral ground
+PASS full match with identifier 178 equals the frozen controller and resumes exactly
+PASS full match with identifier 119 equals the frozen controller and resumes exactly
+PASS full match with identifier undefined equals the frozen controller and resumes exactly
+PASS marker 183: stored snapshot owns the continuation; JSON resume exact; booking idempotent
+PASS team statistics, sources and player lines agree with the events; results vary
+PASS role and source tables are complete
+PASS freshness use of full-match players lies in the band of the played-out reference

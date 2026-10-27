@@ -1,6 +1,6 @@
 # Entwicklung und Veröffentlichung
 
-Aktueller Veröffentlichungsstand vom 26. Oktober 2026: Release 136 in `work/release-r136`, Branch `release/r136`, auf Release 135 plus Ballphysik 184 und KI-Trainer 185 (`feat/ai-tactics`, `8ba80dd4`), B28 (`fix/si-defender-drift`, `81c52b59`) und B29 (`fix/unity-skin-colors`, `f312c5ce`). Die Veröffentlichung ist vom Nutzer beauftragt und erfolgt über `main` und den Produktionsworkflow. Quelle ist `dist/`; Footer, Build, Runtime-Cache, Unity-Produktmetadaten und Hilfedaten tragen 136, Unity-Quellenkennung `b434de96...`. [Releasebericht und Prüfungen](release-136.md). Kimodo-Animationen sind nicht enthalten. B05 und konkrete Nutzerabnahmen bleiben offen; Bestandsspielstände werden nicht umgerechnet.
+Aktueller Veröffentlichungsstand vom 27. Oktober 2026: Release 137 in `work/release-r136`, Branch `release/r137`, auf Release 136 plus Vorbereitung der Android-App: Web-Manifest, App-Symbole, Service Worker für den Offline-Start, Domainnachweis `assetlinks.json`, öffentliche Datenschutzseite und die TWA-Hülle in `work/platform/android-twa/`. Die Veröffentlichung ist vom Nutzer beauftragt (27. Oktober 2026) und erfolgt über `main` und den Produktionsworkflow. Footer, Build, Runtime-Cache, Unity-Produktmetadaten und Hilfedaten tragen 137; der Unity-Binärbuild ist unverändert. [Releasebericht](release-137.md), [Android-App](android-app.md). Bestandsspielstände werden nicht umgerechnet.
 
 ## Aktueller Arbeitsstand und Abschluss
 

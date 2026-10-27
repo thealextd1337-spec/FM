@@ -1,0 +1,41 @@
+plugins {
+    id 'com.android.application'
+}
+
+// Upload key stays outside the repository (docs/android-app.md); without it only debug builds work.
+def signing = new Properties()
+def signingFile = file(System.getenv('D6_ANDROID_SIGNING') ?: 'H:/dev/keys/doppel6-upload.properties')
+if (signingFile.exists()) signingFile.withInputStream { signing.load(it) }
+
+android {
+    namespace 'at.cakamper.doppel6'
+    compileSdk 36
+    defaultConfig {
+        applicationId 'at.cakamper.doppel6'
+        minSdk 26
+        targetSdk 36
+        // The app shell is versioned on its own; the game inside updates with every web release.
+        versionCode 1
+        versionName '1.0'
+    }
+    signingConfigs {
+        release {
+            if (signing.storeFile) {
+                storeFile file(signing.storeFile)
+                storePassword signing.storePassword
+                keyAlias signing.keyAlias
+                keyPassword signing.keyPassword
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+dependencies {
+    implementation 'com.google.androidbrowserhelper:androidbrowserhelper:2.7.4'
+}

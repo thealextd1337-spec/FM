@@ -12,6 +12,7 @@ work/*
 !work/test_deploy_unity_assets.py
 !work/deploy_preview_ftps.py
 !work/test_deploy_preview_ftps.py
+!work/app-files.json
 !work/ui-redesign/
 !work/platform/
 !work/match-next/

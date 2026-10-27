@@ -1,0 +1,111 @@
+{
+  "seeds": 6,
+  "seasons": 10,
+  "leagueTitleClubs": 36,
+  "topTitleClubs": [
+    {
+      "clubId": "ESP-1",
+      "titles": 36,
+      "expectedRank": 1.38,
+      "actualRank": 1.88,
+      "rankVariance": 1.57
+    },
+    {
+      "clubId": "GER-1",
+      "titles": 30,
+      "expectedRank": 1.25,
+      "actualRank": 1.97,
+      "rankVariance": 1.47
+    },
+    {
+      "clubId": "POR-2",
+      "titles": 26,
+      "expectedRank": 1.87,
+      "actualRank": 2.3,
+      "rankVariance": 2.04
+    },
+    {
+      "clubId": "FRA-1",
+      "titles": 24,
+      "expectedRank": 1.18,
+      "actualRank": 2.57,
+      "rankVariance": 2.75
+    },
+    {
+      "clubId": "ENG-1",
+      "titles": 23,
+      "expectedRank": 2.07,
+      "actualRank": 2.42,
+      "rankVariance": 2.21
+    },
+    {
+      "clubId": "ITA-2",
+      "titles": 22,
+      "expectedRank": 1.45,
+      "actualRank": 2.43,
+      "rankVariance": 1.98
+    }
+  ],
+  "rankVarianceMean": 2.2,
+  "titleByStartingStrength": {
+    "topTwo": 243,
+    "middleTwo": 85,
+    "bottomTwo": 32
+  },
+  "meanRankDistance": 1.26,
+  "longestTitleRun": 10,
+  "longestTitleClub": "Seed 3, ESP-1",
+  "cupOnlyWinners": 27,
+  "coachDismissals": 81,
+  "coachRetirements": 37,
+  "naturalOffers": 20,
+  "transferSignings": 1708,
+  "transferFees": 552500,
+  "youthMinutes": 2741407,
+  "rosterRange": [
+    10,
+    14
+  ],
+  "lowestAiBalance": 286,
+  "maxSalaryShare": 1.38,
+  "cupQualityRatio": {
+    "start": {
+      "min": 0.72,
+      "median": 0.75,
+      "max": 0.78
+    },
+    "final": {
+      "min": 0.78,
+      "median": 0.83,
+      "max": 0.89
+    },
+    "medianBySeason": {
+      "1": 0.75,
+      "2": 0.75,
+      "3": 0.76,
+      "4": 0.76,
+      "5": 0.77,
+      "6": 0.79,
+      "7": 0.8,
+      "8": 0.81,
+      "9": 0.83,
+      "10": 0.83
+    }
+  },
+  "finalClubAverages": {
+    "league": {
+      "quality": 12.9,
+      "balance": 5188.3,
+      "annual": 2445.2,
+      "youthBudget": 390.5
+    },
+    "cup": {
+      "quality": 10.7,
+      "balance": 11142.3,
+      "annual": 1442.1,
+      "youthBudget": 106.3
+    }
+  },
+  "saveMaxMB": 8.59,
+  "maxWorldStepMs": 146.98
+}

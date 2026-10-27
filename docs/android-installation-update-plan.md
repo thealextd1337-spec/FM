@@ -1,5 +1,7 @@
 # Android: frühe Installation und Updates
 
+**Aktualisierung vom 27. Oktober 2026:** Die erste Play-Version ist eine Trusted Web Activity ohne Account, Werbung und Kauf; der Upload-Schlüssel ist angelegt. Für Android gilt damit nicht mehr „PC-Browser zuerst, Accountpflicht“. Stand und Bauweg: [Android-App](android-app.md).
+
 Stand: 7. Oktober 2026. Bestätigte Produktanforderungen und technische Planung, keine Umsetzung. Builds, Schlüsselanlage, Installation, Uploads und Veröffentlichung bleiben auf Nutzeranweisung gestoppt.
 
 ## Bestätigter Umfang

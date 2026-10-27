@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## Release 137 — 27. Oktober 2026
+
+- Vorbereitung der Android-App (Nutzerentscheidung vom 27. Oktober 2026: erste Play-Version ohne Account, Werbung und Kauf, als Trusted Web Activity). Neu sind ein Web-Manifest mit App-Symbolen und ein Service Worker: Die installierte App und der Browser starten nach einem Besuch auch ohne Internet, mit Unity-Partie nach einem 3D-Spiel. Die Seite kommt zuerst aus dem Netz, damit keine alte Version hängen bleibt; der Unity-Build wird über seinen Hash gespeichert. Dazu kommen der Domainnachweis `.well-known/assetlinks.json` und die öffentliche Datenschutzseite `datenschutz.html`, die aus den Spieltexten erzeugt wird. Diese nennen jetzt IndexedDB, den Offline-Zwischenspeicher und die Android-App, auf Deutsch und Englisch. Die TWA-Hülle liegt in `work/platform/android-twa/` (Paket `at.cakamper.doppel6`, signierte APK und AAB lokal gebaut); der Deploy lädt die App-Dateien vor der Spielseite hoch und prüft sie. Prüfung `work/check-app-offline.cjs`. Fußversion, Unity-Laufzeitmetadaten, Laufzeitcache und 3D-Hilfedaten tragen 137, der Unity-Binärbuild ist unverändert. [Veröffentlichungsbericht](release-137.md), [Android-App](android-app.md).
+
 ## Release 136 — 26. Oktober 2026
 
 - Release 136 veröffentlicht Release 135 plus Ballphysik 184, KI-Trainer 185, B28 und B29. Fußversion, Unity-Laufzeitmetadaten, Laufzeitcache und 3D-Hilfedaten tragen 136; Quelle und Einzeldatei-Build sind versionsgleich. Neuer Unity-Binärbuild für B29 (Quellenkennung `b434de96...`). Ballphysik, KI-Trainer und B28 wirken nur in neuen Partien von Welten mit Stempel 183; bestehende Welten werden nicht umgerechnet. Das Replay-Harness des KI-Trainers lädt die Autosave-Konstante aus Release 135 mit. [Veröffentlichungsbericht](release-136.md).

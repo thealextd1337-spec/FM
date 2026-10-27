@@ -1,5 +1,6 @@
 const fs=require('fs');
 require('./generate-3d-documentation.cjs').generate();
+require('./generate-privacy-page.cjs').generate();
 const readSource=file=>fs.readFileSync(file,'utf8').replace(/\r\n/g,'\n');
 let html=readSource('dist/index.html');
 const flutlicht=require('./ui-redesign/shared/assets.cjs');
@@ -25,7 +26,10 @@ for(const asset of [...new Set(html.match(/(?:referees|trophies|sprites|crests)\
 }
 // The published HTTP build loads its matching Unity runtime; file: retains the
 // existing local bridge. The query also separates runtime caches by release.
-html=html.replace('</head>',()=>'<script>if(location.protocol==="http:"||location.protocol==="https:")window.D6UnityMatchUrl=new URL("unity-match/runtime.html?v=136",document.baseURI).href;</script></head>');
-html=html.replace(/PROTOTYP \d+\b/g,'PROTOTYP 136');
+html=html.replace('</head>',()=>'<script>if(location.protocol==="http:"||location.protocol==="https:")window.D6UnityMatchUrl=new URL("unity-match/runtime.html?v=137",document.baseURI).href;</script></head>');
+// Installed app (Android TWA): the service worker keeps the last release for offline starts. Only on the HTTPS
+// site; local QA servers opt in with ?d6sw=1, so the other browser checks keep running without it.
+html=html.replace('</head>',()=>'<script>if("serviceWorker" in navigator&&(location.protocol==="https:"||/[?&]d6sw=1\\b/.test(location.search)))addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));</script></head>');
+html=html.replace(/PROTOTYP \d+\b/g,'PROTOTYP 137');
 fs.mkdirSync('outputs',{recursive:true});
 fs.writeFileSync('outputs/index.html',html);fs.writeFileSync('outputs/Doppel-6-Fussballmanager.html',html);
